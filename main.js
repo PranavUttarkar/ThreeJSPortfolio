@@ -3,52 +3,25 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-// THREE.useLegacyLight = true
+
 const scene = new THREE.Scene();
-
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000);
-
 const renderer = new THREE.WebGLRenderer({
     canvas: document.querySelector('#bg'),
 });
 
-renderer.setPixelRatio(window.devicePixelRatio );
-renderer.setSize( window.innerWidth, window.innerHeight);
 camera.position.setZ(5);
 camera.position.setX(4);
 camera.position.setY(-0.5);
 
+renderer.setPixelRatio(window.devicePixelRatio );
+renderer.setSize( window.innerWidth, window.innerHeight);
+let lastScrollY = window.scrollY; // Store the last scroll position
 
 renderer.render(scene, camera);
-
-const geometry = new THREE.TorusKnotGeometry(1, 1, 145, 5)
-const material = new THREE.MeshStandardMaterial({color: 0xfffff});
-
-
 const controls = new OrbitControls(camera, renderer.domElement);
 
-
-function addStar(){
-    const geometry = new THREE.SphereGeometry(0.25, 24, 24)
-    const material = new THREE.MeshStandardMaterial({color: 0xfffff});
-    const star = new THREE.Mesh( geometry, material);
-    const pointLight = new THREE.PointLight(0xffffff, 500);
-
-    const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(500));
-
-    star.position.set(x, y, z);
-    pointLight.position.set(x, y, z);
-    scene.add(star, pointLight);
-
-
-}
-
-Array(200).fill().forEach(addStar)
-
-
-// const spaceTexture = new THREE.TextureLoader().load('space.jpg');
-// scene.background = spaceTexture;
-
+//Adds Earth and Its texture and Map
 const earthTexture = new THREE.TextureLoader().load('earth.jpg');
 const normalTexture = new THREE.TextureLoader().load('normal.jpg');
 
@@ -61,11 +34,24 @@ const earth = new THREE.Mesh(
 );
 
 earth.position.set(0, 0, 1)
-
 scene.add(earth)
 
+// Generates Light Emitting Spheres which are mapped randomly through the scene
+function addStar(){
+    
+    const geometry = new THREE.SphereGeometry(0.25, 24, 24)
+    const material = new THREE.MeshStandardMaterial({color: 0xfffff});
+    const star = new THREE.Mesh( geometry, material);
+    const pointLight = new THREE.PointLight(0xffffff, 500);
 
+    const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(500));
 
+    star.position.set(x, y, z);
+    pointLight.position.set(x, y, z);
+    scene.add(star, pointLight);
+
+}
+Array(200).fill().forEach(addStar)
 
 
 // Handle window resizing
@@ -75,14 +61,14 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-
+//Adds ISS Model
 const loader = new GLTFLoader();
 loader.load(
-    './ISS.glb', // Replace with the correct path to your ISS model
+    './ISS.glb', 
     (gltf) => {
         const ISS = gltf.scene;
-        scene.add(ISS); // Add the ISS to the scene
-        ISS.position.set(20, 20, 200); // Optional: Adjust the position
+        scene.add(ISS); 
+        ISS.position.set(20, 20, 200); 
     },
     undefined,
     (error) => {
@@ -90,10 +76,8 @@ loader.load(
     }
 );
 
-
-let Billboard; // Declare the Billboard globally
-let lastScrollY = window.scrollY; // Store the last scroll position
-
+// Adds Skills Billboard
+let Billboard; 
 loader.load(
     './Billboard.glb', 
     (gltf) => {
@@ -109,6 +93,8 @@ loader.load(
     }
 );
 
+
+// Adds Aggie Agenda CLipboard
 let clipboard;
 loader.load(
     './clipboard.glb', 
@@ -124,10 +110,12 @@ loader.load(
         console.error('Error loading the clipboard model:', error);
     }
 );
-const boardLight = new THREE.PointLight(0xffffff, 10);
+const boardLight = new THREE.PointLight(0xffffff, 10); //Lights for Billboard
 boardLight.position.set(18, 0, 305);
 scene.add(boardLight);
 
+
+//Adds Phone
 let phone;
 loader.load(
     './phone.glb', 
@@ -147,6 +135,7 @@ const phoneLight = new THREE.SpotLight(0xffffff, 300);
 phoneLight.position.set(28, 0, 485);
 scene.add(phoneLight);
 
+//Adds Car
 let car;
 loader.load(
     './car.glb', 
@@ -170,6 +159,8 @@ const headLight2 = new THREE.PointLight(0xffffff, 100);
 headLight2.position.set(20.5, -0.5, 413);
 scene.add(headLight, headLight2);
 
+
+
 function moveCamera() {
     const t = document.body.getBoundingClientRect().top;
 
@@ -179,10 +170,6 @@ function moveCamera() {
     earth.rotation.x += 0.005;
     earth.rotation.y += 0.0075;
     earth.rotation.z += 0.005;
-
-    
-    
-    
 
     // Camera movement logic
     camera.position.z = t * -0.1;
@@ -196,13 +183,10 @@ moveCamera();
 
 function animate(){
     requestAnimationFrame(animate);
-
-
     controls.update();
 
     renderer.render( scene, camera);
 }
-
 animate()
 
   
