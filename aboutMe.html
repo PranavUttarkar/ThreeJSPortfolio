@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Me</title>
+    <link rel="stylesheet" href="Aboutstyles.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">&lt;Pranav Uttarkar&gt;</div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="aboutMe.html" class="active">About</a></li>
+
+        <li><a href="Resume Pranav Uttarkar.pdf" target="_blank">Resume</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </nav>
+    <style>
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1rem;
+        background: linear-gradient(90deg, #141e30, #243b55);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .logo {
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+        cursor: pointer;
+        margin-left: 5%;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        margin-right: 2.5%;
+      }
+
+      .nav-links li {
+        margin: 0 1rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #c4c4c4;
+        font-weight: lighter;
+        font-size: 1.1rem;
+        position: relative;
+        transition: color 0.3s ease-in-out;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: #00d4ff;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background: #00d4ff;
+        bottom: -4px;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: width 0.3s ease-in-out;
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      .hamburger {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      @media (max-width: 8px) {
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          background: #141e30;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .nav-links li {
+          margin: 1rem 0;
+          text-align: center;
+        }
+
+        .hamburger {
+          display: block;
+        }
+      }
+    </style>
+    <br />
+    <br />
+    <section class="about-me-section">
+      <div class="container">
+        <div class="header">
+          <h1>About Me!</h1>
+        </div>
+        <div class="content">
+          <h3><strong>My Journey into Tech</strong></h3>
+          <p>
+            My passion for technology began in 9th grade when I built my first
+            computer. The hands-on experience of sourcing parts and solving
+            challenges sparked my curiosity, while creating custom Minecraft
+            mods deepened my love for coding and understanding how systems work.
+          </p>
+          <h3><strong>Current Passions</strong></h3>
+          <p>
+            Today, I’m passionate about machine learning, particularly in
+            analyzing and classifying data, and I’m actively self-studying
+            digital electronics and Verilog as part of my research at Texas A&M
+            University. I enjoy exploring the intersection of software and
+            hardware, combining creativity with technical skills to develop
+            impactful solutions.
+          </p>
+          <p>
+            I also have a strong interest in the business side of technology.
+            Managing a 50,000-follower social media page during my Minecraft
+            modding journey taught me the importance of understanding user
+            needs, effective marketing, and creating products that truly
+            resonate with people.
+          </p>
+          <h3><strong>Roles I am seeking</strong></h3>
+          <p>
+            I’m currently seeking internship opportunities in Data/Software
+            Engineering and Product Management, where I can learn while
+            contributing to interesting impactful projects while collaborating
+            with industry experts, and continue growing as a developer.
+          </p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

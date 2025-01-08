@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.png" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Me</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(120deg, #010835, #270e64);
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        background-color: #fff;
+        padding: 30px 40px;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        max-width: 500px;
+        width: 90%;
+      }
+      h1 {
+        margin-bottom: 20px;
+        font-size: 2rem;
+        color: #444;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        margin: 15px 0;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      li img {
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+      }
+      a {
+        text-decoration: none;
+        color: #0073b1;
+        font-weight: bold;
+        transition: color 0.3s;
+      }
+      a:hover {
+        color: #005582;
+      }
+      .footer {
+        margin-top: 20px;
+        font-size: 0.9rem;
+        color: #666;
+      }
+    </style>
+
+    <nav class="navbar">
+      <div class="logo">&lt;Pranav Uttarkar&gt;</div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="aboutMe.html">About</a></li>
+
+        <li><a href="Resume Pranav Uttarkar.pdf" target="_blank">Resume</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </nav>
+    <style>
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1rem;
+        background: linear-gradient(90deg, #141e30, #243b55);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .logo {
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+        cursor: pointer;
+        margin-left: 5%;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        margin-right: 2.5%;
+      }
+
+      .nav-links li {
+        margin: 0 1rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #c4c4c4;
+        font-weight: lighter;
+        font-size: 1.1rem;
+        position: relative;
+        transition: color 0.3s ease-in-out;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: #00d4ff;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background: #00d4ff;
+        bottom: -4px;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: width 0.3s ease-in-out;
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      .hamburger {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      @media (max-width: 8px) {
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          background: #141e30;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .nav-links li {
+          margin: 1rem 0;
+          text-align: center;
+        }
+
+        .hamburger {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Pranav Uttarkar</h1>
+      <ul>
+        <li>
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+            alt="LinkedIn Icon"
+          />
+          <a href="https://www.linkedin.com/in/pranav-uttarkar/" target="_blank"
+            >LinkedIn</a
+          >
+        </li>
+        <li>
+          <img
+            src="./Handshake_app_icon_default.png"
+            alt="Handshake Icon"
+            style="width: 30px; height: 24px"
+          />
+
+          <a
+            href="https://app.joinhandshake.com/profiles/62918992"
+            target="_blank"
+            >Handshake</a
+          >
+        </li>
+        <li>
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/732/732200.png"
+            alt="Email Icon"
+          />
+          <a href="mailto:pranavuttarkar@tamu.edu">pranavuttarkar@tamu.edu</a>
+        </li>
+        <li>
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/597/597177.png"
+            alt="Phone Icon"
+          />
+          <span>+1-346-888-7168</span>
+        </li>
+      </ul>
+      <div class="footer">Feel free to reach out anytime!</div>
+    </div>
+  </body>
+</html>
