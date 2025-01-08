@@ -6,246 +6,66 @@
     <link rel="icon" type="image/svg+xml" href="favicon.png" />
     <title>Pranav Uttarkar</title>
     <link rel="stylesheet" href="stylesProjects.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-      <div class="logo">&lt;Pranav Uttarkar&gt;</div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="Resume Pranav Uttarkar (7).pdf" download>Resume</a></li>
-        <li><a href="projects.html" class="active">Projects & Work</a></li>
-        <li><a href="mailto:pranavuttarkar@tamu.edu">Contact</a></li>
-      </ul>
-    </nav>
+    <div class="project-card">
+      <div class="project-header">
+        <h2>A&M Studys</h2>
+        <span></span>
+      </div>
+      <div class="project-content">
+        <img
+          class="project-image"
+          src="https://via.placeholder.com/150"
+          alt="A&M Studys"
+        />
+        <div class="project-description">
+          <p>
+            As part of the AI4ALL Ignite Program, I developed an image
+            classifier aimed at enhancing early detection of lung cancer.
+            Leveraging advanced machine learning algorithms, this diagnostic
+            tool achieved a detection accuracy of 99.63%.
+          </p>
+          <div class="tags">
+            <div class="tag">Python</div>
+            <div class="tag">PyTorch</div>
+            <div class="tag">Scikit-Learn</div>
+            <div class="tag">Streamlit</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <!-- Canvas Background -->
-    <canvas id="bg"></canvas>
-
-    <!-- Main Content -->
-    <main>
-      <main>
-        <!-- Projects Section -->
-        <section>
-          <h2>👩🏽‍🚀 Projects</h2>
-          <article id="projects">
-            <h3>A&M Studys - Project Manager and Developer</h3>
-            <p><strong>Sep 2024 - Present</strong></p>
-            <ul>
-              <li>
-                Leading a team of 7 to develop "A&M Studys," a web app for
-                academic Q&A at Texas A&M.
-              </li>
-              <li>
-                Utilizing React.js for front-end and Firebase for back-end
-                management.
-              </li>
-              <li>
-                Conducting weekly meetings and organizing workflows with Jira
-                and GitHub.
-              </li>
-            </ul>
-            <p><strong>Skills:</strong> Jira, Firebase, React.js</p>
-          </article>
-
-          <article id="projects">
-            <h3>Aggie Agenda - HowdyHack 2024</h3>
-            <p><strong>Sep 2024</strong></p>
-            <ul>
-              <li>
-                Developed Aggie Agenda in 24 hours to centralize campus events
-                for Texas A&M students.
-              </li>
-              <li>
-                Used Next.js and Tailwind CSS for a responsive front-end, Prisma
-                and MySQL for the back-end.
-              </li>
-              <li>
-                Implemented secure authentication with NextAuth.js, overcoming
-                challenges under time constraints.
-              </li>
-            </ul>
-            <p><strong>Skills:</strong> TypeScript, Tailwind CSS, Next.js</p>
-          </article>
-
-          <article id="projects">
-            <h3>CarClinic - Capstone Project</h3>
-            <p><strong>Sep 2023 - May 2024</strong></p>
-            <ul>
-              <li>
-                Created a Python app for vehicle diagnostics using the GPT-4
-                API.
-              </li>
-              <li>
-                Designed and built an ELM327 OBD scanner with 3D-printed
-                housing.
-              </li>
-              <li>
-                Used Kivy, Pandas, and Scikit-learn to process diagnostic data.
-              </li>
-            </ul>
-            <p><strong>Skills:</strong> Python, AutoCAD, Market Research</p>
-          </article>
-
-          <article id="projects">
-            <h3>Social Media Content Creation & Marketing</h3>
-            <p><strong>Nov 2021 - Dec 2023</strong></p>
-            <ul>
-              <li>
-                Built a following of 50,000+ on YouTube and TikTok with 35.5M
-                total views.
-              </li>
-              <li>
-                Created the "Impossible Parkour" TikTok filter, used in 70,000+
-                videos.
-              </li>
-              <li>Collaborated with record labels for sponsored content.</li>
-            </ul>
-            <p><strong>Skills:</strong> Video Editing, Marketing, Three.js</p>
-          </article>
-        </section>
-
-        <!-- Work History Section -->
-        <section>
-          <h2>💻 Work History</h2>
-          <article id="projects">
-            <h3>Pentair Engineered Filtration</h3>
-            <p>
-              <strong>Manufacturing and Automation Intern</strong> | July 2023 -
-              August 2023 | Conroe, TX
-            </p>
-            <ul>
-              <li>
-                Recorded energy data and formatted it for better UX using the
-                Google Visualization API.
-              </li>
-              <li>
-                Shadowed engineers to learn manufacturing automation and
-                robotics design.
-              </li>
-              <li>
-                Brainstormed plans for a manufacturing robot to automate filter
-                wrapping.
-              </li>
-            </ul>
-          </article>
-
-          <article id="projects">
-            <h3>B3- Bricks Bots & Beakers</h3>
-            <p>
-              <strong>Science Instructor</strong> | May 2024 - Aug 2024 |
-              Frisco, TX
-            </p>
-            <ul>
-              <li>
-                Taught science concepts through hands-on activities for ages
-                4-13.
-              </li>
-              <li>
-                Curated materials and adapted lessons to resource constraints.
-              </li>
-              <li>
-                Guided students in experiments, fostering curiosity and
-                problem-solving.
-              </li>
-            </ul>
-          </article>
-
-          <article id="projects">
-            <h3>Dallas Frontiers Of Flight Museum</h3>
-            <p>
-              <strong>Aircraft Model Shop Volunteer</strong> | Jun 2023 - Dec
-              2023 | Dallas, TX
-            </p>
-            <ul>
-              <li>
-                Built a 1960 Dehavilland Beaver model plane for the museum.
-              </li>
-              <li>
-                Explained aircraft design to visitors and led educational
-                demonstrations.
-              </li>
-              <li>Used woodworking tools for model construction and repair.</li>
-            </ul>
-          </article>
-        </section>
-      </main>
-    </main>
-
-    <!-- Background Music -->
-    <audio id="background-music" loop autoplay>
-      <source src="backgroundMusic.mp3" type="audio/mp3" />
-      Your browser does not support the audio element.
-    </audio>
-    <script>
-      var audio = document.getElementById("background-music");
-      audio.volume = 0.05;
-    </script>
-
-    <!-- JavaScript for Background Animation -->
-    <script>
-      // Select the canvas element and set up its context
-      const canvas = document.getElementById("bg");
-      const ctx = canvas.getContext("2d");
-
-      // Set the canvas size to match the screen size
-      function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-
-      // Create a star object
-      function createStar() {
-        return {
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 2 + 1, // Star size varies from 1 to 3
-          alpha: Math.random() * 0.8 + 0.2, // Star brightness varies between 0.2 and 1
-          speed: Math.random() * 0.2 + 0.1, // Twinkling speed
-        };
-      }
-
-      // Create an array to store stars
-      let stars = [];
-
-      // Populate the stars array based on screen size
-      function initializeStars() {
-        const starCount = Math.floor((canvas.width * canvas.height) / 10000); // Adjust density
-        stars = [];
-        for (let i = 0; i < starCount; i++) {
-          stars.push(createStar());
-        }
-      }
-
-      // Draw a single star
-      function drawStar(star) {
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2, false);
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
-        ctx.fill();
-      }
-
-      // Animate the stars
-      function animateStars() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        for (let star of stars) {
-          drawStar(star);
-        }
-
-        requestAnimationFrame(animateStars);
-      }
-
-      // Handle window resize events
-      window.addEventListener("resize", () => {
-        resizeCanvas();
-        initializeStars();
-      });
-
-      // Initialize canvas and stars
-      resizeCanvas();
-      initializeStars();
-      animateStars();
-    </script>
+    <div class="project-card">
+      <div class="project-header">
+        <h2>motion.</h2>
+        <span></span>
+      </div>
+      <div class="project-content">
+        <img
+          class="project-image"
+          src="https://via.placeholder.com/150"
+          alt="motion."
+        />
+        <div class="project-description">
+          <p>
+            To create motion., I utilized Notion API and Firebase to pull data
+            from Notion pages and convert it into a real-time Kahoot-style quiz
+            game. This project won 2nd place in Education Technology at
+            Build4Good 2024.
+          </p>
+          <div class="tags">
+            <div class="tag">Svelte</div>
+            <div class="tag">SvelteKit</div>
+            <div class="tag">TypeScript</div>
+            <div class="tag">Firebase</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

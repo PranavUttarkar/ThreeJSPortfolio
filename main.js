@@ -33,26 +33,6 @@ const earth = new THREE.Mesh(
   })
 );
 
-earth.position.set(0, 0, 1)
-scene.add(earth)
-
-// Generates Light Emitting Spheres which are mapped randomly through the scene
-function addStar(){
-    
-    const geometry = new THREE.SphereGeometry(0.25, 24, 24)
-    const material = new THREE.MeshStandardMaterial({color: 0xfffff});
-    const star = new THREE.Mesh( geometry, material);
-    const pointLight = new THREE.PointLight(0xffffff, 500);
-
-    const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(500));
-
-    star.position.set(x, y, z);
-    pointLight.position.set(x, y, z);
-    scene.add(star, pointLight);
-
-}
-Array(200).fill().forEach(addStar)
-
 
 // Handle window resizing
 window.addEventListener('resize', () => {
@@ -61,20 +41,47 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-//Adds ISS Model
+
+
+const directionalLight = new THREE.AmbientLight( 0xffffff, 1.75 );
+scene.add( directionalLight );
+
+earth.position.set(0, 0, 1)
+scene.add(earth)
+
+// Generates Light Emitting Spheres which are mapped randomly through the scene
+function addStar(){
+    
+    const geometry = new THREE.SphereGeometry(.43, 24, 24)
+    const material = new THREE.MeshStandardMaterial({color: 0xfffff});
+    const star = new THREE.Mesh( geometry, material);
+    // const pointLight = new THREE.PointLight(0xffffff, 1500);
+
+    const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(1000));
+
+    star.position.set(x, y, z);
+    // pointLight.position.set(x, y, z);
+    scene.add(star);
+
+}
+Array(300).fill().forEach(addStar)
+
+
+
+// //Adds ISS Model
 const loader = new GLTFLoader();
-loader.load(
-    './ISS.glb', 
-    (gltf) => {
-        const ISS = gltf.scene;
-        scene.add(ISS); 
-        ISS.position.set(20, 20, 200); 
-    },
-    undefined,
-    (error) => {
-        console.error('Error loading the ISS model:', error);
-    }
-);
+// loader.load(
+//     './ISS.glb', 
+//     (gltf) => {
+//         const ISS = gltf.scene;
+//         scene.add(ISS); 
+//         ISS.position.set(20, 20, 200); 
+//     },
+//     undefined,
+//     (error) => {
+//         console.error('Error loading the ISS model:', error);
+//     }
+// );
 
 // Adds Skills Billboard
 let Billboard; 
@@ -167,9 +174,9 @@ function moveCamera() {
     lastScrollY = window.scrollY;
 
     // Rotate the earth 
-    earth.rotation.x += 0.005;
-    earth.rotation.y += 0.0075;
-    earth.rotation.z += 0.005;
+    earth.rotation.x += 0.00005;
+    earth.rotation.y += 0.00075;
+    earth.rotation.z += 0.0005;
 
     // Camera movement logic
     camera.position.z = t * -0.1;
@@ -185,7 +192,7 @@ function animate(){
     requestAnimationFrame(animate);
     controls.update();
 
-    renderer.render( scene, camera);
+    renderer.render(scene, camera);
 }
 animate()
 

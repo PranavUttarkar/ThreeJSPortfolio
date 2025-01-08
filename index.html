@@ -7,13 +7,31 @@
     <title>Pranav Uttarkar</title>
   </head>
   <body>
+    <div id="preLoader">
+    </div>
+    <style>
+      #preLoader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #000 url(./preloader.gif) no-repeat center center;
+        background-size: 50%; 
+        display: flex;
+      }
+    </style>
+
+
     <nav class="navbar">
       <div class="logo">&lt;Pranav Uttarkar&gt;</div>
       <ul class="nav-links">
         <li><a href="#home" class="active">Home</a></li>
+        <li><a href=aboutMe.html>About Me</a></li>
+
         <li><a href="file:Resume Pranav Uttarkar (7).pdf">Resume</a></li>
         <li><a href="projects.html">Projects & Work</a></li>
-        <li><a href="mailto:pranavuttarkar@tamu.edu">Contact</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
       <div class="hamburger" onclick="toggleMenu()">☰</div>
     </nav>
@@ -29,8 +47,8 @@
       <section>
         <h2>📜 Education</h2>
         <h3>Texas A&M University</h3>
-        <p><strong>Computer Engineering</strong></p>
-        <p>Expected Graduation: May 2027</p>
+        <h4><strong>Computer Engineering</strong></h4>
+        <h5>Aug 2024 - May 2027</h5>
         <ul>
           <li>
             Craig And Galen Brown Engineering Honors
@@ -98,11 +116,6 @@
               organizations.
             </li>
             <li>
-              Implemented secure authentication with NextAuth.js, integrating
-              GitHub login to allow users to sign in and track events
-              seamlessly.
-            </li>
-            <li>
               Overcame authentication and event synchronization challenges under
               time constraints, enhancing technical skills and problem-solving
               abilities throughout the project.
@@ -118,7 +131,7 @@
         </div>
 
         <div class="section">
-          <h3>CarClinic - Capstone Project</h3>
+          <h3>CarClinic AI - Capstone Project</h3>
           <p><strong>Sep 2023 - May 2024</strong></p>
           <ul>
             <li>
@@ -133,19 +146,26 @@
               conditions.
             </li>
             <li>
-              Implemented the Kivy framework and Python libraries such as
-              Pandas, NumPy, and Scikit-learn ML library to efficiently process
-              and analyze diagnostic data collected from OBD scanner.
+              Python libraries such as
+              Pandas, NumPy, and <strong>Scikit-learn ML</strong> library to efficiently data classification
+              to analyze diagnostic data collected from OBD scanner.
             </li>
           </ul>
           <p><strong>Skills:</strong></p>
           <ul class="skills">
-            <li>Market Research</li>
+            <li>ML classification</li>
             <li>AutoCAD</li>
             <li>Python</li>
           </ul>
         </div>
-
+        <div class ="section">
+          <h3>Three.js portfolio</h3>
+            <ul>
+                <li>Utilized Three.js to create interactive 3D visualizations, gaining hands-on experience with WebGL concepts and rendering techniques.</li>
+                <li>Conducted performance profiling and debugging using tools like Spector.js and browser DevTools to identify bottlenecks, reduce draw calls, and improve frame rates</li>
+                <li>Experimented with lighting, camera controls, and custom shaders in Three.js to enhance the realism and interactivity of 3D scenes.</li>
+            </ul>
+        </div>
         <div class="section">
           <h3>Social Media Content Creation & Marketing</h3>
           <p><strong>Nov 2021 - Dec 2023</strong></p>
@@ -171,12 +191,7 @@
             </li>
           </ul>
           <div class="skills-section">
-            <h3>Three.js portfolio</h3>
-            <ul>
-                <li>Learned Three.js to create interactive 3D visualizations, gaining hands-on experience with WebGL concepts and rendering techniques.</li>
-                <li>Applied CSS to style the portfolio, integrating animations, responsive layouts, and smooth transitions for an engaging user experience.</li>
-                <li>Experimented with lighting, camera controls, and custom shaders in Three.js to enhance the realism and interactivity of 3D scenes.</li>
-            </ul>
+            
         </div>
         
         </div>
@@ -190,7 +205,7 @@
       <section class="left">
         <h2>💻 Work History</h2> 
         <div class="experience">
-            <h4>Pentair Engineered Filtration</h4>
+            <h3>Pentair Engineered Filtration</h3>
             <p><strong>Manufacturing and Automation Intern</strong> | July 2023 - August 2023 | Conroe, TX</p>
             <ul>
                 <li>Formatted and recorded energy data from the TEDPro energy monitoring software into a permanent database and served it in the Google Visualization API format for better UX.</li>
@@ -200,7 +215,7 @@
         </div>
         
         <div class="experience">
-            <h4>B3- Bricks Bots & Beakers</h4>
+            <h3>B3- Bricks Bots & Beakers</h3>
             <p><strong>Science Instructor</strong> | May 2024 - Aug 2024 | Frisco, TX</p>
             <ul>
                 <li>Collaborated with fellow teachers to effectively teach science concepts through hands-on activities and projects, adapting lessons to available resources and time constraints.</li>
@@ -212,7 +227,7 @@
         </div>
         
         <div class="experience">
-            <h4>Dallas Frontiers Of Flight Museum</h4>
+            <h3>Dallas Frontiers Of Flight Museum</h3>
             <p><strong>Aircraft Model Shop Volunteer</strong> | Jun 2023 - Dec 2023 | Dallas, TX</p>
             <ul>
                 <li>Built a scale model 1960 Dehavilland Beaver DHC-2 model plane from start to finish for the museum.</li>
@@ -234,20 +249,16 @@
       
       
     </main>
+    <script>
+      var loader = document.getElementById("preLoader");
+
+      window.addEventListener("load", function(){
+        loader.style.display ="none";
+      })
+    </script>
     
   
     <script type="module" src="/main.js"></script>
 
 
   </body>
-  <audio id="background-music" loop autoplay>
-    <source src="backgroundMusic.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
-  </audio>
-  <script> 
-    var audio = document.getElementById("background-music");
-    audio.volume = 0.15;
-  </script>
-    
-  
-</html>
