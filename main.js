@@ -10,6 +10,23 @@ const renderer = new THREE.WebGLRenderer({
     canvas: document.querySelector('#bg'),
 });
 
+function resizeCanvas() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    // Update renderer size
+    renderer.setSize(width, height);
+
+    // Update camera aspect ratio
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+}
+
+// Call resizeCanvas immediately after initializing the scene
+resizeCanvas();
+
+// Add resize listener to keep the canvas updated
+window.addEventListener('resize', resizeCanvas);
 
 camera.position.setZ(5);
 camera.position.setX(4);
