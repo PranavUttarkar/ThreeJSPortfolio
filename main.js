@@ -10,6 +10,7 @@ const renderer = new THREE.WebGLRenderer({
     canvas: document.querySelector('#bg'),
 });
 
+
 camera.position.setZ(5);
 camera.position.setX(4);
 camera.position.setY(-0.5);
@@ -21,6 +22,22 @@ let lastScrollY = window.scrollY; // Store the last scroll position
 renderer.render(scene, camera);
 const controls = new OrbitControls(camera, renderer.domElement);
 
+//Prevents uninted scene rotation on mobile devices
+// Variable Check if the user is on a mobile device
+const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+// Disable rotation on mobile devices
+if (isMobile) {
+    controls.enableRotate = false;  // Disable rotation
+    controls.enableZoom = true;     // Allow zoom (optional)
+    controls.enablePan = true;      // Allow panning (optional)
+} else {
+    controls.enableRotate = true;   // Enable rotation on non-mobile devices
+    controls.enableZoom = true;     // Allow zoom
+    controls.enablePan = true;      // Allow panning
+}
+
+  
 //Adds Earth and Its texture and Map
 const earthTexture = new THREE.TextureLoader().load('earth.jpg');
 const normalTexture = new THREE.TextureLoader().load('normal.jpg');
