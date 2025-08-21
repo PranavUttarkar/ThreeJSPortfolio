@@ -344,3 +344,13 @@ body {
     padding: 0.8rem 1.5rem;
   }
 }
+
+/* HUD Styles */
+#hud { position:fixed; left:1rem; bottom:1rem; z-index:1100; font-family: elevon, sans-serif; }
+#hud .hud-panel { background:rgba(10,15,25,0.6); padding:1rem 1.25rem; border:1px solid rgba(255,255,255,0.15); backdrop-filter:blur(6px); border-radius:.75rem; max-width:240px; }
+#hud h2 { margin:0 0 .5rem; font-size:1.1rem; letter-spacing:.5px; }
+#hud .hud-help { margin:0 0 .75rem; font-size:.75rem; line-height:1.2; opacity:.85; }
+#hud .hud-buttons { display:flex; flex-wrap:wrap; gap:.5rem; }
+#hud button { flex:1 1 100px; background:#1e3a8a; color:#fff; border:1px solid #3b82f6; font-size:.75rem; padding:.5rem .6rem; border-radius:.4rem; cursor:pointer; letter-spacing:.5px; transition:background .25s, transform .25s; }
+#hud button:hover { background:#2563eb; transform:translateY(-2px); }
+#hud button:active { transform:translateY(0); }
