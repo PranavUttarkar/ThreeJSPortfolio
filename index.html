@@ -9,8 +9,7 @@
     <title>Pranav Uttarkar</title>
   </head>
   <body>
-    <div id="preLoader">
-    </div>
+    <div id="preLoader"></div>
     <style>
       #preLoader {
         position: fixed;
@@ -19,18 +18,19 @@
         width: 100vw;
         height: 100vh;
         background: #000 url(./preloader.gif) no-repeat center center;
-        background-size: 50%; 
+        background-size: 50%;
         display: flex;
       }
     </style>
-
 
     <nav class="navbar">
       <div class="logo">&lt;Pranav Uttarkar&gt;</div>
       <ul class="nav-links">
         <li><a href="/" class="active">Home</a></li>
         <li><a href="/aboutMe.html">About</a></li>
-        <li><a href="/Resume Pranav Uttarkar.pdf" target="_blank">Resume</a></li>
+        <li>
+          <a href="/Resume Pranav Uttarkar.pdf" target="_blank">Resume</a>
+        </li>
         <li><a href="/projects.html">Projects</a></li>
         <li><a href="/contact.html">Contact</a></li>
       </ul>
@@ -38,7 +38,7 @@
     </nav>
     <canvas id="bg"></canvas>
 
-    <main>
+    <!-- <main>
       <header>
         <h1>Hi, I'm Pranav Uttarkar!</h1>
         <p>Scroll to explore skills, projects and more! 🚀</p>
@@ -221,9 +221,7 @@
 
       </section>
 
-      <!-- <blockquote>
-        <p>The best way out is always through <br />-Robert Frost</p>
-      </blockquote> -->
+      
 
       <section class="left">
         <h2>💻 Work History</h2> 
@@ -271,17 +269,15 @@
       </blockquote>
       
       
-    </main>
+    </main> -->
     <script>
       var loader = document.getElementById("preLoader");
 
-      window.addEventListener("load", function(){
-        loader.style.display ="none";
-      })
+      window.addEventListener("load", function () {
+        loader.style.display = "none";
+      });
     </script>
-    
-  
+
     <script type="module" src="main.js"></script>
-
-
   </body>
+</html>
