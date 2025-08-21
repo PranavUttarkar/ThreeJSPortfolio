@@ -2,16 +2,18 @@
 // Modes: homeStation, traveling, planetView, returning
 
 export const AppState = {
-  mode: 'homeStation',
+  mode: "homeStation",
   target: null,
-  listeners: new Set()
+  listeners: new Set(),
 };
 
 export function setMode(mode, data = {}) {
   const prev = { mode: AppState.mode, target: AppState.target };
   AppState.mode = mode;
   if (data.target !== undefined) AppState.target = data.target;
-  AppState.listeners.forEach(l => l({ prev, current: { mode: AppState.mode, target: AppState.target } }));
+  AppState.listeners.forEach((l) =>
+    l({ prev, current: { mode: AppState.mode, target: AppState.target } })
+  );
 }
 
 export function onStateChange(fn) {

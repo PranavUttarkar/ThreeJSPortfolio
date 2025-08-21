@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import * as THREE from "three";
 
 // Core scene & renderer setup (Phase 1 foundation)
 export const scene = new THREE.Scene();
@@ -12,9 +12,9 @@ export const camera = new THREE.PerspectiveCamera(
 camera.position.set(0, 2, 8);
 
 export const renderer = new THREE.WebGLRenderer({
-  canvas: document.querySelector('#bg'),
+  canvas: document.querySelector("#bg"),
   antialias: true,
-  alpha: true
+  alpha: true,
 });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -28,7 +28,7 @@ export function resize() {
   renderer.setSize(w, h, false);
 }
 
-window.addEventListener('resize', resize, { passive: true });
+window.addEventListener("resize", resize, { passive: true });
 
 // Basic lighting for initial station placeholder
 const ambient = new THREE.AmbientLight(0xffffff, 0.6);
