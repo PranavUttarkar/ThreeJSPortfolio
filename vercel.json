@@ -1,9 +1,4 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false,
-  "routes": [
-    { "src": "/project/(.*)", "dest": "/project/$1" },
-    { "src": "/experience/(.*)", "dest": "/experience/$1" },
-    { "src": "/Resume.pdf", "dest": "/Resume.pdf" }
-  ]
+  "trailingSlash": false
 }
