@@ -30,7 +30,7 @@
           <!-- <li><a href="/explore.html">3D Museum</a></li> -->
           <li><a class="active" href="/contact.html">Contact</a></li>
           <li>
-            <a href="/Resume Pranav Uttarkar.pdf" target="_blank">Resume</a>
+            <a href="/Resume.pdf" target="_blank">Resume</a>
           </li>
         </ul>
       </div>
@@ -38,118 +38,188 @@
     <main
       class="section"
       style="
-        min-height: 60vh;
+        min-height: 70vh;
         display: flex;
         align-items: center;
         justify-content: center;
+        padding-top: 3rem;
       "
     >
       <div
+        class="contact-card"
         style="
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          padding: 2.2rem 2.4rem 2.6rem;
-          border-radius: 30px;
-          max-width: 560px;
+          --glow: #1e90ff;
+          position: relative;
+          max-width: 760px;
           width: 100%;
-          backdrop-filter: blur(14px);
+          padding: 2.4rem 2.6rem 2.8rem;
+          border-radius: 34px;
+          background: linear-gradient(
+            140deg,
+            rgba(20, 35, 55, 0.72),
+            rgba(10, 18, 30, 0.65)
+          );
+          backdrop-filter: blur(18px);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          overflow: hidden;
         "
       >
-        <h1 style="margin-top: 0">Get In Touch</h1>
-        <p class="tagline" style="margin: 0 0 1.6rem">
-          Open to internships, collaborations & interesting conversations.
-        </p>
-        <ul
+        <div
           style="
-            list-style: none;
-            margin: 0 0 1.6rem;
-            padding: 0;
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(
+                circle at 82% 18%,
+                rgba(30, 144, 255, 0.32),
+                transparent 60%
+              ),
+              radial-gradient(
+                circle at 12% 88%,
+                rgba(122, 167, 255, 0.25),
+                transparent 55%
+              );
+          "
+        ></div>
+        <div
+          style="
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            --ang: 0deg;
+            background: conic-gradient(
+              from var(--ang),
+              #1e90ff55,
+              #7aa7ff22,
+              #1e90ff44,
+              #1e90ff00 240deg
+            );
+            mask: linear-gradient(#000, #000) content-box,
+              linear-gradient(#000, #000);
+            -webkit-mask: linear-gradient(#000, #000) content-box,
+              linear-gradient(#000, #000);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: spin 14s linear infinite;
+          "
+        ></div>
+        <style>
+          @keyframes spin {
+            to {
+              --ang: 360deg;
+            }
+          }
+        </style>
+        <div
+          style="
             display: flex;
-            flex-direction: column;
-            gap: 0.9rem;
-            font-size: 0.9rem;
+            flex-wrap: wrap;
+            gap: 2.2rem;
+            align-items: flex-start;
+            position: relative;
+            z-index: 2;
           "
         >
-          <li style="display: flex; align-items: center; gap: 0.75rem">
-            <span
-              style="
-                font-size: 0.65rem;
-                letter-spacing: 1px;
-                background: rgba(255, 255, 255, 0.08);
-                padding: 0.3rem 0.55rem;
-                border-radius: 6px;
-              "
-              >EMAIL</span
-            ><a
-              style="text-decoration: none; color: #e6f2ff"
-              href="mailto:pranavuttarkar@tamu.edu"
-              >pranavuttarkar@tamu.edu</a
+          <div style="flex: 1 1 240px; min-width: 240px">
+            <h1
+              style="margin: 0 0 0.4rem; font-size: 2rem; letter-spacing: 1px"
             >
-          </li>
-          <li style="display: flex; align-items: center; gap: 0.75rem">
-            <span
+              Let’s Connect
+            </h1>
+            <p class="tagline" style="margin: 0 0 1.4rem; font-size: 0.9rem">
+              Open to software engineering internships, research, and impactful
+              product builds.
+            </p>
+            <div class="contact-grid" style="display: grid; gap: 0.65rem">
+              <a
+                href="mailto:pranavuttarkar@tamu.edu"
+                class="contact-row"
+                style="
+                  text-decoration: none;
+                  display: flex;
+                  align-items: center;
+                  gap: 0.65rem;
+                  padding: 0.65rem 0.75rem;
+                  background: rgba(255, 255, 255, 0.05);
+                  border: 1px solid rgba(255, 255, 255, 0.06);
+                  border-radius: 12px;
+                  font-size: 0.75rem;
+                  color: var(--text);
+                  transition: 0.35s;
+                "
+                >✉️
+                <span style="opacity: 0.85">pranavuttarkar@tamu.edu</span></a
+              >
+              <a
+                target="_blank"
+                href="https://www.linkedin.com/in/pranav-uttarkar/"
+                class="contact-row"
+                style="
+                  text-decoration: none;
+                  display: flex;
+                  align-items: center;
+                  gap: 0.65rem;
+                  padding: 0.65rem 0.75rem;
+                  background: rgba(255, 255, 255, 0.05);
+                  border: 1px solid rgba(255, 255, 255, 0.06);
+                  border-radius: 12px;
+                  font-size: 0.75rem;
+                  color: #68acf4;
+                "
+                >in
+                <span style="opacity: 0.9">linkedin /pranav-uttarkar</span></a
+              >
+              <a
+                target="_blank"
+                href="https://app.joinhandshake.com/profiles/pranav"
+                class="contact-row"
+                style="
+                  text-decoration: none;
+                  display: flex;
+                  align-items: center;
+                  gap: 0.65rem;
+                  padding: 0.65rem 0.75rem;
+                  background: rgba(255, 255, 255, 0.05);
+                  border: 1px solid rgba(255, 255, 255, 0.06);
+                  border-radius: 12px;
+                  font-size: 0.75rem;
+                  color: #eaf7c7;
+                "
+                >🤝 <span style="opacity: 0.9">Handshake /pranav</span></a
+              >
+              <div
+                class="contact-row"
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.65rem;
+                  padding: 0.65rem 0.75rem;
+                  background: rgba(255, 255, 255, 0.05);
+                  border: 1px solid rgba(255, 255, 255, 0.06);
+                  border-radius: 12px;
+                  font-size: 0.75rem;
+                "
+              >
+                📞 <span style="opacity: 0.85">+1‑346‑888‑7168</span>
+              </div>
+            </div>
+            <div
               style="
-                font-size: 0.65rem;
-                letter-spacing: 1px;
-                background: rgba(255, 255, 255, 0.08);
-                padding: 0.3rem 0.55rem;
-                border-radius: 6px;
+                display: flex;
+                gap: 0.8rem;
+                flex-wrap: wrap;
+                margin-top: 1.2rem;
               "
-              >LINKEDIN</span
-            ><a
-              style="text-decoration: none; color: #e6f2ff"
-              target="_blank"
-              href="https://www.linkedin.com/in/pranav-uttarkar/"
-              >/in/pranav-uttarkar</a
             >
-          </li>
-          <li style="display: flex; align-items: center; gap: 0.75rem">
-            <span
-              style="
-                font-size: 0.65rem;
-                letter-spacing: 1px;
-                background: rgba(255, 255, 255, 0.08);
-                padding: 0.3rem 0.55rem;
-                border-radius: 6px;
-              "
-              >HANDSHAKE</span
-            ><a
-              style="text-decoration: none; color: #e6f2ff"
-              target="_blank"
-              href="https://app.joinhandshake.com/profiles/62918992"
-              >profile</a
-            >
-          </li>
-          <li style="display: flex; align-items: center; gap: 0.75rem">
-            <span
-              style="
-                font-size: 0.65rem;
-                letter-spacing: 1px;
-                background: rgba(255, 255, 255, 0.08);
-                padding: 0.3rem 0.55rem;
-                border-radius: 6px;
-              "
-              >PHONE</span
-            ><span>+1‑346‑888‑7168</span>
-          </li>
-        </ul>
-        <div style="display: flex; gap: 0.9rem; flex-wrap: wrap">
-          <a
-            class="btn outline"
-            href="/Resume Pranav Uttarkar.pdf"
-            target="_blank"
-            >Resume ↗</a
-          >
-          <!-- <a class="btn ghost" href="/explore.html">3D Museum</a> -->
-          <a class="btn ghost" href="/">Back Home</a>
+              <a class="btn outline" href="/Resume.pdf" target="_blank"
+                >Resume ↗</a
+              >
+              <a class="btn ghost" href="/">Back Home</a>
+            </div>
+          </div>
         </div>
       </div>
     </main>
-    <footer class="footer">
-      <div>© <span id="year"></span> Pranav Uttarkar</div>
-    </footer>
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
   </body>
 </html>

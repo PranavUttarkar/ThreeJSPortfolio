@@ -28,7 +28,7 @@ body:after { content:""; position:fixed; inset:0; background:repeating-linear-gr
 .cta-row { display:flex; flex-wrap:wrap; gap:.85rem; }
 /* Search */
 .hero-search { max-width:760px; position:relative; }
-.hero-search-card { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.09); padding:.95rem 1.15rem 1.05rem; border-radius:24px; backdrop-filter:blur(16px); box-shadow:0 10px 34px -18px #031a28; margin:.9rem 0 1.1rem; }
+.hero-search-card { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.09); padding:.95rem 1.15rem 1.05rem; border-radius:24px; backdrop-filter:blur(16px); box-shadow:0 10px 34px -18px #031a28; margin:.9rem 2rem 1.1rem 2rem; }
 .search-box { background:linear-gradient(145deg,rgba(255,255,255,0.08),rgba(255,255,255,0.04)); border:1px solid #1e90ff55; padding:.85rem 1.2rem; border-radius:20px; display:flex; align-items:center; backdrop-filter:blur(10px); box-shadow:0 0 0 3px rgba(30,144,255,0.18),0 10px 40px -18px #03273f; position:relative; overflow:hidden; }
 .search-box:focus-within { box-shadow:0 0 0 4px rgba(30,144,255,0.45),0 10px 42px -14px #053d63; }
 #liveSearch { flex:1; background:transparent; border:none; outline:none; font:500 1rem 'Outfit'; color:var(--text); letter-spacing:.5px; }
@@ -56,6 +56,9 @@ body:after { content:""; position:fixed; inset:0; background:repeating-linear-gr
 .cards { background:linear-gradient(160deg,rgba(18,30,46,.45),rgba(10,18,30,.28)); backdrop-filter:blur(18px); border-top:1px solid rgba(255,255,255,0.05); border-bottom:1px solid rgba(255,255,255,0.05); }
 .card-grid { display:grid; gap:.9rem .9rem; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); align-items:stretch; margin:0 1.2rem; }
 .card { background:rgba(255,255,255,0.045); border:1px solid rgba(255,255,255,0.065); border-radius:14px; padding:1rem .95rem 1.05rem; position:relative; cursor:pointer; display:flex; flex-direction:column; gap:.55rem; transition:.35s; max-width:260px; }
+.card .thumb { width:100%; aspect-ratio:16/9; overflow:hidden; border-radius:10px; background:#0e1622; border:1px solid rgba(255,255,255,0.06); position:relative; }
+.card .thumb img { width:100%; height:100%; object-fit:cover; display:block; filter:brightness(.92) saturate(1.08); transition:.5s; }
+.card:hover .thumb img { transform:scale(1.06); filter:brightness(1); }
 .card:before { content:""; position:absolute; inset:0; background:linear-gradient(140deg,#1e90ff30,transparent 65%); opacity:0; transition:.4s; border-radius:inherit; }
 .card:hover { transform:translateY(-5px) scale(1.02); box-shadow:0 10px 26px -12px #031a28,0 4px 16px -8px #04324f; }
 .card:hover:before { opacity:1; }
@@ -70,6 +73,9 @@ body:after { content:""; position:fixed; inset:0; background:repeating-linear-gr
 .pill-list li:after { content:""; position:absolute; top:0; left:0; bottom:0; width:3px; background:var(--accent-grad); border-radius:3px 0 0 3px; opacity:.7; }
 .timeline { display:flex; flex-direction:column; gap:.85rem; }
 .exp-item { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); padding:.9rem 1.05rem 1rem; border-radius:13px; position:relative; }
+.exp-item.clickable { cursor:pointer; transition:.3s; }
+.exp-item.clickable:hover { background:linear-gradient(95deg,#1e90ff22,#7aa7ff11); border-color:#1e90ff55; box-shadow:0 4px 18px -8px #03273f; }
+.exp-item.clickable:active { transform:translateY(2px); }
 .exp-item h3 { margin:0 0 .15rem; font-size:.9rem; font-weight:600; }
 .exp-item .org { font-size:.55rem; letter-spacing:.7px; text-transform:uppercase; color:var(--muted); margin-right:.35rem; }
 .exp-item .period { font-size:.5rem; color:var(--muted); background:rgba(255,255,255,0.06); padding:.2rem .45rem; border-radius:5px; }
@@ -83,3 +89,45 @@ body:after { content:""; position:fixed; inset:0; background:repeating-linear-gr
 
 /* Tighten adjacent sections spacing if any custom sections added without .section class */
 .section + .section { margin-top:0; }
+
+/* Specific spacing/margin adjustments for homepage sections */
+.section.cards { padding-bottom:1.2rem; margin-left:2.2rem; margin-right:2.2rem; }
+.section.split { padding-top:1.0rem; margin-left:2.2rem; margin-right:2.2rem; }
+.section.cards + .section.split { margin-top:-0.4rem; }
+
+/* Enhanced styling specifically for the projects div wrapper */
+.section.cards {
+	position:relative;
+	border:1px solid rgba(255,255,255,0.06);
+	border-radius:34px;
+	padding:1.9rem 2rem 2.3rem;
+	box-shadow:0 16px 46px -20px rgba(0,0,0,0.55),0 0 0 1px rgba(255,255,255,0.03) inset;
+	overflow:hidden;
+}
+.section.cards:before { /* soft directional glow */
+	content:""; position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+	background:linear-gradient(125deg,rgba(30,144,255,0.18),rgba(122,167,255,0.08) 35%,transparent 65%);
+	mix-blend-mode:overlay; opacity:.55;
+}
+.section.cards:after { /* subtle top accent bar */
+	content:""; position:absolute; left:18px; right:18px; top:12px; height:3px; border-radius:3px;
+	background:linear-gradient(90deg,#1e90ff,#7aa7ff); opacity:.55; filter:blur(.3px);
+}
+.section.cards .sec-title { background:linear-gradient(90deg,#ffffff,#b9ddff); -webkit-background-clip:text; background-clip:text; color:transparent; margin-top:.2rem; padding-left:.15rem; }
+.section.cards .sec-title:after { bottom:-6px; height:2px; width:70px; background:linear-gradient(90deg,#1e90ff,#7aa7ff); }
+.section.cards .card-grid { margin-top:.5rem; margin-left:.4rem; margin-right:.4rem; }
+.section.cards .card { transition:.32s, box-shadow .35s; }
+.section.cards .card:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+.section.cards .card:hover { box-shadow:0 10px 30px -14px #031a28,0 4px 18px -8px #04324f,0 0 0 1px rgba(255,255,255,0.06) inset; }
+/* Remove blue accent lines in projects block */
+/* Hide only the top accent bar, keep underline below "Projects" */
+.section.cards:after { display:none !important; }
+
+@media (max-width:900px){
+	.section.cards, .section.split { margin-left:1.4rem; margin-right:1.4rem; }
+}
+@media (max-width:600px){
+	.section.cards, .section.split { margin-left:.9rem; margin-right:.9rem; }
+	.section.cards { padding-bottom:.9rem; }
+	.section.split { padding-top:.7rem; }
+}

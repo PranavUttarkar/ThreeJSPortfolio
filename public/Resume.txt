@@ -1,0 +1,50 @@
+﻿Pranav Uttarkar
+(346)-888-7168 | pranavuttarkar@tamu.edu  | linkedin.com/in/pranavuttarkar/  | Portfolio
+EDUCATION
+________________
+
+
+Texas A&M University | College Station, TX
+Bachelor of Science in Computer Science 
+Expected Graduation:        May 2027
+* Craig And Galen Brown Engineering Honors
+RELEVANT COURSEWORK: C++, Computer Organization, Data Structures & Algorithms, 
+
+
+WORK EXPERIENCES
+________________
+
+
+AI Development Intern | Houston, TX         May 2025 – August 2025
+Daikin North America
+* Designed and deployed an internal AI Agent Platform using Python,  MCP,  and LangChain/LangGraph,  to automate workflows across Sales & Marketing functions, reducing repetitive tasks and increasing efficiency for 10,000+ employees.
+* Developed 12+  tools for the agent & integrated internal company APIs to perform tasks like dynamically generating HVAC system configurations, comparisons, dealer locations, and RAG knowledge retrieval based on natural language inputs. 
+* Collaborated with Product Managers, VPs, and cross-functional leads to ensure the platform aligned with employee workflows and solved real productivity pain points; gathered feedback through demos/discussions, iterated based on input.
+* Used Azure DevOps to deploy and integrate with company GenAI web platform with TypeScript, React, Redux, and CosmosDB for chat history and context management. 
+
+
+Founder & Full-Stack Developer         May 2025 – Present
+MindWeb.systems
+* Developed MindWeb, a gamified productivity web-app built with React + TypeScript, backed by Supabase (PostgreSQL, Edge Functions, Auth, Storage) with features like streaks, friends, custom notifications, large data tracking etc. 
+* Led early beta launch and iterative marketing campaigns across productivity communities to get ~100 early testing users, to find product-market fit, and improve user experience.
+
+
+Undergraduate Researcher | College Station, TX
+ Texas A&M University | Sketch Recognition Lab        January 2025 – Present
+* Adapting, benchmarking and training a  visual transformer music recognition model  for efficient multi-class environmental sound classification using TensorFlow &  PyTorch, focusing on domain transfer and model generalization.
+* Assembling large training datasets, fine-tuning model architecture, modifying output layers and training objectives (e.g., BCE loss) for environmental tagging; ; targeting publication at ICASSP or INTERSPEECH.
+
+
+PROJECTS
+________________
+
+Tamu-ProfSort (bit.ly/tamuprofsort)        
+* Developed a desktop app used actively by 400+ students to track professor grading styles/averages with Javascript & Puppeteer Skills: Webscraping, deployment used electron
+A&M Studys         September 2024 – December 2024
+* Led a team of 7 fellow students to develop a web app to facilitate peer teaching and Q&A for Texas A&M courses built with Firebase & React.
+Impossible Parkour
+* Developed a TikTok game filter which reached 35.5M views and 70,000+ user generated videos with logic based nodes
+        
+________________
+LANGUAGES, TOOLS, FRAMEWORKS
+*  Python, C++, Typescript, React, PostgreSQL, NoSQL, Github, Fast-API, MCP, LangChain/Graph, TensorFlow, Scikit Learn, pandas, numpy, Azure DevOps, CosmosDB, SupaBase, FireBase.
