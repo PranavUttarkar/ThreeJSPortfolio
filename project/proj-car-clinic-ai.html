@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Car Clinic AI – Project</title>
+    <link rel="icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/classic.css" />
+    <meta
+      name="description"
+      content="CarClinic AI project – machine learning diagnostics and GPT-powered repair suggestions by Pranav Uttarkar."
+    />
+    <meta
+      name="keywords"
+      content="CarClinic AI, Machine Learning, OBD, GPT, Pranav Uttarkar"
+    />
+    <meta property="og:title" content="CarClinic AI – Pranav Uttarkar" />
+    <meta
+      property="og:description"
+      content="ML classification + GPT powered automotive diagnostic assistant."
+    />
+  </head>
+  <body>
+    <nav class="site-nav glass">
+      <div class="nav-inner">
+        <div class="brand">PRANAV<span>_UTTARKAR</span></div>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <!-- <li><a href="/explore.html">3D Museum</a></li> -->
+          <li><a href="/contact.html">Contact</a></li>
+          <li>
+            <a href="/Resume Pranav Uttarkar.pdf" target="_blank">Resume</a>
+          </li>
+        </ul>
+        <a
+          class="btn outline"
+          style="margin-left: auto; font-size: 0.65rem; padding: 0.55rem 0.9rem"
+          href="/"
+          >&larr; Back</a
+        >
+      </div>
+    </nav>
+    <main class="section" style="max-width: 880px; margin: 0 auto">
+      <h1 style="margin-top: 0">Car Clinic AI</h1>
+      <p class="tagline">AI assistant for automotive diagnostics.</p>
+      <article class="rich">
+        <h2>Overview</h2>
+        <p>
+          LLM-assisted triage tool: ingest vehicle telemetry + user symptoms and
+          generate probable issue tree with confidence ranking.
+        </p>
+        <h2>Highlights</h2>
+        <ul>
+          <li>Hybrid embedding + rules engine</li>
+          <li>Cost-efficient token streaming UI</li>
+          <li>Scenario test harness for regression</li>
+        </ul>
+        <h2>Tech Stack</h2>
+        <p>TypeScript • Python • FastAPI • OpenAI • VectorDB</p>
+      </article>
+    </main>
+    <footer class="footer">
+      <div>© <span id="year"></span> Pranav Uttarkar</div>
+    </footer>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

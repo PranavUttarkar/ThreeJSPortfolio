@@ -62,8 +62,9 @@ export function updateFP(dt) {
     0,
     Math.cos(state.yaw)
   );
+  // Right vector (player perspective). Using forward x up ensures correct handedness for strafing.
   const right = new THREE.Vector3()
-    .crossVectors(new THREE.Vector3(0, 1, 0), forward)
+    .crossVectors(forward, new THREE.Vector3(0, 1, 0))
     .normalize();
 
   let move = new THREE.Vector3();
@@ -94,7 +95,8 @@ export function updateFP(dt) {
   camera.position.x = Math.max(-halfW, Math.min(halfW, camera.position.x));
   camera.position.z = Math.max(-halfD, Math.min(halfD, camera.position.z));
   const bobOffsetY = Math.sin(state.bobTime) * BOB_AMP_Y * state.bobAmount;
-  const bobOffsetX = Math.sin(state.bobTime * 0.5) * BOB_AMP_X * state.bobAmount;
+  const bobOffsetX =
+    Math.sin(state.bobTime * 0.5) * BOB_AMP_X * state.bobAmount;
   camera.position.y = state.eyeHeight + bobOffsetY; // eye height + bob
   camera.position.x += bobOffsetX; // subtle lateral sway
 
@@ -111,6 +113,12 @@ export function updateFP(dt) {
 export function setFPStart(x, y, z, yaw = 0) {
   camera.position.set(x, y, z);
   state.yaw = yaw;
+  state.pitch = 0;
+}
+
+export function teleportTo(vec3, yaw = null) {
+  camera.position.copy(vec3);
+  if (yaw !== null) state.yaw = yaw;
   state.pitch = 0;
 }
 

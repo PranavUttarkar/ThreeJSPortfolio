@@ -5,9 +5,18 @@ import { scene } from "../core/renderer.js";
 const stationGroup = new THREE.Group();
 stationGroup.name = "StationGroup";
 
-// Dimensions (exported for other systems e.g., travel / camera constraints)
-export const STATION_DIMENSIONS = { width: 16, depth: 24, height: 9 };
-const { width, depth, height } = STATION_DIMENSIONS;
+// Base hangar dimensions plus lateral side rooms (left/right)
+const BASE_DIMENSIONS = { width: 16, depth: 24, height: 9 };
+const SIDE_ROOM_WIDTH = 10; // each side room width (x direction span)
+const SIDE_ROOM_DEPTH = 14; // depth along z same as or slightly larger than hangar
+// Overall bounding box (center hangar + side rooms)
+export const STATION_DIMENSIONS = {
+  width: BASE_DIMENSIONS.width + SIDE_ROOM_WIDTH * 2 + 4, // hangar + rooms + margin
+  depth: Math.max(BASE_DIMENSIONS.depth, SIDE_ROOM_DEPTH),
+  height: BASE_DIMENSIONS.height,
+};
+const { width: totalW, depth: totalDepth, height } = STATION_DIMENSIONS;
+const { width, depth } = BASE_DIMENSIONS;
 
 // Materials
 const wallMat = new THREE.MeshStandardMaterial({
@@ -366,6 +375,246 @@ export function getStationGroup() {
 export function getInteractivePanels() {
   return interactivePanels;
 }
+
+// Museum style exhibits (simple pedestals with floating plaques)
+import { projects } from "../data/projects.js";
+import { skills } from "../data/skills.js";
+import { experience } from "../data/experience.js";
+
+const exhibitGroup = new THREE.Group();
+stationGroup.add(exhibitGroup);
+
+function makePedestal(fullTitle, color, subtitle = "") {
+  const base = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.65, 0.75, 0.55, 28),
+    new THREE.MeshStandardMaterial({
+      color: 0x0f161d,
+      metalness: 0.45,
+      roughness: 0.55,
+    })
+  );
+  const top = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.55, 0.6, 0.18, 28),
+    new THREE.MeshStandardMaterial({
+      color: 0x122431,
+      metalness: 0.55,
+      roughness: 0.35,
+      emissive: color,
+      emissiveIntensity: 0.35,
+    })
+  );
+  top.position.y = 0.34;
+  base.add(top);
+  const plaqueW = 2.8;
+  const plaqueH = 0.95;
+  const plaqueGeo = new THREE.PlaneGeometry(plaqueW, plaqueH);
+  const canvas = document.createElement("canvas");
+  canvas.width = 1024;
+  canvas.height = 384;
+  const ctx = canvas.getContext("2d");
+  ctx.fillStyle = "rgba(0,0,0,0)";
+  ctx.fillRect(0, 0, 1024, 384);
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  // Title
+  ctx.font = "bold 160px sans-serif";
+  const title = fullTitle.toUpperCase();
+  ctx.fillStyle = "#ffffff";
+  ctx.shadowColor = "#1e90ff";
+  ctx.shadowBlur = 22;
+  wrapText(ctx, title, 512, 140, 880, 150);
+  // Subtitle
+  if (subtitle) {
+    ctx.font = "bold 90px sans-serif";
+    ctx.shadowBlur = 12;
+    ctx.fillStyle = "#aad8ff";
+    const short = subtitle.length > 68 ? subtitle.slice(0, 65) + "…" : subtitle;
+    wrapText(ctx, short, 512, 280, 920, 110);
+  }
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.anisotropy = 4;
+  tex.needsUpdate = true;
+  const mat = new THREE.MeshBasicMaterial({
+    map: tex,
+    transparent: true,
+    side: THREE.DoubleSide,
+  });
+  const plaque = new THREE.Mesh(plaqueGeo, mat);
+  plaque.position.set(0, 1.05, 0);
+  base.add(plaque);
+  return base;
+}
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = text.split(" ");
+  let line = "";
+  let yy = y;
+  for (let n = 0; n < words.length; n++) {
+    const test = line + words[n] + " ";
+    const metrics = ctx.measureText(test);
+    if (metrics.width > maxWidth && n > 0) {
+      ctx.fillText(line.trim(), x, yy);
+      line = words[n] + " ";
+      yy += lineHeight;
+    } else {
+      line = test;
+    }
+  }
+  ctx.fillText(line.trim(), x, yy);
+}
+
+// Side room floors (left/right) attached via short doorway passages
+const LEFT_ROOM_CENTER_X = -(width / 2 + SIDE_ROOM_WIDTH / 2 + 1);
+const RIGHT_ROOM_CENTER_X = width / 2 + SIDE_ROOM_WIDTH / 2 + 1;
+const ROOM_CENTER_Z = 0; // align with hangar center
+
+function addSideRoomFloor(centerX, color = 0x111a22) {
+  const g = new THREE.PlaneGeometry(SIDE_ROOM_WIDTH, SIDE_ROOM_DEPTH, 1, 1);
+  const m = new THREE.MeshStandardMaterial({
+    color,
+    metalness: 0.14,
+    roughness: 0.85,
+  });
+  const mesh = new THREE.Mesh(g, m);
+  mesh.rotation.x = -Math.PI / 2;
+  mesh.position.set(centerX, 0, ROOM_CENTER_Z);
+  exhibitGroup.add(mesh);
+  return mesh;
+}
+addSideRoomFloor(LEFT_ROOM_CENTER_X);
+addSideRoomFloor(RIGHT_ROOM_CENTER_X);
+
+// Doorway frames connecting to side rooms
+function addDoorFrame(xSign) {
+  const frameGroup = new THREE.Group();
+  const doorH = 5;
+  const doorW = 3.5;
+  const beamMat = new THREE.MeshStandardMaterial({
+    color: 0x234559,
+    metalness: 0.55,
+    roughness: 0.35,
+    emissive: 0x0a2e46,
+    emissiveIntensity: 0.35,
+  });
+  const beamTop = new THREE.Mesh(
+    new THREE.BoxGeometry(doorW, 0.4, 0.6),
+    beamMat
+  );
+  beamTop.position.set(xSign * (width / 2 + 0.05), doorH - 0.2, 0);
+  beamTop.rotation.y = Math.PI / 2;
+  frameGroup.add(beamTop);
+  const sideA = new THREE.Mesh(
+    new THREE.BoxGeometry(0.4, doorH, 0.6),
+    beamMat.clone()
+  );
+  const sideB = sideA.clone();
+  sideA.position.set(xSign * (width / 2 + 0.05), doorH / 2, -doorW / 2 + 0.3);
+  sideB.position.set(xSign * (width / 2 + 0.05), doorH / 2, doorW / 2 - 0.3);
+  frameGroup.add(sideA, sideB);
+  exhibitGroup.add(frameGroup);
+}
+addDoorFrame(-1);
+addDoorFrame(1);
+
+// Distribute pedestals in grids inside side rooms (projects left, experience right, skills remain central in hangar)
+function gridPositions(cols, rows, spacingX, spacingZ) {
+  const arr = [];
+  const originX = -((cols - 1) * spacingX) / 2;
+  const originZ = -((rows - 1) * spacingZ) / 2;
+  for (let r = 0; r < rows; r++)
+    for (let c = 0; c < cols; c++)
+      arr.push([originX + c * spacingX, originZ + r * spacingZ]);
+  return arr;
+}
+
+// Projects (left room)
+gridPositions(2, Math.ceil(projects.length / 2), 2.6, 2.6)
+  .slice(0, projects.length)
+  .forEach(([gx, gz], i) => {
+    const p = projects[i];
+    const ped = makePedestal(p.title, 0x1e90ff, p.summary);
+    ped.position.set(LEFT_ROOM_CENTER_X + gx, 0.25, ROOM_CENTER_Z + gz);
+    ped.userData.interactive = true;
+    ped.userData.exhibit = { type: "project", id: p.id };
+    exhibitGroup.add(ped);
+    interactivePanels.push(ped);
+  });
+// Experience (right room)
+gridPositions(2, Math.ceil(experience.length / 2), 2.6, 2.6)
+  .slice(0, experience.length)
+  .forEach(([gx, gz], i) => {
+    const e = experience[i];
+    const ped = makePedestal(e.role, 0x32cd32, e.summary);
+    ped.position.set(RIGHT_ROOM_CENTER_X + gx, 0.25, ROOM_CENTER_Z + gz);
+    ped.userData.interactive = true;
+    ped.userData.exhibit = { type: "experience", id: e.id };
+    exhibitGroup.add(ped);
+    interactivePanels.push(ped);
+  });
+// Skills (central hangar) – grid near center
+gridPositions(2, 2, 2.6, 2.6)
+  .slice(0, skills.length)
+  .forEach(([gx, gz], i) => {
+    const s = skills[i];
+    const subtitle = s.items.slice(0, 4).join(", ");
+    const ped = makePedestal(s.category, 0xff8c00, subtitle);
+    ped.position.set(gx, 0.25, gz + 3); // forward a bit
+    ped.userData.interactive = true;
+    ped.userData.exhibit = { type: "skill", id: s.category };
+    exhibitGroup.add(ped);
+    interactivePanels.push(ped);
+  });
+
+// Sign boards replacing old travel panels
+function makeSign(text, pos, rotY = 0) {
+  const group = new THREE.Group();
+  const boardGeo = new THREE.BoxGeometry(3.2, 1.1, 0.15);
+  const frameMat = new THREE.MeshStandardMaterial({
+    color: 0x0d141a,
+    metalness: 0.5,
+    roughness: 0.4,
+    emissive: 0x1e90ff,
+    emissiveIntensity: 0.25,
+  });
+  const frame = new THREE.Mesh(boardGeo, frameMat);
+  group.add(frame);
+  const canvas = document.createElement("canvas");
+  canvas.width = 1024;
+  canvas.height = 256;
+  const ctx = canvas.getContext("2d");
+  ctx.fillStyle = "rgba(0,0,0,0)";
+  ctx.fillRect(0, 0, 1024, 256);
+  ctx.font = "bold 120px sans-serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillStyle = "#fff";
+  ctx.fillText(text, 512, 128);
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.anisotropy = 2;
+  const mat = new THREE.MeshBasicMaterial({
+    map: tex,
+    transparent: true,
+    side: THREE.DoubleSide,
+  });
+  const plane = new THREE.Mesh(new THREE.PlaneGeometry(2.8, 0.75), mat);
+  plane.position.z = 0.09;
+  group.add(plane);
+  group.position.copy(pos);
+  group.rotation.y = rotY;
+  stationGroup.add(group);
+  return group;
+}
+makeSign("← PROJECTS", new THREE.Vector3(-2, 2.2, 2.5), Math.PI / 12);
+makeSign("SKILLS", new THREE.Vector3(0, 2.2, 2), 0);
+makeSign("EXPERIENCE →", new THREE.Vector3(2, 2.2, 2.5), -Math.PI / 12);
+
+// Export anchors for teleport feature
+export const ROOM_ANCHORS = {
+  home: new THREE.Vector3(0, 2.6, -4),
+  projects: new THREE.Vector3(LEFT_ROOM_CENTER_X, 2.6, 0),
+  skills: new THREE.Vector3(0, 2.6, 4),
+  experience: new THREE.Vector3(RIGHT_ROOM_CENTER_X, 2.6, 0),
+};
 
 export function updateStation(dt) {
   // Animate shader time

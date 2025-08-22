@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>3D Portfolio Hub – Project</title>
+    <link rel="icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/classic.css" />
+    <meta
+      name="description"
+      content="3D Portfolio Hub project by Pranav Uttarkar – immersive WebGL Three.js experience."
+    />
+    <meta
+      name="keywords"
+      content="3D Portfolio, Three.js, WebGL, Pranav Uttarkar"
+    />
+    <meta property="og:title" content="3D Portfolio Hub – Pranav Uttarkar" />
+    <meta
+      property="og:description"
+      content="Immersive space station museum built with Three.js."
+    />
+  </head>
+  <body>
+    <nav class="site-nav glass">
+      <div class="nav-inner">
+        <div class="brand">PRANAV<span>_UTTARKAR</span></div>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <!-- <li><a href="/explore.html">3D Museum</a></li> -->
+          <li><a href="/contact.html">Contact</a></li>
+          <li>
+            <a href="/Resume Pranav Uttarkar.pdf" target="_blank">Resume</a>
+          </li>
+        </ul>
+        <a
+          class="btn outline"
+          style="margin-left: auto; font-size: 0.65rem; padding: 0.55rem 0.9rem"
+          href="/"
+          >&larr; Back</a
+        >
+      </div>
+    </nav>
+    <main class="section" style="max-width: 880px; margin: 0 auto">
+      <h1 style="margin-top: 0">3D Portfolio Hub</h1>
+      <p class="tagline">Gamified WebGL / Three.js personal site.</p>
+      <article class="rich">
+        <h2>Overview</h2>
+        <p>
+          Interactive space-station museum showcasing work via immersive
+          exploration with optimized shaders and modular scene graph.
+        </p>
+        <h2>Highlights</h2>
+        <ul>
+          <li>Custom shader panels</li>
+          <li>State-driven scene modules</li>
+          <li>Lazy asset strategy</li>
+        </ul>
+        <h2>Tech Stack</h2>
+        <p>Three.js • GLSL • Vercel • Modular Architecture</p>
+      </article>
+    </main>
+    <footer class="footer">
+      <div>© <span id="year"></span> Pranav Uttarkar</div>
+    </footer>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

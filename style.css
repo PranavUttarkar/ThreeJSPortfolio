@@ -369,3 +369,16 @@ body {
 #helpOverlay button { margin-top:1.4rem; background:#1e90ff; border:none; color:#fff; font-size:1rem; padding:.85rem 1.6rem; border-radius:999px; cursor:pointer; letter-spacing:1px; font-weight:600; box-shadow:0 0 10px #1e90ff80, 0 0 25px #1e90ff40; transition:background .3s, transform .25s; }
 #helpOverlay button:hover { background:#46a8ff; transform:translateY(-2px); }
 #helpOverlay button:active { transform:translateY(0); }
+
+/* Exhibit Overlay */
+#exhibitOverlay { position:fixed; inset:0; background:rgba(5,10,18,0.85); backdrop-filter:blur(6px); z-index:1600; display:none; align-items:center; justify-content:center; padding:2rem; }
+#exhibitOverlay.visible { display:flex; }
+#exhibitOverlay .exhibit-panel { max-width:760px; width:100%; background:linear-gradient(140deg, rgba(18,34,48,0.85), rgba(10,18,28,0.6)); border:1px solid rgba(255,255,255,0.12); border-radius:1rem; padding:2rem 2.4rem 2.4rem; position:relative; font-family: elevon, sans-serif; color:#dfefff; box-shadow:0 0 40px #1e90ff35; }
+#exhibitOverlay .close-btn { position:absolute; top:.6rem; right:.8rem; background:transparent; color:#fff; font-size:1.6rem; border:none; cursor:pointer; line-height:1; padding:.25rem .55rem; border-radius:.5rem; transition:background .25s; }
+#exhibitOverlay .close-btn:hover { background:rgba(255,255,255,0.08); }
+#exhibitOverlay h2 { margin:0 0 .75rem; font-size:1.65rem; letter-spacing:1px; text-shadow:0 0 10px #1e90ff80; }
+#exhibitOverlay p { font-size:.95rem; line-height:1.55; margin:.4rem 0 1rem; }
+#exhibitOverlay ul { margin:.2rem 0 1.1rem 1.1rem; padding:0; font-size:.85rem; line-height:1.5; }
+#exhibitOverlay li { margin:0 0 .4rem; }
+#exhibitOverlay .period { font-size:.8rem; opacity:.75; margin:-.4rem 0 .6rem; letter-spacing:1px; }
+#exhibitOverlay .meta { font-size:.7rem; text-transform:uppercase; letter-spacing:1.5px; opacity:.75; }

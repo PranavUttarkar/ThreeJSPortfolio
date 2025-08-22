@@ -2,6 +2,28 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Pranav Uttarkar – Full Stack Software Engineer, Data & AI, Three.js WebGL portfolio projects, experience, skills, resume."
+    />
+    <meta
+      name="keywords"
+      content="Pranav Uttarkar, Pranav, Uttarkar, Software Engineer, Texas A&M, Full Stack, WebGL, Three.js, Portfolio, Projects, Resume"
+    />
+    <meta name="author" content="Pranav Uttarkar" />
+    <link rel="canonical" href="https://pranavuttarkar.com/" />
+    <meta
+      property="og:title"
+      content="Pranav Uttarkar – Software Engineer Portfolio"
+    />
+    <meta
+      property="og:description"
+      content="Projects, skills and experience across full‑stack, data, AI, and immersive 3D web."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pranavuttarkar.com/" />
+    <meta property="og:image" content="/favicon.png" />
+    <meta name="twitter:card" content="summary" />
     <link rel="icon" type="image/svg+xml" href="favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
@@ -9,34 +31,90 @@
     <title>Pranav Uttarkar</title>
   </head>
   <body>
-    <div id="preLoader"></div>
-    <style>
-      #preLoader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: #000 url(./preloader.gif) no-repeat center center;
-        background-size: 50%;
-        display: flex;
-      }
-    </style>
-
-    <nav class="navbar">
-      <div class="logo">&lt;Pranav Uttarkar&gt;</div>
-      <ul class="nav-links">
-        <li><a href="/" class="active">Home</a></li>
-        <li><a href="/aboutMe.html">About</a></li>
-        <li>
-          <a href="/Resume Pranav Uttarkar.pdf" target="_blank">Resume</a>
-        </li>
-        <li><a href="/projects.html">Projects</a></li>
-        <li><a href="/contact.html">Contact</a></li>
-      </ul>
-      <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <link rel="stylesheet" href="classic.css" />
+    <div class="animated-bg" aria-hidden="true"></div>
+    <nav class="site-nav glass" style="font-size: 1rem; padding: 1.2rem 0">
+      <div class="nav-inner" style="max-width: 1200px; margin: 0 auto">
+        <div class="brand" style="font-size: 1.5rem">
+          PRANAV<span> UTTARKAR</span>
+        </div>
+        <ul style="gap: 2.5rem">
+          <li>
+            <a class="active" href="/" style="padding: 0.5rem 1.2rem">Home</a>
+          </li>
+          <li>
+            <a href="/about.html" style="padding: 0.5rem 1.2rem">About</a>
+          </li>
+          <!-- <li><a href="/explore.html" style="padding: 0.5rem 1.2rem;">3D Museum</a></li> -->
+          <li>
+            <a href="/contact.html" style="padding: 0.5rem 1.2rem">Contact</a>
+          </li>
+          <li>
+            <a
+              href="/Resume Pranav Uttarkar.pdf"
+              target="_blank"
+              style="padding: 0.5rem 1.2rem"
+              >Resume</a
+            >
+          </li>
+        </ul>
+      </div>
     </nav>
-    <canvas id="bg"></canvas>
+    <div style="height: 1rem"></div>
+
+    <header class="hero">
+      <div class="hero-inner">
+        <h1 class="gradient-text">Crafting Intelligent & Useful Software</h1>
+        <p class="tagline">Full‑stack engineering • Data & AI • Algorithms</p>
+        <div class="hero-search-card">
+          <div class="hero-search">
+            <div class="search-box">
+              <div class="search-accent-pulse" aria-hidden="true"></div>
+              <input
+                id="liveSearch"
+                type="text"
+                placeholder="Search projects, skills, experience..."
+                autocomplete="off"
+              />
+            </div>
+            <div id="liveResults" class="live-results" aria-live="polite"></div>
+          </div>
+        </div>
+        <div class="cta-row" style="margin-top: 1.2rem">
+          <a class="btn primary no-shadow" href="#quick-projects">Projects</a>
+          <!-- <a class="btn ghost" href="/explore.html">3D Museum</a> -->
+          <a class="btn ghost" href="/about.html">About Me</a>
+          <a
+            class="btn outline"
+            href="/Resume Pranav Uttarkar.pdf"
+            target="_blank"
+            >Resume ↗</a
+          >
+        </div>
+      </div>
+      <div class="orbital-bg" aria-hidden="true"></div>
+    </header>
+
+    <section class="section cards" id="quick-projects">
+      <h2 class="sec-title">Projects</h2>
+      <div class="card-grid" id="projectPreview"></div>
+    </section>
+
+    <section class="section split" id="skills">
+      <div>
+        <h2 class="sec-title">Core Skills</h2>
+        <ul class="pill-list" id="skillPills"></ul>
+      </div>
+      <div>
+        <h2 class="sec-title">Experience</h2>
+        <div id="expList" class="timeline"></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>© <span id="year"></span> Pranav Uttarkar</div>
+      <!-- <div class="foot-links"><a href="/explore.html">3D Mode</a></div> -->
+    </footer>
 
     <!-- <main>
       <header>
@@ -270,14 +348,138 @@
       
       
     </main> -->
-    <script>
-      var loader = document.getElementById("preLoader");
+    <script type="module">
+      import { projects } from "./src/data/projects.js";
+      import { skills } from "./src/data/skills.js";
+      import { experience } from "./src/data/experience.js";
 
-      window.addEventListener("load", function () {
-        loader.style.display = "none";
+      document.getElementById("year").textContent = new Date().getFullYear();
+      const projectPreview = document.getElementById("projectPreview");
+      projects.forEach((p) => {
+        const card = document.createElement("article");
+        card.className = "card";
+        card.innerHTML = `<h3>${p.title}</h3><p>${
+          p.summary
+        }</p><div class=\"tech\">${p.tech
+          .slice(0, 5)
+          .map((t) => `<span>${t}</span>`)
+          .join("")}</div>`;
+        card.addEventListener("click", () => {
+          window.location.href = "/project/" + p.id + ".html";
+        });
+        projectPreview.appendChild(card);
       });
-    </script>
 
-    <script type="module" src="main.js"></script>
+      const skillPills = document.getElementById("skillPills");
+      skills.forEach((s) => {
+        const li = document.createElement("li");
+        li.textContent = s.category + ": " + s.items.slice(0, 4).join(", ");
+        skillPills.appendChild(li);
+      });
+
+      const expList = document.getElementById("expList");
+      experience.forEach((e) => {
+        const div = document.createElement("div");
+        div.className = "exp-item";
+        div.innerHTML = `<h3>${e.role}</h3><span class="org">${e.org}</span><span class="period">${e.period}</span><p>${e.summary}</p>`;
+        expList.appendChild(div);
+      });
+
+      const overlay = document.getElementById("searchOverlay");
+      projects.forEach((p) =>
+        catalog.push({
+          kind: "Project",
+          id: p.id,
+          title: p.title,
+          body: p.description + " " + p.tech.join(" "),
+          open: () => (window.location.href = "/project/" + p.id + ".html"),
+        })
+      );
+      experience.forEach((e) =>
+        catalog.push({
+          kind: "Experience",
+          id: e.id,
+          title: e.role + " – " + e.org,
+          body: e.summary + " " + e.details.join(" ") + " " + e.tech.join(" "),
+          open: () => highlightTerm(e.role),
+        })
+      );
+
+      let activeIndex = -1;
+      let filtered = [];
+      // Live search (hero)
+      const liveInput = document.getElementById("liveSearch");
+      const liveResults = document.getElementById("liveResults");
+      let liveFiltered = [];
+      let liveIndex = -1;
+      function renderLive() {
+        liveResults.innerHTML = liveFiltered
+          .map(
+            (r, i) =>
+              `<div class='live-row ${
+                i === liveIndex ? "active" : ""
+              }' data-i='${i}'><span class='k'>${
+                r.kind
+              }</span><span class='t'>${r.title}</span></div>`
+          )
+          .join("");
+        liveResults.style.display = liveFiltered.length ? "block" : "none";
+      }
+      function runLive(q) {
+        q = q.trim().toLowerCase();
+        if (!q) {
+          liveFiltered = [];
+          renderLive();
+          return;
+        }
+        liveFiltered = catalog
+          .filter(
+            (c) =>
+              c.title.toLowerCase().includes(q) ||
+              c.body.toLowerCase().includes(q)
+          )
+          .slice(0, 12);
+        liveIndex = liveFiltered.length ? 0 : -1;
+        renderLive();
+      }
+      liveInput.addEventListener("input", (e) => runLive(e.target.value));
+      liveInput.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowDown") {
+          if (liveFiltered.length) {
+            liveIndex = (liveIndex + 1) % liveFiltered.length;
+            renderLive();
+            e.preventDefault();
+          }
+        } else if (e.key === "ArrowUp") {
+          if (liveFiltered.length) {
+            liveIndex =
+              (liveIndex - 1 + liveFiltered.length) % liveFiltered.length;
+            renderLive();
+            e.preventDefault();
+          }
+        } else if (e.key === "Enter") {
+          if (liveFiltered[liveIndex]) {
+            liveFiltered[liveIndex].open();
+          }
+        } else if (e.key === "Escape") {
+          liveFiltered = [];
+          renderLive();
+          liveInput.blur();
+        }
+      });
+      liveResults.addEventListener("click", (e) => {
+        const row = e.target.closest(".live-row");
+        if (!row) return;
+        const idx = +row.dataset.i;
+        liveFiltered[idx].open();
+      });
+      function openSearchWith(prefill) {
+        liveInput.value = prefill;
+        runLive(prefill);
+        liveInput.scrollIntoView({ behavior: "smooth" });
+        liveInput.focus();
+      }
+      window.openSearchWith = openSearchWith;
+    </script>
   </body>
 </html>

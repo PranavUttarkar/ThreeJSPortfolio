@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>About – Pranav Uttarkar</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <link rel="stylesheet" href="/classic.css" />
+    <meta
+      name="description"
+      content="About Pranav Uttarkar – software engineering, full stack, data & AI interests, journey and focus."
+    />
+    <meta
+      name="keywords"
+      content="Pranav Uttarkar About, Software Engineer, Full Stack, Texas A&M"
+    />
+    <meta property="og:title" content="About – Pranav Uttarkar" />
+    <meta
+      property="og:description"
+      content="Journey, focus areas, and interests of Pranav Uttarkar."
+    />
+  </head>
+  <body>
+    <nav class="site-nav glass">
+      <div class="nav-inner">
+        <div class="brand">PRANAV<span>_UTTARKAR</span></div>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a class="active" href="/about.html">About</a></li>
+          <!-- <li><a href="/explore.html">3D Museum</a></li> -->
+          <li><a href="/contact.html">Contact</a></li>
+          <li>
+            <a href="/Resume Pranav Uttarkar.pdf" target="_blank">Resume</a>
+          </li>
+        </ul>
+        <button id="navSearchBtn" aria-label="Open search">⌕</button>
+      </div>
+    </nav>
+    <main class="section" style="max-width: 900px; margin: 0 auto">
+      <h1 class="gradient-text" style="color: #fff; filter: none">About Me</h1>
+      <p class="tagline" style="margin-top: 0">
+        Builder • Learner • Problem Solver
+      </p>
+      <article class="rich">
+        <h2>Who Am I?</h2>
+        <p>
+          I love building things— from small automation scripts to full‑stack
+          products and immersive 3D experiences. I constantly look for the most
+          elegant, user‑centered and efficient path to ship impact.
+        </p>
+        <h2>Journey</h2>
+        <p>
+          It started in 9th grade assembling my first PC, then modding Minecraft
+          and designing content pipelines. That curiosity grew into shipping web
+          apps, exploring data / AI systems, and bridging creative + technical
+          spaces.
+        </p>
+        <h2>Current Focus</h2>
+        <p>
+          Learning deeply in full‑stack architecture, scalable data flows,
+          machine learning workflows, and performance‑minded WebGL interfaces. I
+          enjoy optimizing pipelines & developer ergonomics.
+        </p>
+        <h2>Interests Beyond Code</h2>
+        <p>
+          Piano, rock climbing, geography, space exploration, hiking, and
+          crafting meaningful digital experiences that feel tactile and alive.
+        </p>
+        <h2>Seeking</h2>
+        <p>
+          Internship opportunities in Software / Data Engineering or
+          Product‑minded roles where I can contribute, iterate fast, and grow
+          alongside strong teams.
+        </p>
+      </article>
+    </main>
+    <footer class="footer">
+      <div>© <span id="year"></span> Pranav Uttarkar</div>
+    </footer>
+    <div id="searchOverlay" aria-hidden="true">
+      <div class="search-panel">
+        <div class="search-bar">
+          <input id="searchInput" placeholder="Search..." /><button
+            id="closeSearch"
+          >
+            ×
+          </button>
+        </div>
+        <div id="searchResults" class="results"></div>
+        <div class="hint">Type to filter • Esc close</div>
+      </div>
+    </div>
+    <script type="module">
+      import { projects } from "./src/data/projects.js";
+      import { skills } from "./src/data/skills.js";
+      import { experience } from "./src/data/experience.js";
+      document.getElementById("year").textContent = new Date().getFullYear();
+      // minimal search reuse
+      const overlay = document.getElementById("searchOverlay");
+      const input = document.getElementById("searchInput");
+      const results = document.getElementById("searchResults");
+      const catalog = [];
+      projects.forEach((p) =>
+        catalog.push({
+          k: "Project",
+          t: p.title,
+          b: p.description,
+          open: () => (location.href = "/project/" + p.id + ".html"),
+        })
+      );
+      skills.forEach((s) =>
+        catalog.push({
+          k: "Skill",
+          t: s.category,
+          b: s.items.join(" "),
+          open: () => {},
+        })
+      );
+      experience.forEach((e) =>
+        catalog.push({
+          k: "Experience",
+          t: e.role + " – " + e.org,
+          b: e.summary,
+          open: () => {},
+        })
+      );
+      function open() {
+        overlay.classList.add("show");
+        setTimeout(() => input.focus(), 40);
+      }
+      function close() {
+        overlay.classList.remove("show");
+        input.value = "";
+        results.innerHTML = "";
+      }
+      document.getElementById("navSearchBtn").onclick = open;
+      document.getElementById("closeSearch").onclick = close;
+      input.oninput = (e) => {
+        const q = e.target.value.toLowerCase().trim();
+        if (!q) {
+          results.innerHTML = "";
+          return;
+        }
+        const f = catalog
+          .filter(
+            (c) =>
+              c.t.toLowerCase().includes(q) || c.b.toLowerCase().includes(q)
+          )
+          .slice(0, 30);
+        results.innerHTML = f
+          .map(
+            (r) =>
+              `<div class='res'><span class='k'>${r.k}</span><span class='t'>${r.t}</span></div>`
+          )
+          .join("");
+        Array.from(results.children).forEach(
+          (n, i) => (n.onclick = () => f[i].open())
+        );
+      };
+      window.addEventListener("keydown", (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+          e.preventDefault();
+          open();
+        }
+        if (e.key === "Escape") close();
+      });
+    </script>
+  </body>
+</html>

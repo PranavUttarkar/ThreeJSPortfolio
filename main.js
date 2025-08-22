@@ -19,7 +19,10 @@ import {
   updateFP,
   setFPStart,
   configureBounds,
+  teleportTo,
 } from "./src/core/fpControls.js";
+import { ROOM_ANCHORS } from "./src/scenes/station.js";
+import { showExhibit } from "./src/ui/exhibitOverlay.js";
 
 // Phase 1 & 2: Station + basic interaction (raycast clickable pylons)
 
@@ -55,6 +58,11 @@ window.addEventListener("click", () => {
     clickFx.style.transition = "opacity 260ms ease-out";
     clickFx.style.opacity = "0";
   });
+  if (focus && focus.userData?.exhibit) {
+    const { type, id } = focus.userData.exhibit;
+    showExhibit(type, id);
+    return;
+  }
   if (focus && focus.userData?.destination) {
     // brief emissive flash on panel frame (parent)
     const panel = focus;
@@ -69,6 +77,93 @@ window.addEventListener("click", () => {
     setMode("traveling", { target: focus.userData.destination });
   }
 });
+
+// Resume pointer lock overlay when ESC released pointer lock
+function ensureResumeOverlay() {
+  let resume = document.getElementById("resumePL");
+  if (document.pointerLockElement) {
+    if (resume) resume.remove();
+    return;
+  }
+  if (!resume) {
+    resume = document.createElement("div");
+    resume.id = "resumePL";
+    resume.textContent = "CLICK TO RE-ENTER WALK MODE";
+    Object.assign(resume.style, {
+      position: "fixed",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%,-50%)",
+      background: "rgba(10,25,40,0.8)",
+      padding: "1rem 1.5rem",
+      border: "1px solid #1e90ff",
+      fontFamily: "elevon, sans-serif",
+      letterSpacing: "1px",
+      fontSize: "0.9rem",
+      cursor: "pointer",
+      color: "#d9f2ff",
+      borderRadius: "0.75rem",
+      zIndex: 1400,
+      textAlign: "center",
+      boxShadow: "0 0 18px #1e90ff55",
+      userSelect: "none",
+    });
+    resume.addEventListener("click", () => enableFP());
+    document.body.appendChild(resume);
+  }
+}
+document.addEventListener("pointerlockchange", ensureResumeOverlay);
+document.addEventListener("keyup", (e) => {
+  if (e.key === "Escape") setTimeout(ensureResumeOverlay, 60);
+});
+
+// Simple teleport toolbar
+const tpBar = document.createElement("div");
+tpBar.id = "tpBar";
+Object.assign(tpBar.style, {
+  position: "fixed",
+  right: "1rem",
+  top: "50%",
+  transform: "translateY(-50%)",
+  display: "flex",
+  flexDirection: "column",
+  gap: ".5rem",
+  zIndex: 1300,
+});
+function makeTPBtn(label, anchorKey) {
+  const b = document.createElement("button");
+  b.textContent = label;
+  Object.assign(b.style, {
+    background: "rgba(15,30,45,0.65)",
+    color: "#eef8ff",
+    border: "1px solid #1e90ff",
+    font: "600 11px elevon, sans-serif",
+    padding: ".5rem .75rem",
+    letterSpacing: "1px",
+    borderRadius: ".5rem",
+    cursor: "pointer",
+    backdropFilter: "blur(4px)",
+    transition: "background .25s, transform .25s",
+  });
+  b.addEventListener("mouseenter", () => (b.style.background = "#1e425f"));
+  b.addEventListener(
+    "mouseleave",
+    () => (b.style.background = "rgba(15,30,45,0.65)")
+  );
+  b.addEventListener("click", () => {
+    const anchor = ROOM_ANCHORS[anchorKey];
+    if (anchor) {
+      teleportTo(anchor, 0);
+      enableFP();
+    }
+  });
+  return b;
+}
+tpBar.appendChild(makeTPBtn("HOME", "home"));
+tpBar.appendChild(makeTPBtn("PROJECTS", "projects"));
+tpBar.appendChild(makeTPBtn("SKILLS", "skills"));
+tpBar.appendChild(makeTPBtn("EXPERIENCE", "experience"));
+document.body.appendChild(tpBar);
 
 // Fallback pointer lock prompt after few seconds if user skipped
 setTimeout(() => {
@@ -116,7 +211,7 @@ rocketRef.visible = false; // hidden at start
 rocketRef.position.set(0, 0, 0);
 
 // Configure FP bounds from station dims (after station import sets constants)
-configureBounds({ width: 16, depth: 24, height: 9 });
+configureBounds({ width: 16 + 10 * 2 + 4, depth: Math.max(24, 14), height: 9 });
 // Initial camera placement: move inside and face toward consoles (panels ~z 3.5-4)
 setFPStart(0, 2.6, 13.5, Math.PI); // yaw PI looks toward -Z
 camera.lookAt(0, 2.6, 3.6);
