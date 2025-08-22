@@ -8,8 +8,8 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "index.html"),
         about: resolve(__dirname, "about.html"),
-        // Contact page currently lives in public; if you move it to root, uncomment below
-        // contact: resolve(__dirname, 'contact.html'),
+        // Contact page
+        contact: resolve(__dirname, "contact.html"),
         // Project pages
         projAggieAgenda: resolve(__dirname, "project/proj-aggie-agenda.html"),
         projToyotai: resolve(__dirname, "project/proj-toyotai.html"),
