@@ -1,14 +1,9 @@
 {
-
-
-    "routes": [
-      { "src": "/aboutMe.html", "dest": "/aboutMe.html" },
-      { "src": "/(.*)", "dest": "/$1" },
-      { "src": "/contact.html", "dest": "/contact.html" },
-      { "src": "/(.*)", "dest": "/$1" },
-      { "src": "/projects.html", "dest": "/projects.html" },
-      { "src": "/(.*)", "dest": "/$1" },
-      { "src": "/Resume Pranav Uttarkar.pdf", "dest": "/Resume Pranav Uttarkar.pdf" },
-      { "src": "/(.*)", "dest": "/$1" }
-    ]
-  }
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "routes": [
+    { "src": "/project/(.*)", "dest": "/project/$1" },
+    { "src": "/experience/(.*)", "dest": "/experience/$1" },
+    { "src": "/Resume.pdf", "dest": "/Resume.pdf" }
+  ]
+}
