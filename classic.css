@@ -3,8 +3,16 @@
 * { box-sizing:border-box; }
 html,body { margin:0; padding:0; font-family:'Outfit',system-ui,sans-serif; background:#04070d; color:var(--text); -webkit-font-smoothing:antialiased; }
 body { line-height:1.4; overflow-x:hidden; }
+html,body { -webkit-overflow-scrolling:touch; }
 /* About page softer animated background */
-body.about-body { background:#0a0f14; }
+/* Pages with animated background: make body transparent so animation shows */
+body.home-root, body.about-body, body.contact-page { background:transparent; }
+/* Home variant: dim base background to 50% via overlay */
+body.home-root:before { content:""; position:fixed; inset:0; background:rgba(4,7,13,0.5); z-index:-3; }
+body.home-root .animated-bg { opacity:.85; }
+
+/* Contact + About pages share animated background */
+body.contact-page .animated-bg, body.about-body .animated-bg { position:fixed; inset:0; z-index:-2; background:radial-gradient(circle at 22% 30%, #153a55 0%, transparent 55%), radial-gradient(circle at 78% 70%, #1e3b72 0%, transparent 55%), linear-gradient(120deg,#04070d,#07101a,#04070d); animation:bgShift 20s linear infinite alternate; filter:brightness(1.02) saturate(1.1); }
 /* Softer, more neutral animated backdrop */
 body.about-body .about-animated-bg { position:fixed; inset:0; z-index:-3; background:linear-gradient(130deg,#0a1015 0%,#101921 55%,#0b1218 100%); animation:aboutShift 32s ease-in-out infinite alternate; filter:brightness(1.03) saturate(.9); }
 /* Subtle drifting neutral clouds */
@@ -20,8 +28,9 @@ body.about-body h1.gradient-text { background:linear-gradient(90deg,#ffffff,#dce
 body.about-body .rich h2 { background:linear-gradient(90deg,#ffffff,#e0ecf7); -webkit-background-clip:text; background-clip:text; color:transparent; filter:none; }
 body.about-body .rich p { color:#c4d2dd; }
 body.about-body .tagline { color:#9dafba; }
-body.home-root .nav-inner { justify-content:center; }
-body.home-root .nav-inner .brand { margin-right:2rem; }
+/* Removed forced centering for homepage nav to match other pages */
+body.home-root .nav-inner { justify-content:flex-start; }
+body.home-root .nav-inner .brand { margin-right:0; }
 body.home-root .site-nav ul { margin-left:0; }
 body.home-root .hero-search-card { max-width:860px; margin:1.2rem auto 1.1rem auto; text-align:center; }
 body.home-root .hero-search { margin-left:auto; margin-right:auto; }
@@ -54,13 +63,22 @@ body:after { content:""; position:fixed; inset:0; background:repeating-linear-gr
 .site-nav a.active:after,.site-nav a:hover:after { content:""; position:absolute; left:50%; bottom:-6px; width:26px; height:2px; background:var(--accent-grad); transform:translateX(-50%); border-radius:2px; }
 /* Hero */
 .hero { position:relative; padding:5.4rem 2rem 2.6rem; overflow:hidden; }
+@media (max-width:760px){ .hero { overflow:visible; } }
 .hero-inner { max-width:1080px; margin:0 auto; position:relative; z-index:2; }
 .hero-name { font-size:clamp(2.4rem,6.6vw,4.6rem); margin:0; line-height:1; letter-spacing:1.5px; font-weight:700; background:linear-gradient(95deg,#ffffff,#dfefff); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 6px 26px #1e90ff22); }
 .hero-name span { background:linear-gradient(95deg,#1e90ff,#7aa7ff); -webkit-background-clip:text; background-clip:text; color:transparent; }
 .hero h1 { font-size: clamp(2.2rem,5.8vw,3.8rem); line-height:1.04; margin:.25rem 0 .75rem; font-weight:600; }
 .gradient-text { background:none; color:#ffffff; filter:drop-shadow(0 4px 22px #1e90ff22); letter-spacing:.5px; }
 .tagline { font-size:clamp(.9rem,1.15vw,1.05rem); color:var(--muted); margin:0 0 1.1rem; font-weight:400; letter-spacing:.4px; }
+/* Larger hero greeting only on home page */
+body.home-root .tagline { font-size:clamp(1.15rem,2.15vw,1.6rem); line-height:1.35; }
 .cta-row { display:flex; flex-wrap:wrap; gap:.85rem; }
+/* Force buttons row to stay horizontal on very small screens with scroll */
+.cta-row.fixed-horizontal { flex-wrap:nowrap; overflow-x:auto; padding-bottom:.3rem; }
+.cta-row.fixed-horizontal::-webkit-scrollbar { height:6px; }
+.cta-row.fixed-horizontal::-webkit-scrollbar-track { background:transparent; }
+.cta-row.fixed-horizontal::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.15); border-radius:4px; }
+.cta-row.fixed-horizontal .btn { flex:0 0 auto; }
 /* Search */
 .hero-search { max-width:760px; position:relative; }
 .hero-search-card { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.09); padding:.95rem 1.15rem 1.05rem; border-radius:24px; backdrop-filter:blur(16px); box-shadow:0 10px 34px -18px #031a28; margin:.9rem 2rem 1.1rem 2rem; }
@@ -103,6 +121,14 @@ body:after { content:""; position:fixed; inset:0; background:repeating-linear-gr
 .card .tech span { font-size:.55rem; background:rgba(255,255,255,0.07); padding:.3rem .5rem; border-radius:7px; letter-spacing:.4px; }
 /* Skills/Experience */
 .split { display:grid; gap:2.2rem; grid-template-columns:repeat(auto-fit,minmax(310px,1fr)); max-width:1200px; margin:0 auto; }
+/* Glassy block variant for combined skills & experiences */
+.glassy-block { background:linear-gradient(150deg,rgba(255,255,255,0.05),rgba(255,255,255,0.025)); border:1px solid rgba(255,255,255,0.07); border-radius:34px; backdrop-filter:blur(18px) saturate(135%); box-shadow:0 14px 42px -22px rgba(0,0,0,0.6),0 0 0 1px rgba(255,255,255,0.04) inset; }
+@media (max-width:760px){ .glassy-block { padding:1.9rem 1.3rem 2.2rem; border-radius:30px; } }
+/* Mobile: force single column to prevent horizontal grid capturing vertical scroll */
+@media (max-width:760px){ .split { grid-template-columns:1fr !important; gap:1.6rem; } }
+/* Extra small devices */
+@media (max-width:480px){ .split { gap:1.3rem; } }
+#skills { position:relative; z-index:1; }
 .pill-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.6rem; }
 .pill-list li { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); padding:.75rem .95rem; border-radius:11px; font-size:.72rem; letter-spacing:.45px; position:relative; }
 .pill-list li:after { content:""; position:absolute; top:0; left:0; bottom:0; width:3px; background:var(--accent-grad); border-radius:3px 0 0 3px; opacity:.7; }
@@ -115,12 +141,29 @@ body:after { content:""; position:fixed; inset:0; background:repeating-linear-gr
 .exp-item .org { font-size:.55rem; letter-spacing:.7px; text-transform:uppercase; color:var(--muted); margin-right:.35rem; }
 .exp-item .period { font-size:.5rem; color:var(--muted); background:rgba(255,255,255,0.06); padding:.2rem .45rem; border-radius:5px; }
 .exp-item p { margin:.5rem 0 0; font-size:.6rem; line-height:1.4; color:var(--muted); }
+
+/* Darker text for experience cards for better readability */
+body.home-root #expList .exp-item .org,
+body.home-root #expList .exp-item .period,
+body.home-root #expList .exp-item p { color:#c8d4df; }
 /* Footer */
 .footer { text-align:center; font-size:.6rem; letter-spacing:1px; color:var(--muted); padding:2.2rem 1rem 1.6rem; background:linear-gradient(180deg,rgba(18,30,46,.0),rgba(8,14,25,.65)); margin-top:1.2rem; }
 .footer .foot-links { margin-top:.55rem; display:flex; justify-content:center; gap:1.1rem; }
 .footer a { color:var(--text); text-decoration:none; font-weight:500; font-size:.6rem; }
 .footer a:hover { color:#fff; }
 @media (max-width:760px){ .hero { padding:4.8rem 1.1rem 1.9rem; } .cta-row { flex-direction:column; align-items:flex-start; gap:.6rem; } .site-nav .nav-inner { gap:1rem; padding:.7rem .85rem; } .site-nav ul { gap:.75rem; } .sec-title { font-size:1.4rem; margin:0 0 .85rem; } .section { padding:1.8rem 1.1rem 2rem; } }
+/* Override column stacking for fixed-horizontal variant on mobile */
+@media (max-width:760px){ .cta-row.fixed-horizontal { flex-direction:row; align-items:center; gap:.65rem; } }
+
+/* Ensure skills/experience section scrolls properly on mobile if internal elements grow */
+@media (max-width:760px){
+	#skills { overflow:visible; position:relative; }
+	body, html { overscroll-behavior:auto; height:auto; }
+	.section.split { overflow:visible; }
+}
+
+/* Prevent any accidental full-height locking that can freeze scroll */
+html, body, .home-root { min-height:100%; }
 
 /* Tighten adjacent sections spacing if any custom sections added without .section class */
 .section + .section { margin-top:0; }
@@ -168,6 +211,12 @@ body:after { content:""; position:fixed; inset:0; background:repeating-linear-gr
 	margin-right:auto;
 	max-width:1000px;
 }
+
+/* Home page: make section titles (Projects / Core Skills / Experiences) and search placeholder darker/more muted */
+body.home-root .sec-title { background:none !important; color:#c2ccd5 !important; filter:none; }
+body.home-root #skills .sec-title { color:#b9c4ce !important; }
+body.home-root .hero-search #liveSearch::placeholder { color:#8fa1b0; opacity:1; }
+body.home-root .hero-search #liveSearch { color:#d5dde4; }
 .section.cards .card-grid .card { flex:0 0 240px; }
 /* Center the expand button beneath projects */
 #quick-projects > div:last-child { text-align:center; }

@@ -30,26 +30,16 @@
   <body class="home-root">
     <link rel="stylesheet" href="classic.css" />
     <div class="animated-bg" aria-hidden="true"></div>
-    <nav class="site-nav glass" style="font-size: 1rem; padding: 1.2rem 0">
-      <div class="nav-inner" style="max-width: 1200px; margin: 0 auto">
-        <div class="brand" style="font-size: 1.5rem">
-          PRANAV<span>_UTTARKAR</span>
-        </div>
-        <ul style="gap: 2.5rem">
+    <nav class="site-nav glass">
+      <div class="nav-inner">
+        <div class="brand">PRANAV<span>_UTTARKAR</span></div>
+        <ul>
+          <li><a class="active" href="/">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <!-- <li><a href="/explore.html">3D Museum</a></li> -->
+          <li><a href="/contact.html">Contact</a></li>
           <li>
-            <a class="active" href="/" style="padding: 0.5rem 1.2rem">Home</a>
-          </li>
-          <li>
-            <a href="/about.html" style="padding: 0.5rem 1.2rem">About</a>
-          </li>
-          <!-- <li><a href="/explore.html" style="padding: 0.5rem 1.2rem;">3D Museum</a></li> -->
-          <li>
-            <a href="/contact.html" style="padding: 0.5rem 1.2rem">Contact</a>
-          </li>
-          <li>
-            <a href="/Resume.pdf" target="_blank" style="padding: 0.5rem 1.2rem"
-              >Resume</a
-            >
+            <a href="/Resume.pdf" target="_blank">Resume</a>
           </li>
         </ul>
       </div>
@@ -71,12 +61,13 @@
         "
       ></h1>
       <p class="tagline">
-        Hi I'm Pranav! I'm a software engineer with a passion for creating
-        intelligent and user friendly digital experiences. Currently creating
-        @Mindweb.Systems and researching @SketchLab. Previously AI Dev @Daikin
+        <strong style="color: #ded5d5">Hi I'm Pranav!</strong> I'm a software
+        engineer with a passion for creating intelligent and user friendly
+        digital experiences. Currently creating @Mindweb.Systems and researching
+        @SketchLab. Previously AI Dev @Daikin
       </p>
 
-      <div class="cta-row" style="margin-top: 1.2rem">
+      <div class="cta-row fixed-horizontal" style="margin-top: 1.2rem">
         <a class="btn primary no-shadow" href="#skills">Experiences</a>
         <!-- <a class="btn ghost" href="/explore.html">3D Museum</a> -->
         <a class="btn ghost" href="/about.html">About Me</a>
@@ -104,7 +95,12 @@
     </div>
     <div style="height: 1.5rem"></div>
 
-    <section class="section split" id="skills">
+    <div
+      class="section split glassy-block"
+      id="skills"
+      role="region"
+      aria-label="Core skills and experiences"
+    >
       <div>
         <h2 class="sec-title">Core Skills</h2>
         <ul class="pill-list" id="skillPills"></ul>
@@ -113,7 +109,7 @@
         <h2 class="sec-title">Experiences</h2>
         <div id="expList" class="timeline"></div>
       </div>
-    </section>
+    </div>
 
     <footer class="footer">
       <div>

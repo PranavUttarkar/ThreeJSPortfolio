@@ -20,7 +20,8 @@
       content="Ways to connect with software engineer Pranav Uttarkar."
     />
   </head>
-  <body>
+  <body class="contact-page">
+    <div class="animated-bg" aria-hidden="true"></div>
     <nav class="site-nav glass">
       <div class="nav-inner">
         <div class="brand">PRANAV<span>_UTTARKAR</span></div>
@@ -81,36 +82,7 @@
               );
           "
         ></div>
-        <div
-          style="
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            padding: 1px;
-            --ang: 0deg;
-            background: conic-gradient(
-              from var(--ang),
-              #1e90ff55,
-              #7aa7ff22,
-              #1e90ff44,
-              #1e90ff00 240deg
-            );
-            mask: linear-gradient(#000, #000) content-box,
-              linear-gradient(#000, #000);
-            -webkit-mask: linear-gradient(#000, #000) content-box,
-              linear-gradient(#000, #000);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            animation: spin 14s linear infinite;
-          "
-        ></div>
-        <style>
-          @keyframes spin {
-            to {
-              --ang: 360deg;
-            }
-          }
-        </style>
+        <!-- Removed spinning conic gradient border that produced a blue top line -->
         <div
           style="
             display: flex;
@@ -125,7 +97,7 @@
             <h1
               style="margin: 0 0 0.4rem; font-size: 2rem; letter-spacing: 1px"
             >
-              Let’s Connect
+              Let’s Connect!!!
             </h1>
             <p class="tagline" style="margin: 0 0 1.4rem; font-size: 0.9rem">
               Open to internships, collaborations, and interesting
