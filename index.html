@@ -11,11 +11,8 @@
       content="Pranav Uttarkar, Pranav, Uttarkar, Software Engineer, Texas A&M, Full Stack, WebGL, Three.js, Portfolio, Projects, Resume"
     />
     <meta name="author" content="Pranav Uttarkar" />
-    <link rel="canonical" href="https://pranavuttarkar.com/" />
-    <meta
-      property="og:title"
-      content="Pranav Uttarkar – Software Engineer Portfolio"
-    />
+    <link rel="canonical" href="https://pranavuttarkar.vercel.app/" />
+    <meta property="og:title" content="Pranav Uttarkar – Portfolio" />
     <meta
       property="og:description"
       content="Projects, skills and experience across full‑stack, data, AI, and immersive 3D web."
@@ -30,7 +27,7 @@
 
     <title>Pranav Uttarkar</title>
   </head>
-  <body>
+  <body class="home-root">
     <link rel="stylesheet" href="classic.css" />
     <div class="animated-bg" aria-hidden="true"></div>
     <nav class="site-nav glass" style="font-size: 1rem; padding: 1.2rem 0">
@@ -63,10 +60,24 @@
       <!-- <h1 class="gradient-text">
         Crafting Intelligent, Fast & Useful Software
       </h1> -->
-      <p class="tagline">Full-Stack Development • Data & AI • Algorithms</p>
+      <h1
+        class="brand"
+        style="
+          margin: 0 0 0.6rem;
+          font-size: 1.2rem;
+          line-height: 1.05;
+          font-weight: 500;
+          color: #ded5d5;
+        "
+      ></h1>
+      <p class="tagline">
+        Hi I'm Pranav! I'm a software engineer with a passion for creating
+        intelligent and user friendly digital experiences. Currently creating
+        @Mindweb.Systems and researching @SketchLab. Previously AI Dev @Daikin
+      </p>
 
       <div class="cta-row" style="margin-top: 1.2rem">
-        <a class="btn primary no-shadow" href="#quick-projects">Projects</a>
+        <a class="btn primary no-shadow" href="#skills">Experiences</a>
         <!-- <a class="btn ghost" href="/explore.html">3D Museum</a> -->
         <a class="btn ghost" href="/about.html">About Me</a>
         <a class="btn outline" href="/Resume.pdf" target="_blank">Resume ↗</a>
@@ -105,7 +116,9 @@
     </section>
 
     <footer class="footer">
-      <div><span id="year"></span></div>
+      <div>
+        Thanks for stopping by | <span id="year"></span> Pranav Uttarkar
+      </div>
       <!-- <div class="foot-links"><a href="/explore.html">3D Mode</a></div> -->
     </footer>
 
@@ -351,27 +364,56 @@
 
       document.getElementById("year").textContent = new Date().getFullYear();
       const projectPreview = document.getElementById("projectPreview");
-      // Show only first 3 projects on homepage
-      projects.slice(0, 3).forEach((p) => {
-        const card = document.createElement("article");
-        card.className = "card";
-        card.innerHTML = `<div class='thumb'><img src='${
-          p.image || "/favicon.png"
-        }' alt='${p.title}' loading='lazy'/></div><h3>${p.title}</h3><p>${
-          p.summary
-        }</p><div class=\"tech\">${p.tech
-          .slice(0, 4)
-          .map((t) => `<span>${t}</span>`)
-          .join("")}</div>`;
-        card.addEventListener("click", () => {
-          window.location.href = "/project/" + p.id + ".html";
+      // Inline expandable projects (initial subset + toggle)
+      const INITIAL_COUNT = 3;
+      function renderProjects(limit = projects.length) {
+        projectPreview.innerHTML = "";
+        projects.slice(0, limit).forEach((p) => {
+          const card = document.createElement("article");
+          card.className = "card";
+          card.innerHTML = `<div class='thumb'><img src='${
+            p.image || "/favicon.png"
+          }' alt='${p.title}' loading='lazy'/></div><h3>${p.title}</h3><p>${
+            p.summary
+          }</p><div class=\"tech\">${p.tech
+            .slice(0, 4)
+            .map((t) => `<span>${t}</span>`)
+            .join("")}</div>`;
+          card.addEventListener("click", () => {
+            window.location.href = "/project/" + p.id + ".html";
+          });
+          projectPreview.appendChild(card);
         });
-        projectPreview.appendChild(card);
+      }
+      renderProjects(INITIAL_COUNT);
+      const expandWrap = document.createElement("div");
+      expandWrap.style.margin = "0.9rem 0 0";
+      expandWrap.style.textAlign = "center";
+      const expandBtn = document.createElement("button");
+      expandBtn.className = "btn ghost";
+      expandBtn.style.fontSize = ".6rem";
+      expandBtn.type = "button";
+      expandBtn.setAttribute("aria-expanded", "false");
+      expandBtn.textContent = "View All Projects →";
+      expandBtn.addEventListener("click", () => {
+        const expanded = expandBtn.getAttribute("data-expanded") === "true";
+        if (!expanded) {
+          renderProjects();
+          expandBtn.textContent = "Show Less";
+          expandBtn.setAttribute("data-expanded", "true");
+          expandBtn.setAttribute("aria-expanded", "true");
+        } else {
+          renderProjects(INITIAL_COUNT);
+          expandBtn.textContent = "View All Projects →";
+          expandBtn.setAttribute("data-expanded", "false");
+          expandBtn.setAttribute("aria-expanded", "false");
+          document
+            .getElementById("quick-projects")
+            .scrollIntoView({ behavior: "smooth" });
+        }
       });
-      const viewAll = document.createElement("div");
-      viewAll.style.margin = "0.6rem 0 0";
-      viewAll.innerHTML = `<a class='btn ghost' style='font-size:.6rem' href='/all-projects.html'>View All Projects →</a>`;
-      projectPreview.parentElement.appendChild(viewAll);
+      expandWrap.appendChild(expandBtn);
+      projectPreview.parentElement.appendChild(expandWrap);
 
       const skillPills = document.getElementById("skillPills");
       skills.forEach((s) => {

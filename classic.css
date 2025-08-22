@@ -3,6 +3,41 @@
 * { box-sizing:border-box; }
 html,body { margin:0; padding:0; font-family:'Outfit',system-ui,sans-serif; background:#04070d; color:var(--text); -webkit-font-smoothing:antialiased; }
 body { line-height:1.4; overflow-x:hidden; }
+/* About page softer animated background */
+body.about-body { background:#0a0f14; }
+/* Softer, more neutral animated backdrop */
+body.about-body .about-animated-bg { position:fixed; inset:0; z-index:-3; background:linear-gradient(130deg,#0a1015 0%,#101921 55%,#0b1218 100%); animation:aboutShift 32s ease-in-out infinite alternate; filter:brightness(1.03) saturate(.9); }
+/* Subtle drifting neutral clouds */
+body.about-body:before { content:""; position:fixed; inset:0; background:radial-gradient(circle at 22% 28%, rgba(255,255,255,0.06), transparent 55%), radial-gradient(circle at 78% 68%, rgba(255,255,255,0.05), transparent 60%), radial-gradient(circle at 40% 70%, rgba(255,255,255,0.035), transparent 62%); mix-blend-mode:overlay; pointer-events:none; z-index:-2; filter:blur(48px); opacity:.55; animation:aboutGlow 24s linear infinite alternate; }
+/* Fine grain / scan lines dialed down */
+body.about-body:after { content:""; position:fixed; inset:0; background:repeating-linear-gradient(140deg,rgba(255,255,255,0.01) 0 2px,transparent 2px 10px); z-index:-1; opacity:.18; animation:scan 38s linear infinite; mix-blend-mode:overlay; }
+@keyframes aboutShift { 0% { transform:translate3d(0,0,0) scale(1);} 50% { transform:translate3d(0,-10px,0) scale(1.01);} 100% { transform:translate3d(0,8px,0) scale(1.015);} }
+@keyframes aboutGlow { 0%,100% { opacity:.48; } 50% { opacity:.63; } }
+/* Frosted panel for readability */
+body.about-body main.section { background:linear-gradient(145deg,rgba(255,255,255,0.06),rgba(255,255,255,0.025)); border:1px solid rgba(255,255,255,0.07); border-radius:30px; backdrop-filter:blur(22px) saturate(125%); box-shadow:0 18px 48px -24px rgba(0,0,0,0.65),0 0 0 1px rgba(255,255,255,0.04) inset; padding:2.4rem 2.2rem 2.7rem; }
+@media (max-width:760px){ body.about-body main.section { padding:2rem 1.4rem 2.3rem; border-radius:26px; } }
+body.about-body h1.gradient-text { background:linear-gradient(90deg,#ffffff,#dce9f5); -webkit-background-clip:text; background-clip:text; color:transparent !important; filter:none; }
+body.about-body .rich h2 { background:linear-gradient(90deg,#ffffff,#e0ecf7); -webkit-background-clip:text; background-clip:text; color:transparent; filter:none; }
+body.about-body .rich p { color:#c4d2dd; }
+body.about-body .tagline { color:#9dafba; }
+body.home-root .nav-inner { justify-content:center; }
+body.home-root .nav-inner .brand { margin-right:2rem; }
+body.home-root .site-nav ul { margin-left:0; }
+body.home-root .hero-search-card { max-width:860px; margin:1.2rem auto 1.1rem auto; text-align:center; }
+body.home-root .hero-search { margin-left:auto; margin-right:auto; }
+body.home-root .cta-row { justify-content:center; }
+body.home-root .section.cards { margin-left:auto; margin-right:auto; }
+/* Add horizontal breathing room specifically for the Projects section */
+body.home-root #quick-projects { margin-left:2.2rem; margin-right:2.2rem; }
+@media (max-width:900px){ body.home-root #quick-projects { margin-left:1.4rem; margin-right:1.4rem; } }
+@media (max-width:600px){ body.home-root #quick-projects { margin-left:.9rem; margin-right:.9rem; } }
+body.home-root .section.cards .card-grid { justify-items:center; }
+body.home-root .section.split { margin-left:auto; margin-right:auto; }
+body.home-root .split { justify-items:center; }
+body.home-root .pill-list li { text-align:center; }
+body.home-root .timeline { width:100%; }
+body.home-root .exp-item { text-align:center; }
+body.home-root footer.footer { text-align:center; }
 /* Animated background */
 .animated-bg { position:fixed; inset:0; z-index:-2; background:radial-gradient(circle at 20% 25%, #153a55 0%, transparent 60%), radial-gradient(circle at 80% 70%, #1e3b72 0%, transparent 55%), linear-gradient(120deg,#04070d,#07101a,#04070d); animation:bgShift 18s linear infinite alternate; filter:brightness(1.05) saturate(1.15); }
 @keyframes bgShift { 0% { filter:hue-rotate(0deg) brightness(1.05);} 50% { filter:hue-rotate(20deg) brightness(1.08);} 100% { filter:hue-rotate(-15deg) brightness(1.04);} }
@@ -122,6 +157,20 @@ body:after { content:""; position:fixed; inset:0; background:repeating-linear-gr
 /* Remove blue accent lines in projects block */
 /* Hide only the top accent bar, keep underline below "Projects" */
 .section.cards:after { display:none !important; }
+
+/* Center the quick projects cards */
+.section.cards .card-grid {
+	display:flex;
+	flex-wrap:wrap;
+	justify-content:center;
+	gap:1.15rem 1.15rem; /* slightly larger spacing */
+	margin-left:auto;
+	margin-right:auto;
+	max-width:1000px;
+}
+.section.cards .card-grid .card { flex:0 0 240px; }
+/* Center the expand button beneath projects */
+#quick-projects > div:last-child { text-align:center; }
 
 @media (max-width:900px){
 	.section.cards, .section.split { margin-left:1.4rem; margin-right:1.4rem; }

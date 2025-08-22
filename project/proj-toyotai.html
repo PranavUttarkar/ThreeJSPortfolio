@@ -2,9 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>A&M Studys – Project</title>
+    <title>ToyotAI – Project</title>
     <link rel="icon" href="/favicon.png" />
     <link rel="stylesheet" href="/classic.css" />
+    <meta
+      name="description"
+      content="ToyotAI – AI-powered Toyota car recommendation platform with quiz, virtual salesman chat, and advanced filters."
+    />
+    <meta
+      name="keywords"
+      content="ToyotAI, car recommendation, AI, LangChain, React, Hackathon, Pranav Uttarkar"
+    />
+    <meta property="og:title" content="ToyotAI – Pranav Uttarkar" />
+    <meta
+      property="og:description"
+      content="Quiz + AI chat + filters to quickly find the right Toyota."
+    />
   </head>
   <body>
     <nav class="site-nav glass">
@@ -26,9 +39,9 @@
       </div>
     </nav>
     <main class="section" style="max-width: 880px; margin: 0 auto">
-      <h1 style="margin-top: 0">A&amp;M Studys</h1>
+      <h1 style="margin-top: 0">ToyotAI</h1>
       <p class="tagline">
-        Peer Q&amp;A and knowledge sharing for TAMU courses.
+        AI-powered Toyota car recommendation & discovery platform.
       </p>
       <div
         class="proj-hero"
@@ -42,15 +55,15 @@
         "
       >
         <img
-          src="/Studys.jpg"
-          alt="A&M Studys"
+          src="/toyotaAI.png"
+          alt="ToyotAI"
           style="
             width: 100%;
             height: 100%;
             object-fit: cover;
             aspect-ratio: 16/9;
             display: block;
-            filter: brightness(0.92);
+            filter: brightness(0.94);
           "
           loading="lazy"
         />
@@ -65,23 +78,42 @@
             padding: 0.35rem 0.55rem;
             border-radius: 7px;
           "
-          >A&M Studys</span
+          >ToyotAI</span
         >
       </div>
       <article class="rich">
         <h2>Overview</h2>
         <p>
-          Collaborative learning platform enabling students to ask questions,
-          post answers, and discover tagged course resources in real time.
+          ToyotAI makes choosing a Toyota model engaging and efficient: a
+          playful personality quiz maps lifestyle traits to suitable models; an
+          AI virtual salesman answers nuanced questions; and a traditional
+          filtering interface supports power users needing granular control.
         </p>
         <h2>Highlights</h2>
         <ul>
-          <li>Team leadership (7 contributors) with sprint planning</li>
-          <li>Realtime Firestore listeners for instant Q&amp;A updates</li>
-          <li>Tag-driven search & filtering for discoverability</li>
+          <li>Quiz-to-model mapping engine with weighted trait scoring</li>
+          <li>
+            LangChain-powered conversational agent for spec + lifestyle Q&A
+          </li>
+          <li>
+            Hybrid retrieval: structured filtering + semantic embedding search
+          </li>
+          <li>
+            Data pipeline using Pandas to normalize model specs & features
+          </li>
+          <li>Hackathon delivery under 24 hours with iterative user testing</li>
         </ul>
-        <h2>Stack</h2>
-        <p>React • Firebase Auth • Firestore • Hosting</p>
+        <h2>Tech Stack</h2>
+        <p>Python • LangChain • Pandas • React • CSS • Vector Search</p>
+        <h2>Architecture Notes</h2>
+        <p>
+          Backend services expose quiz inference and chat endpoints. Vehicle
+          dataset standardized (feature flags, numeric normalization)
+          pre-indexed for hybrid retrieval. Conversation agent chains spec
+          lookup + recommendation rationale. Frontend React components provide
+          multi-path (quiz / chat / filters) discovery funnel improving
+          retention and satisfaction.
+        </p>
       </article>
     </main>
     <footer class="footer">

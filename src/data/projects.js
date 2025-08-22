@@ -1,4 +1,35 @@
 export const projects = [
+  // Order specified by request: profsort, mindweb, aggie agenda, portfolio, then rest
+  {
+    id: "proj-tamu-profsort",
+    title: "Tamu-ProfSort",
+    summary: "Desktop app ranking professor grade distributions.",
+    description:
+      "Electron-based desktop tool actively used by 400+ students to visualize and compare grading styles and averages across professors.",
+    tech: ["JavaScript", "Puppeteer", "Electron", "Charting"],
+    image: "/tamuprofsort.png",
+    highlights: [
+      "Automated scraping & caching of public grade data",
+      "Interactive comparison and sort by distribution metrics",
+      "Update pipeline with delta detection to minimize requests",
+    ],
+    links: { repo: "#", demo: "#" },
+  },
+  {
+    id: "proj-mindweb",
+    title: "MindWeb",
+    summary: "Gamified productivity & habit / streak web app.",
+    description:
+      "Full-stack productivity platform with streak mechanics, social graph (friends), custom notifications, and large-scale user data tracking.",
+    tech: ["React", "TypeScript", "Supabase", "PostgreSQL", "Edge Functions"],
+    image: "/mindweb1.png",
+    highlights: [
+      "Supabase edge functions for low-latency streak rollovers",
+      "Row level security & policies for multi-tenant data",
+      "Early beta iteration with ~100 testers for feedback loop",
+    ],
+    links: { repo: "#", demo: "#" },
+  },
   {
     id: "proj-aggie-agenda",
     title: "Aggie Agenda",
@@ -11,21 +42,6 @@ export const projects = [
       "Built real-time collaboration with WebSockets",
       "Implemented role-based access and refresh token rotation",
       "Optimized heavy queries with compound indices (40% faster)",
-    ],
-    links: { repo: "#", demo: "#" },
-  },
-  {
-    id: "proj-car-clinic-ai",
-    title: "Car Clinic AI",
-    summary: "AI assistant for automotive diagnostics.",
-    description:
-      "LLM-assisted triage tool: ingest vehicle telemetry + user symptoms and generate probable issue tree with confidence ranking.",
-    tech: ["TypeScript", "Python", "FastAPI", "OpenAI", "VectorDB"],
-    image: "/CarClinicAI.jpg",
-    highlights: [
-      "Hybrid embedding + rules engine",
-      "Cost-efficient token streaming UI",
-      "Scenario test harness for regression",
     ],
     links: { repo: "#", demo: "#" },
   },
@@ -44,33 +60,19 @@ export const projects = [
     ],
     links: { repo: "#", demo: "#" },
   },
+  // Remaining existing projects (keeping logical grouping)
   {
-    id: "proj-tamu-profsort",
-    title: "Tamu-ProfSort",
-    summary: "Desktop app ranking professor grade distributions.",
+    id: "proj-car-clinic-ai",
+    title: "Car Clinic AI",
+    summary: "AI assistant for automotive diagnostics.",
     description:
-      "Electron-based desktop tool actively used by 400+ students to visualize and compare grading styles and averages across professors.",
-    tech: ["JavaScript", "Puppeteer", "Electron", "Charting"],
-    image: "/javascript.svg",
+      "LLM-assisted triage tool: ingest vehicle telemetry + user symptoms and generate probable issue tree with confidence ranking.",
+    tech: ["TypeScript", "Python", "FastAPI", "OpenAI", "VectorDB"],
+    image: "/CarClinicAI.jpg",
     highlights: [
-      "Automated scraping & caching of public grade data",
-      "Interactive comparison and sort by distribution metrics",
-      "Update pipeline with delta detection to minimize requests",
-    ],
-    links: { repo: "#", demo: "#" },
-  },
-  {
-    id: "proj-mindweb",
-    title: "MindWeb",
-    summary: "Gamified productivity & habit / streak web app.",
-    description:
-      "Full-stack productivity platform with streak mechanics, social graph (friends), custom notifications, and large-scale user data tracking.",
-    tech: ["React", "TypeScript", "Supabase", "PostgreSQL", "Edge Functions"],
-    image: "/AboutBG.jpg",
-    highlights: [
-      "Supabase edge functions for low-latency streak rollovers",
-      "Row level security & policies for multi-tenant data",
-      "Early beta iteration with ~100 testers for feedback loop",
+      "Hybrid embedding + rules engine",
+      "Cost-efficient token streaming UI",
+      "Scenario test harness for regression",
     ],
     links: { repo: "#", demo: "#" },
   },
@@ -96,11 +98,27 @@ export const projects = [
     description:
       "Interactive TikTok game effect encouraging user-generated challenge content, resulting in 70K+ created videos.",
     tech: ["AR", "Scripting", "TikTok Effect", "Game Logic"],
-    image: "/favicon.png",
+    image: "/impossible-parkour.png",
     highlights: [
       "Node-based logic optimized for effect performance",
       "Progressive difficulty pacing for retention",
       "Organic virality via share-friendly challenge design",
+    ],
+    links: { repo: "#", demo: "#" },
+  },
+  // New ToyotAI project
+  {
+    id: "proj-toyotai",
+    title: "ToyotAI",
+    summary: "AI-powered Toyota car recommendation platform.",
+    description:
+      "ToyotAI streamlines car discovery via a playful personality quiz, an AI virtual salesman, and classic advanced filtering for specs like MPG, price, and features.",
+    tech: ["Python", "LangChain", "Pandas", "React", "CSS"],
+    image: "/toyotaAI.png",
+    highlights: [
+      "Personality quiz → model mapping engine",
+      "Conversational agent for tailored vehicle insights",
+      "Hybrid search: semantic + structured filters",
     ],
     links: { repo: "#", demo: "#" },
   },
