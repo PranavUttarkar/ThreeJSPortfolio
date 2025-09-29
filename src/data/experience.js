@@ -4,8 +4,7 @@ export const experience = [
     role: "AI Development Intern",
     org: "Daikin North America",
     period: "May 2025 – Aug 2025",
-    summary:
-      "Built internal AI Agent Platform automating workflows across Sales & Marketing.",
+    summary: "Designed & Deployed internal enterprise AI Agent Platform.",
     details: [
       "Designed & deployed multi-tool agent platform (Python, LangChain / LangGraph)",
       "Integrated internal APIs for HVAC config generation, comparisons, dealer lookup, RAG",
@@ -29,7 +28,7 @@ export const experience = [
     org: "MindWeb.systems",
     period: "May 2025 – Present",
     summary:
-      "Launching gamified productivity SaaS with social & streak mechanics.",
+      "Created Gamified productivity consumer app with social & streak mechanics.",
     details: [
       "Architected Supabase (PostgreSQL, RLS policies, Edge Functions) backend",
       "Implemented streak rollover & notification scheduling logic",
@@ -40,11 +39,10 @@ export const experience = [
   },
   {
     id: "exp-research-sound",
-    role: "Undergraduate Researcher",
+    role: "Machine Learning Researcher",
     org: "Texas A&M – Sketch Recognition Lab",
     period: "Jan 2025 – Present",
-    summary:
-      "Adapting vision transformer for environmental sound classification.",
+    summary: "Adapting vision transformer for efficient music classification.",
     details: [
       "Benchmarking multi-class environmental tagging architectures",
       "Constructing large training datasets & refining preprocessing pipeline",
