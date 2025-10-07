@@ -2,12 +2,14 @@ import * as THREE from "three";
 import { camera, scene } from "../core/renderer.js";
 import { AppState, setMode } from "../core/state.js";
 import { getRocket } from "../entities/rocket.js";
+import { ROOM_ANCHORS } from "../scenes/station.js";
+import { enableFP, teleportTo } from "../core/fpControls.js";
 
 // Predefined target anchor positions for approach
 const TARGET_POINTS = {
-  projects: new THREE.Vector3(40, 8, -30),
-  skills: new THREE.Vector3(-25, 5, 35),
-  education: new THREE.Vector3(15, 12, 50),
+  projects: ROOM_ANCHORS.projects.clone(),
+  skills: ROOM_ANCHORS.skills.clone(),
+  experience: ROOM_ANCHORS.experience.clone(),
 };
 
 let curve = null;
@@ -43,8 +45,12 @@ export function updateTravel(dt) {
   if (t >= 1) {
     t = 1;
     active = false;
-    // Arrival: switch to planetView (placeholder: return home for now)
+    // Arrival: teleport to the destination anchor and re-enter FP walk mode
+    const dest = AppState.target;
+    const anchor = TARGET_POINTS[dest] || ROOM_ANCHORS.home;
+    if (anchor) teleportTo(anchor, 0);
     setMode("homeStation", { target: null });
+    enableFP();
     getRocket().visible = false;
     return;
   }

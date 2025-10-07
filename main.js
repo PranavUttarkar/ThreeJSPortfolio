@@ -63,6 +63,16 @@ window.addEventListener("click", () => {
     showExhibit(type, id);
     return;
   }
+  // New: hallway exhibit groups have userData.openUrl
+  if (focus && focus.userData?.openUrl) {
+    const url = focus.userData.openUrl;
+    try {
+      window.open(url, "_blank", "noopener");
+    } catch {
+      window.location.href = url;
+    }
+    return;
+  }
   if (focus && focus.userData?.destination) {
     // brief emissive flash on panel frame (parent)
     const panel = focus;
@@ -197,10 +207,18 @@ setTimeout(() => {
 onStateChange(({ current }) => {
   if (current.mode === "traveling") {
     openTunnelDoors();
+    rocketRef.visible = true;
+    // Release FP controls so travel path controls the camera smoothly
+    if (document.exitPointerLock) {
+      try {
+        document.exitPointerLock();
+      } catch {}
+    }
     setTimeout(() => startTravel(), 900); // allow doors to open first
   } else if (current.mode === "homeStation") {
     closeTunnelDoors();
-    rocketRef.visible = false; // hide rocket until launch sequence implementation
+    // rocket visibility handled on arrival; ensure hidden when docked
+    rocketRef.visible = false;
   }
 });
 
@@ -210,8 +228,10 @@ const rocketRef = getRocket();
 rocketRef.visible = false; // hidden at start
 rocketRef.position.set(0, 0, 0);
 
-// Configure FP bounds from station dims (after station import sets constants)
-configureBounds({ width: 16 + 10 * 2 + 4, depth: Math.max(24, 14), height: 9 });
+// Configure FP bounds large enough to include the hallway square loop
+// width: base (16) + two hallways (2*10) + margin
+// depth: hallway length (60) + hallway width (10) + small margin
+configureBounds({ width: 16 + 10 * 2 + 4, depth: 60 + 10 + 4, height: 9 });
 // Initial camera placement: move inside and face toward consoles (panels ~z 3.5-4)
 setFPStart(0, 2.6, 13.5, Math.PI); // yaw PI looks toward -Z
 camera.lookAt(0, 2.6, 3.6);

@@ -11,7 +11,7 @@ export function initHUD() {
       <div class="hud-buttons">
         <button data-dest="projects">Projects</button>
         <button data-dest="skills">Skills</button>
-        <button data-dest="education">Education</button>
+  <button data-dest="experience">Experience</button>
         <button id="btnHome" style="display:none;">Home</button>
       </div>
       <div class="hud-status" style="margin-top:.5rem;font-size:.7rem;opacity:.7;"></div>
