@@ -33,6 +33,9 @@ body.home-root .nav-inner { justify-content:flex-start; }
 body.home-root .nav-inner .brand { margin-right:0; }
 body.home-root .site-nav ul { margin-left:0; }
 body.home-root .hero-search-card { max-width:860px; margin:1.2rem auto 1.1rem auto; text-align:center; }
+/* Minimal home hero center */
+body.home-root main.section { background:transparent; }
+body.home-root .hero-name { font-size:clamp(2.6rem,6vw,4.6rem); }
 body.home-root .hero-search { margin-left:auto; margin-right:auto; }
 body.home-root .cta-row { justify-content:center; }
 body.home-root .section.cards { margin-left:auto; margin-right:auto; }
