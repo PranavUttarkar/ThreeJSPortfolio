@@ -35,449 +35,99 @@
         <div class="brand">PRANAV<span>_UTTARKAR</span></div>
         <ul>
           <li><a class="active" href="/">Home</a></li>
-          <li><a href="/about.html">About</a></li>
-          <!-- <li><a href="/explore.html">3D Museum</a></li> -->
-          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="/projects/index.html">Projects</a></li>
+          <li><a href="/experiences">Experiences</a></li>
           <li>
             <a href="/Resume.pdf" target="_blank">Resume</a>
           </li>
         </ul>
       </div>
     </nav>
-    <div style="height: 1rem"></div>
 
-    <div class="hero-search-card">
-      <!-- <h1 class="gradient-text">
-        Crafting Intelligent, Fast & Useful Software
-      </h1> -->
-      <h1
-        class="brand"
-        style="
-          margin: 0 0 0.6rem;
-          font-size: 1.2rem;
-          line-height: 1.05;
-          font-weight: 500;
-          color: #ded5d5;
-        "
-      ></h1>
-      <p class="tagline">
-        <strong style="color: #ded5d5">Hi I'm Pranav!</strong> I'm a Computer
-        Science student with a passion for creating intelligent and user
-        friendly digital experiences. Currently creating
-        <strong>
-          <a
-            href="https://mindweb.systems"
-            target="_blank"
-            style="color: #bcb7b7; text-decoration: none"
-            >@Mindweb.Systems</a
-          >
-        </strong>
-        and researching
-        <strong>
-          <a target="_blank" style="color: #bcb7b7; text-decoration: none"
-            >@SketchLab</a
-          >
-        </strong>
-        . Previously AI Dev
-        <strong>
-          <a
-            href="https://daikincomfort.com/"
-            target="_blank"
-            style="color: #bcb7b7; text-decoration: none"
-            >@Daikin</a
-          >
-        </strong>
-      </p>
-
-      <div class="cta-row fixed-horizontal" style="margin-top: 1.2rem">
-        <a class="btn primary no-shadow" href="#skills">Experiences</a>
-        <!-- <a class="btn ghost" href="/explore.html">3D Museum</a> -->
-        <a class="btn ghost" href="/about.html">About Me</a>
-        <a class="btn outline" href="/Resume.pdf" target="_blank">Resume ↗</a>
+    <main
+      class="section"
+      style="
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 2.2rem 1rem 1.6rem;
+      "
+    >
+      <div
+        class="hero-search-card"
+        style="margin: 0 auto 1.4rem; max-height: fit-content"
+      >
+        <h1 style="text-align: center; margin: 0.2rem 0 0.6rem">
+          Hi, I'm Pranav👋!
+        </h1>
+        <p class="tagline" style="text-align: center; margin: 0 0 1rem">
+          Hi! I’m a CS, Maths, & Entrepreneurship student at Texas A&M
+          passionate about building AI-driven products that blend technology,
+          design, and human behavior. Outside of tech, I love rock climbing,
+          running, geography and playing piano.
+        </p>
+        <div
+          class="cta-row fixed-horizontal"
+          style="justify-content: center; margin: 0.6rem 0 1rem"
+        >
+          <a class="btn primary" href="/contact">Contact</a>
+          <a class="btn outline" href="/Resume.pdf" target="_blank">Resume →</a>
+        </div>
+        <div class="hero-search">
+          <div class="search-box">
+            <div class="search-accent-pulse" aria-hidden="true"></div>
+            <input
+              id="liveSearch"
+              type="text"
+              placeholder="Search skills, experiences, projects..."
+              autocomplete="off"
+            />
+          </div>
+          <div id="liveResults" class="live-results" aria-live="polite"></div>
+        </div>
       </div>
-      <div style="height: 2.5rem"></div>
-
-      <div class="hero-search">
-        <div class="search-box">
-          <div class="search-accent-pulse" aria-hidden="true"></div>
-          <input
-            id="liveSearch"
-            type="text"
-            placeholder="Search skills, experiences, projects..."
-            autocomplete="off"
+      <div class="about-inner" style="justify-items: center">
+        <div class="portrait-wrap" aria-hidden="true">
+          <div class="portrait-glow"></div>
+          <img
+            src="/me.jpg"
+            alt="Pranav portrait"
+            onerror="this.onerror=null;this.src='/favicon.png'"
           />
         </div>
-        <div id="liveResults" class="live-results" aria-live="polite"></div>
       </div>
-    </div>
-
-    <div class="section cards" id="quick-projects">
-      <h2 class="sec-title">Projects</h2>
-      <div class="card-grid" id="projectPreview"></div>
-    </div>
-    <div style="height: 1.5rem"></div>
-
-    <div
-      class="section split glassy-block"
-      id="skills"
-      role="region"
-      aria-label="Core skills and experiences"
-    >
-      <div>
-        <h2 class="sec-title">Core Skills</h2>
-        <ul class="pill-list" id="skillPills"></ul>
-      </div>
-      <div>
-        <h2 class="sec-title">Experiences</h2>
-        <div id="expList" class="timeline"></div>
-      </div>
-    </div>
+    </main>
 
     <footer class="footer">
       <div>
         Thanks for stopping by | <span id="year"></span> Pranav Uttarkar
       </div>
-      <!-- <div class="foot-links"><a href="/explore.html">3D Mode</a></div> -->
     </footer>
-
-    <!-- <main>
-      <header>
-        <h1>Hi, I'm Pranav Uttarkar!</h1>
-        <p>Scroll to explore skills, projects and more! 🚀</p>
-      </header>
-      
-
-      <section>
-        <h2>📜 Education</h2>
-        <h3>Texas A&M University</h3>
-        <h4><strong>Computer Science</strong></h4>
-        <h5>Expected Graduation: May 2027</h5>
-        <ul>
-          <li>
-            Craig And Galen Brown Engineering Honors
-          </li>
-          <li>
-            Relevant Courses:  C++, Python Computing, Calculus 3, Differential Equations, Discrete Structures
-          </li>
-          <li>
-            Research: Currently Researching Environmental Sound Classification at TAMU Sketch Recognition Lab <Canvas></Canvas>
-          </li>
-        <ul>
-      </section>
-
-      <section class="light">
-        <h2>👩🏽‍🚀 Projects</h2>
-        <div class="section">
-          <h3>A&M Studys - Project Manager and Developer</h3>
-          <p><strong>Sep 2024 - Present</strong></p>
-
-          <ul>
-            <li>
-              Leading a team of 7 students to develop a dynamic web app, "A&M
-              Studys," facilitating academic Q&A for Texas A&M courses.
-            </li>
-            <li>
-              Teaching and utilizing React.js, and TypeScript for app front-end and Firebase for
-              back-end data management, creating a responsive, user-centered
-              interface.
-            </li>
-            <li>
-              Conducting weekly team meetings to address challenges and align on
-              project goals, ensuring timely delivery of development milestones.
-            </li>
-            <li>
-              Organizing project workflows using Jira and GitHub, streamlining
-              task assignments and tracking to increase productivity.
-            </li>
-          </ul>
-          <p><strong>Skills:</strong></p>
-          <ul class="skills">
-            <li>Firebase</li>
-            <li>React.js</li>
-            <li>Database Transactions</li>
-            <li>Web Scraping</li>
-          </ul>
-        </div>
-
-        <div class="section">
-          <h3>ToyotAI - Tamu Hack 2025</h3>
-          <p><strong>Jan 2025 - Sep 2025</strong></p>
-          <ul>
-            <li>
-              Built a car recommendation platform in 24 hours at a hackathon, leveraging machine learning to personalize the car-buying experience with React and Flask. 
-            </li>
-            <li>
-              Developed the Frontend using Next.js and styled it with Tailwind
-              CSS, ensuring a responsive and user-friendly experience across
-              devices.
-            </li>
-            <li>
-              Integrated GPT API to power an AI-driven virtual salesman, providing intelligent and dynamic car recommendations.
-
-            </li>
-          </ul>
-          <p><strong>Skills:</strong></p>
-          <ul class="skills">
-            <li>ML Integration</li>
-            <li>Flask </li>
-            <li>Pandas</li>
-            
-          </ul>
-        </div>
-
-        <div class="section">
-          <h3>Aggie Agenda - HowdyHack 2024</h3>
-          <p><strong>Sep 2024 - Sep 2024</strong></p>
-          <ul>
-            <li>
-              Built Aggie Agenda in 24 hours during a hackathon, collaborating
-              with a partner to streamline event management for Texas A&M
-              students by centralizing campus organization events into a single,
-              accessible interface.
-            </li>
-            <li>
-              Developed the Frontend using Next.js and styled it with Tailwind
-              CSS, ensuring a responsive and user-friendly experience across
-              devices.
-            </li>
-            <li>
-              Overcame authentication and event synchronization challenges under
-              time constraints, enhancing technical skills and problem-solving
-              abilities throughout the project.
-            </li>
-          </ul>
-          <p><strong>Skills:</strong></p>
-          <ul class="skills">
-            <li>TypeScript</li>
-            <li>Tailwind CSS</li>
-            <li>Next.js</li>
-            
-          </ul>
-        </div>
-
-        <div class="section">
-          <h3>CarClinic AI - Capstone Project</h3>
-          <p><strong>Sep 2023 - May 2024</strong></p>
-          <ul>
-            <li>
-              Implemented Python libraries such as Pandas, NumPy, and <strong>Scikit-learn ML</strong> library to efficiently data classification
-              to analyze diagnostic data collected from OBD scanner.
-            </li>
-            <li>
-              Designed a Python-based app that analyzes vehicle OBD-II codes
-              along with user-provided vehicle details to provide actionable
-              repair suggestions through the GPT-4 API.
-            </li>
-            <li>
-              Engineered the hardware for an ELM327 OBD scanner board, designing
-              the physical housing with AutoCAD Inventor and 3D printing it with
-              durable PLA+ material which withstood automotive workshop
-              conditions.
-            </li>
-
-          </ul>
-          <p><strong>Skills:</strong></p>
-          <ul class="skills">
-            <li>ML classification</li>
-            <li>AutoCAD</li>
-            <li>Python</li>
-          </ul>
-        </div>
-        <div class ="section">
-          <h3>Three.js portfolio</h3>
-            <ul>
-                <li>Utilized Three.js to create interactive 3D visualizations, gaining hands-on experience with WebGL concepts and rendering techniques.</li>
-                <li>Conducted performance profiling and debugging using tools like Spector.js and browser DevTools to identify bottlenecks, reduce draw calls, and improve frame rates</li>
-                <li>Experimented with lighting, camera controls, and custom shaders in Three.js to enhance the realism and interactivity of 3D scenes.</li>
-            </ul>
-        </div>
-        <div class="section">
-          <h3>Social Media Content Creation & Marketing</h3>
-          <p><strong>Nov 2021 - Dec 2023</strong></p>
-          <ul>
-            <li>
-              Built an audience of over 50,000 cumulative YouTube and TikTok
-              followers under the username "Impossible Parkour".
-            </li>
-            <li>
-              Created, coded, and promoted the Impossible Parkour TikTok filter
-              which has 35.5 million total views and has been used in over
-              70,000+ videos.
-            </li>
-            <li>
-              Created, edited, and uploaded over 100 Minecraft Java Edition
-              modification videos with over 30 million total views and over 2.5
-              million video likes.
-            </li>
-            <li>
-              Collaborated with and had 4 sponsorships with record labels like
-              Warner Records and APG to promote their music by using it in
-              videos.
-            </li>
-          </ul>
-          <div class="skills-section">
-            
-        </div>
-        
-        </div>
-
-      </section>
-
-      
-
-      <section class="left">
-        <h2>💻 Work History</h2> 
-        <div class="experience">
-            <h3>Pentair Engineered Filtration</h3>
-            <p><strong>Manufacturing and Automation Intern</strong> | July 2023 - August 2023 | Conroe, TX</p>
-            <ul>
-                <li>Formatted and recorded energy data from the TEDPro energy monitoring software into a database and served it in the Google Visualization API format for better UX using JsonPath.</li>
-                <li>Shadowed engineers and product managers to learn industry processes like manufacturing automation, CNC casting, P&P Design, and HMI and PLC systems.</li>
-                <li>Brainstormed plans for designing a manufacturing robot in engineering team meetings that would automate the work of wrapping tube-shaped filters to increase efficiency in manufacturing.</li>
-            </ul>
-        </div>
-        
-        <div class="experience">
-            <h3>B3- Bricks Bots & Beakers</h3>
-            <p><strong>Science Instructor</strong> | May 2024 - Aug 2024 | Frisco, TX</p>
-            <ul>
-                <li>Collaborated with fellow teachers to effectively teach science concepts through hands-on activities and projects, adapting lessons to available resources and time constraints.</li>
-                <li>Curated and assembled materials for hands-on learning, ensuring activities were both captivating and educational for different camps with groups ranging from ages 4-13.</li>
-                <li>Supported classroom management, maintaining a structured and positive learning environment.</li>
-                <li>Guided students through experiments in subjects like physics, architecture, and chemistry, fostering curiosity and problem-solving skills.</li>
-                <li>Assisted with daily setup, cleanup, and overall camp operations to ensure smooth and safe transitions between activities.</li>
-            </ul>
-        </div>
-        
-        <div class="experience">
-            <h3>Dallas Frontiers Of Flight Museum</h3>
-            <p><strong>Aircraft Model Shop Volunteer</strong> | Jun 2023 - Dec 2023 | Dallas, TX</p>
-            <ul>
-                <li>Built a scale model 1960 Dehavilland Beaver DHC-2 model plane from start to finish for the museum.</li>
-                <li>Explained the aircraft design process to museum visitors and elementary students on school trips.</li>
-                <li>Performed project research to plan the construction of scale balsa wood models for museum exhibits.</li>
-                <li>Learned how to effectively use woodworking tools for accurate construction and model aircraft repairs.</li>
-            </ul>
-        </div>
-    </section>
-    
-
-      <blockquote>
-        <p>Thank you for visiting!</p>
-        <div class="buttons-container">
-          <a href="contact.html" class="button contact-button">Contact Me</a>
-          <a href="resume.pdf" class="button resume-button" download>Download Resume</a>
-        </div>
-      </blockquote>
-      
-      
-    </main> -->
     <script type="module">
       import { projects } from "./src/data/projects.js";
       import { skills } from "./src/data/skills.js";
       import { experience } from "./src/data/experience.js";
 
-      // --- SEARCH DATA STORE ---
-      const catalog = [];
-
       document.getElementById("year").textContent = new Date().getFullYear();
-      const projectPreview = document.getElementById("projectPreview");
-      // Inline expandable projects (initial subset + toggle)
-      const INITIAL_COUNT = 3;
-      function renderProjects(limit = projects.length) {
-        projectPreview.innerHTML = "";
-        projects.slice(0, limit).forEach((p) => {
-          const card = document.createElement("article");
-          card.className = "card";
-          card.innerHTML = `<div class='thumb'><img src='${
-            p.image || "/favicon.png"
-          }' alt='${p.title}' loading='lazy'/></div><h3>${p.title}</h3><p>${
-            p.summary
-          }</p><div class=\"tech\">${p.tech
-            .slice(0, 4)
-            .map((t) => `<span>${t}</span>`)
-            .join("")}</div>`;
-          card.addEventListener("click", () => {
-            window.location.href = "/project/" + p.id + ".html";
-          });
-          projectPreview.appendChild(card);
-        });
-      }
-      renderProjects(INITIAL_COUNT);
-      const expandWrap = document.createElement("div");
-      expandWrap.style.margin = "0.9rem 0 0";
-      expandWrap.style.textAlign = "center";
-      const expandBtn = document.createElement("button");
-      expandBtn.className = "btn ghost";
-      expandBtn.style.fontSize = ".6rem";
-      expandBtn.type = "button";
-      expandBtn.setAttribute("aria-expanded", "false");
-      expandBtn.textContent = "View All Projects →";
-      expandBtn.addEventListener("click", () => {
-        const expanded = expandBtn.getAttribute("data-expanded") === "true";
-        if (!expanded) {
-          renderProjects();
-          expandBtn.textContent = "Show Less";
-          expandBtn.setAttribute("data-expanded", "true");
-          expandBtn.setAttribute("aria-expanded", "true");
-        } else {
-          renderProjects(INITIAL_COUNT);
-          expandBtn.textContent = "View All Projects →";
-          expandBtn.setAttribute("data-expanded", "false");
-          expandBtn.setAttribute("aria-expanded", "false");
-          document
-            .getElementById("quick-projects")
-            .scrollIntoView({ behavior: "smooth" });
-        }
-      });
-      expandWrap.appendChild(expandBtn);
-      projectPreview.parentElement.appendChild(expandWrap);
 
-      const skillPills = document.getElementById("skillPills");
-      skills.forEach((s) => {
-        const li = document.createElement("li");
-        li.textContent = s.category + ": " + s.items.slice(0, 4).join(", ");
-        skillPills.appendChild(li);
-      });
-
-      const expList = document.getElementById("expList");
-      experience.forEach((e) => {
-        const div = document.createElement("div");
-        div.className = "exp-item clickable";
-        div.setAttribute("role", "link");
-        div.setAttribute("tabindex", "0");
-        div.innerHTML = `<h3>${e.role}</h3><span class=\"org\">${e.org}</span><span class=\"period\">${e.period}</span><p>${e.summary}</p>`;
-        const navigate = () => {
-          window.location.href = "/experience/" + e.id + ".html";
-        };
-        div.addEventListener("click", navigate);
-        div.addEventListener("keydown", (ev) => {
-          if (ev.key === "Enter" || ev.key === " ") {
-            ev.preventDefault();
-            navigate();
-          }
-        });
-        expList.appendChild(div);
-      });
-
-      // Build catalog (projects + experience + skills summary keywords)
+      // Build catalog (projects + experience + skills)
+      const catalog = [];
       projects.forEach((p) =>
         catalog.push({
           kind: "Project",
           id: p.id,
           title: p.title,
-          body: p.description + " " + p.tech.join(" "),
+          body: (p.description || "") + " " + (p.tech || []).join(" "),
           open: () => (window.location.href = "/project/" + p.id + ".html"),
         })
       );
-      // Optionally include skills as searchable entries (open does nothing)
       skills.forEach((s) =>
         catalog.push({
           kind: "Skill",
           id: s.category,
           title: s.category,
           body: s.items.join(" "),
-          open: () => openSearchWith(s.category),
+          open: () => {},
         })
       );
       experience.forEach((e) =>
@@ -485,14 +135,17 @@
           kind: "Experience",
           id: e.id,
           title: e.role + " – " + e.org,
-          body: e.summary + " " + e.details.join(" ") + " " + e.tech.join(" "),
+          body:
+            e.summary +
+            " " +
+            (e.details || []).join(" ") +
+            " " +
+            (e.tech || []).join(" "),
           open: () => (window.location.href = "/experience/" + e.id + ".html"),
         })
       );
 
-      let activeIndex = -1;
-      let filtered = [];
-      // Live search (hero)
+      // Live search
       const liveInput = document.getElementById("liveSearch");
       const liveResults = document.getElementById("liveResults");
       let liveFiltered = [];
@@ -521,7 +174,7 @@
           (c) =>
             c.title.toLowerCase().includes(q) ||
             c.body.toLowerCase().includes(q)
-        ); // show all matches; scrolling container will manage height
+        );
         liveIndex = liveFiltered.length ? 0 : -1;
         renderLive();
       }
@@ -556,40 +209,6 @@
         const idx = +row.dataset.i;
         liveFiltered[idx].open();
       });
-      function openSearchWith(prefill) {
-        liveInput.value = prefill;
-        runLive(prefill);
-        liveInput.scrollIntoView({ behavior: "smooth" });
-        liveInput.focus();
-      }
-      window.openSearchWith = openSearchWith;
-
-      // Highlight helper (experience roles / skills)
-      function highlightTerm(term) {
-        const t = term.toLowerCase();
-        const targetSection = document.getElementById("skills");
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: "smooth" });
-        }
-        // remove old marks
-        document.querySelectorAll(".exp-item.marked").forEach((n) => {
-          n.classList.remove("marked");
-          n.style.outline = "";
-        });
-        // find first experience item whose text includes term
-        const match = Array.from(document.querySelectorAll(".exp-item")).find(
-          (n) => n.textContent.toLowerCase().includes(t)
-        );
-        if (match) {
-          match.classList.add("marked");
-          match.style.outline = "2px solid var(--accent)";
-          setTimeout(() => {
-            match.style.outline = "";
-            match.classList.remove("marked");
-          }, 2400);
-        }
-      }
-      window.highlightTerm = highlightTerm;
     </script>
   </body>
 </html>

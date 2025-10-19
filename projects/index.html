@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects – Pranav Uttarkar</title>
+    <link rel="icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/classic.css" />
+    <style>
+      .wrap {
+        max-width: 1150px;
+        margin: 1.4rem auto 2.4rem;
+        padding: 0 1rem 4rem; /* add bottom padding so fixed footer (on some pages) doesn't overlap */
+        position: relative;
+        z-index: 1; /* ensure content is above any backgrounds */
+      }
+      .list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      /* Prevent background layer from intercepting clicks and ensure it stays behind */
+      .animated-bg {
+        pointer-events: none;
+        z-index: -2;
+      }
+      .proj {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 1.2rem;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        padding: 0.9rem;
+        transition: 0.3s;
+        cursor: pointer;
+      }
+      .proj:hover {
+        background: linear-gradient(95deg, #1e90ff22, #7aa7ff11);
+        border-color: #1e90ff55;
+        box-shadow: 0 6px 22px -10px #03273f;
+      }
+      .img {
+        aspect-ratio: 16/10;
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #0e1622;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: brightness(0.95) saturate(1.08);
+        transition: 0.4s;
+      }
+      .proj:hover .img img {
+        transform: scale(1.04);
+        filter: brightness(1);
+      }
+      .meta h3 {
+        margin: 0.1rem 0 0.35rem;
+        font-size: 1.15rem;
+      }
+      .meta p {
+        margin: 0.1rem 0 0.65rem;
+        color: #c8d4df;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .tags span {
+        font-size: 0.65rem;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 0.34rem 0.6rem;
+        border-radius: 999px;
+        letter-spacing: 0.3px;
+      }
+      @media (max-width: 860px) {
+        .proj {
+          grid-template-columns: 1fr;
+        }
+      }
+      .top-bar {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        max-width: 1150px;
+        margin: 0.6rem auto 0;
+        padding: 0 1rem;
+      }
+      .top-bar h1 {
+        margin: 0.8rem 0 0.2rem;
+      }
+      /* On this page, keep footer non-fixed so it doesn't cover content */
+      body.home-root footer.footer {
+        position: static;
+        background: transparent;
+      }
+    </style>
+  </head>
+  <body class="home-root">
+    <div class="animated-bg" aria-hidden="true"></div>
+    <nav class="site-nav glass">
+      <div class="nav-inner">
+        <div class="brand">PRANAV<span>_UTTARKAR</span></div>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a class="active" href="/projects/index.html">Projects</a></li>
+          <li><a href="/experiences">Experiences</a></li>
+          <li><a href="/Resume.pdf" target="_blank">Resume</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="top-bar">
+      <h1 class="sec-title" style="margin: 0">Projects</h1>
+    </div>
+    <main class="wrap">
+      <div class="list">
+        <!-- Tamu-ProfSort -->
+        <article
+          class="proj"
+          onclick="location.href='/project/proj-tamu-profsort.html'"
+        >
+          <div class="img">
+            <img src="/tamuprofsort.png" alt="Tamu-ProfSort" loading="lazy" />
+          </div>
+          <div class="meta">
+            <h3>Tamu-ProfSort</h3>
+            <p>
+              Electron-based desktop tool actively used by 400+ students to
+              visualize and compare grading styles and averages across
+              professors.
+            </p>
+            <ul class="highlights">
+              <li>Automated scraping & caching of public grade data</li>
+              <li>Interactive comparison and sort by distribution metrics</li>
+              <li>Update pipeline with delta detection to minimize requests</li>
+            </ul>
+            <div class="tags">
+              <span>JavaScript</span><span>Puppeteer</span><span>Electron</span
+              ><span>Charting</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- MindWeb -->
+        <article
+          class="proj"
+          onclick="location.href='/project/proj-mindweb.html'"
+        >
+          <div class="img">
+            <img src="/mindweb1.png" alt="MindWeb" loading="lazy" />
+          </div>
+          <div class="meta">
+            <h3>MindWeb</h3>
+            <p>
+              Full-stack productivity platform with streak mechanics, social
+              graph (friends), custom notifications, and large-scale user data
+              tracking.
+            </p>
+            <ul class="highlights">
+              <li>Supabase edge functions for low-latency streak rollovers</li>
+              <li>Row level security & policies for multi-tenant data</li>
+              <li>Early beta iteration with ~100 testers for feedback loop</li>
+            </ul>
+            <div class="tags">
+              <span>React</span><span>TypeScript</span><span>Supabase</span
+              ><span>PostgreSQL</span><span>Edge Functions</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Aggie Agenda -->
+        <article
+          class="proj"
+          onclick="location.href='/project/proj-aggie-agenda.html'"
+        >
+          <div class="img">
+            <img src="/AggieAgenda.jpg" alt="Aggie Agenda" loading="lazy" />
+          </div>
+          <div class="meta">
+            <h3>Aggie Agenda</h3>
+            <p>
+              A full-stack productivity platform helping students manage
+              classes, tasks, and deadlines with calendar sync and smart
+              reminders.
+            </p>
+            <ul class="highlights">
+              <li>Built real-time collaboration with WebSockets</li>
+              <li>Implemented role-based access and refresh token rotation</li>
+              <li>
+                Optimized heavy queries with compound indices (40% faster)
+              </li>
+            </ul>
+            <div class="tags">
+              <span>React</span><span>Node</span><span>Express</span
+              ><span>MongoDB</span><span>JWT</span><span>Redis</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3D Portfolio Hub -->
+        <article
+          class="proj"
+          onclick="location.href='/project/proj-portfolio-3d.html'"
+        >
+          <div class="img">
+            <img src="/Portfolio.jpg" alt="3D Portfolio Hub" loading="lazy" />
+          </div>
+          <div class="meta">
+            <h3>3D Portfolio Hub</h3>
+            <p>
+              Interactive space-station museum showcasing work via immersive
+              exploration with optimized shaders and modular scene graph.
+            </p>
+            <ul class="highlights">
+              <li>Custom shader panels</li>
+              <li>State-driven scene modules</li>
+              <li>Lazy asset strategy</li>
+            </ul>
+            <div class="tags">
+              <span>Three.js</span><span>GLSL</span><span>Vercel</span
+              ><span>Modular Architecture</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Car Clinic AI -->
+        <article
+          class="proj"
+          onclick="location.href='/project/proj-car-clinic-ai.html'"
+        >
+          <div class="img">
+            <img src="/CarClinicAI.jpg" alt="Car Clinic AI" loading="lazy" />
+          </div>
+          <div class="meta">
+            <h3>Car Clinic AI</h3>
+            <p>
+              LLM-assisted triage tool: ingest vehicle telemetry + user symptoms
+              and generate probable issue tree with confidence ranking.
+            </p>
+            <ul class="highlights">
+              <li>Hybrid embedding + rules engine</li>
+              <li>Cost-efficient token streaming UI</li>
+              <li>Scenario test harness for regression</li>
+            </ul>
+            <div class="tags">
+              <span>TypeScript</span><span>Python</span><span>FastAPI</span
+              ><span>OpenAI</span><span>VectorDB</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- A&M Studys -->
+        <article
+          class="proj"
+          onclick="location.href='/project/proj-am-studys.html'"
+        >
+          <div class="img">
+            <img src="/Studys.jpg" alt="A&M Studys" loading="lazy" />
+          </div>
+          <div class="meta">
+            <h3>A&M Studys</h3>
+            <p>
+              Collaborative platform enabling students to ask/answer course
+              questions, share resources, and reinforce learning objectives.
+            </p>
+            <ul class="highlights">
+              <li>Team leadership across 7 contributors & sprint cadence</li>
+              <li>Real-time Firestore listeners for live Q&A updates</li>
+              <li>Structured tagging for discoverability of course topics</li>
+            </ul>
+            <div class="tags">
+              <span>React</span><span>Firebase</span><span>Auth</span
+              ><span>Firestore</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Impossible Parkour Filter -->
+        <article
+          class="proj"
+          onclick="location.href='/project/proj-impossible-parkour.html'"
+        >
+          <div class="img">
+            <img
+              src="/ImpossibleParkour.png"
+              alt="Impossible Parkour Filter"
+              loading="lazy"
+            />
+          </div>
+          <div class="meta">
+            <h3>Impossible Parkour Filter</h3>
+            <p>
+              Interactive TikTok game effect encouraging user-generated
+              challenge content, resulting in 70K+ created videos.
+            </p>
+            <ul class="highlights">
+              <li>Node-based logic optimized for effect performance</li>
+              <li>Progressive difficulty pacing for retention</li>
+              <li>Organic virality via share-friendly challenge design</li>
+            </ul>
+            <div class="tags">
+              <span>AR</span><span>Scripting</span><span>TikTok Effect</span
+              ><span>Game Logic</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ToyotAI -->
+        <article
+          class="proj"
+          onclick="location.href='/project/proj-toyotai.html'"
+        >
+          <div class="img">
+            <img src="/toyotaAI.png" alt="ToyotAI" loading="lazy" />
+          </div>
+          <div class="meta">
+            <h3>ToyotAI</h3>
+            <p>
+              ToyotAI streamlines car discovery via a playful personality quiz,
+              an AI virtual salesman, and classic advanced filtering for specs
+              like MPG, price, and features.
+            </p>
+            <ul class="highlights">
+              <li>Personality quiz → model mapping engine</li>
+              <li>Conversational agent for tailored vehicle insights</li>
+              <li>Hybrid search: semantic + structured filters</li>
+            </ul>
+            <div class="tags">
+              <span>Python</span><span>LangChain</span><span>Pandas</span
+              ><span>React</span><span>CSS</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer class="footer">
+      <div>© 2025 Pranav Uttarkar</div>
+    </footer>
+  </body>
+</html>
