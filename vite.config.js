@@ -10,6 +10,9 @@ export default defineConfig({
         about: resolve(__dirname, "about.html"),
         // Contact page
         contact: resolve(__dirname, "contact.html"),
+        // Index pages for sections
+        projects: resolve(__dirname, "projects/index.html"),
+        experiences: resolve(__dirname, "experiences/index.html"),
         // Project pages
         projAggieAgenda: resolve(__dirname, "project/proj-aggie-agenda.html"),
         projToyotai: resolve(__dirname, "project/proj-toyotai.html"),

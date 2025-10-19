@@ -1,4 +1,11 @@
 {
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/contact.html", "destination": "/contact", "permanent": true },
+    { "source": "/contacts", "destination": "/contact", "permanent": true },
+    { "source": "/contacts.html", "destination": "/contact", "permanent": true }
+  ]
 }

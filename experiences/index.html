@@ -7,21 +7,130 @@
     <link rel="icon" href="/favicon.png" />
     <link rel="stylesheet" href="/classic.css" />
     <style>
-      .timeline-wrap { max-width: 980px; margin: 1.6rem auto 2.4rem; padding: 0 1rem; }
-      .timeline-rail { position: relative; margin: 1.2rem 0 0 0; padding-left: 24px; }
-      .timeline-rail:before { content: ""; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, #1e90ff55, #7aa7ff44); }
-      .t-item { position: relative; margin: 0 0 1rem 0; padding: .9rem 1.05rem 1rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; transition: .3s; }
-      .t-item:hover { background: linear-gradient(95deg,#1e90ff22,#7aa7ff11); border-color:#1e90ff55; box-shadow:0 6px 22px -10px #03273f; }
-      .t-item .dot { position: absolute; left: -16px; top: 16px; width: 12px; height: 12px; border-radius: 50%; background: #1e90ff; box-shadow: 0 0 0 3px rgba(30,144,255,0.25); }
-      .t-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: .45rem .7rem; }
-      .t-h h3 { margin: 0; font-size: .95rem; font-weight: 600; }
-      .t-h .org { font-size: .65rem; letter-spacing: .7px; text-transform: uppercase; color: var(--muted); }
-      .t-h .period { font-size: .6rem; color: var(--muted); background: rgba(255,255,255,0.06); padding: .2rem .45rem; border-radius: 5px; }
-      .t-body { margin-top: .45rem; font-size: .72rem; color: #c8d4df; }
-      .t-tech { margin-top: .5rem; display:flex; gap:.35rem; flex-wrap:wrap; }
-      .t-tech span { font-size: .55rem; background: rgba(255,255,255,0.08); padding: .28rem .48rem; border-radius: 6px; }
-      .top-bar { display:flex; align-items:center; gap:1rem; max-width: 980px; margin: .6rem auto 0; padding: 0 1rem; }
-      .top-bar h1 { margin:.8rem 0 .2rem; }
+      .timeline-wrap {
+        max-width: 980px;
+        margin: 1.6rem auto 2.4rem;
+        padding: 0 1rem;
+      }
+      .timeline-rail {
+        position: relative;
+        margin: 1.2rem 0 0 0;
+        padding-left: 24px;
+      }
+      .timeline-rail:before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(180deg, #1e90ff55, #7aa7ff44);
+      }
+      .t-item {
+        position: relative;
+        margin: 0 0 1rem 0;
+        padding: 0.9rem 1.05rem 1rem 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        transition: 0.3s;
+        display: grid;
+        grid-template-columns: 52px 1fr;
+        grid-template-rows: auto 1fr auto; /* header | body grows | tags pinned bottom */
+        gap: 0.5rem 0.75rem;
+      }
+      .t-item:hover {
+        background: linear-gradient(95deg, #1e90ff22, #7aa7ff11);
+        border-color: #1e90ff55;
+        box-shadow: 0 6px 22px -10px #03273f;
+      }
+      .t-item .dot {
+        position: absolute;
+        left: -16px;
+        top: 16px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #1e90ff;
+        box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.25);
+      }
+      .t-logo {
+        width: 52px;
+        height: 52px;
+        border-radius: 10px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        grid-column: 1;
+        grid-row: 1 / 4; /* span all rows */
+      }
+      .t-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .t-h {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0.45rem 0.7rem;
+        grid-column: 2;
+        grid-row: 1;
+      }
+      .t-h h3 {
+        margin: 0;
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+      .t-h .org {
+        font-size: 0.65rem;
+        letter-spacing: 0.7px;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .t-h .period {
+        font-size: 0.6rem;
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.06);
+        padding: 0.2rem 0.45rem;
+        border-radius: 5px;
+      }
+      .t-body {
+        margin-top: 0.45rem;
+        font-size: 0.72rem;
+        color: #c8d4df;
+        grid-column: 2;
+        grid-row: 2;
+      }
+      .t-tech {
+        margin-top: 0.5rem;
+        display: flex;
+        gap: 0.35rem;
+        flex-wrap: wrap;
+        grid-column: 2;
+        grid-row: 3;
+        align-self: end;
+      }
+      .t-tech span {
+        font-size: 0.55rem;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 0.28rem 0.48rem;
+        border-radius: 6px;
+      }
+      .top-bar {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        max-width: 980px;
+        margin: 0.6rem auto 0;
+        padding: 0 1rem;
+      }
+      .top-bar h1 {
+        margin: 0.8rem 0 0.2rem;
+      }
     </style>
   </head>
   <body class="home-root">
@@ -31,16 +140,14 @@
         <div class="brand">PRANAV<span>_UTTARKAR</span></div>
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/projects">Projects</a></li>
+          <li><a href="/projects/index.html">Projects</a></li>
           <li><a class="active" href="/experiences">Experiences</a></li>
-          <li><a href="/about.html">About</a></li>
-          <li><a href="/contact.html">Contact</a></li>
           <li><a href="/Resume.pdf" target="_blank">Resume</a></li>
         </ul>
       </div>
     </nav>
     <div class="top-bar">
-      <h1 class="sec-title" style="margin:0;">Experience Timeline</h1>
+      <h1 class="sec-title" style="margin: 0">Experience Timeline</h1>
     </div>
     <main class="timeline-wrap">
       <div class="timeline-rail" id="timeline"></div>
@@ -49,26 +156,37 @@
       <div>© <span id="year"></span> Pranav Uttarkar</div>
     </footer>
     <script type="module">
-      import { experience } from '/src/data/experience.js';
-      const year = document.getElementById('year');
+      import { experience } from "/src/data/experience.js";
+      const year = document.getElementById("year");
       if (year) year.textContent = new Date().getFullYear();
-      const tl = document.getElementById('timeline');
-      experience.forEach(e => {
-        const node = document.createElement('article');
-        node.className = 't-item';
+      const tl = document.getElementById("timeline");
+      experience.forEach((e) => {
+        const node = document.createElement("article");
+        node.className = "t-item";
         node.innerHTML = `
           <div class="dot" aria-hidden="true"></div>
+          <div class="t-logo" aria-hidden="true">
+            ${e.logo ? `<img src="${e.logo}" alt="${e.org} logo" />` : ""}
+          </div>
           <div class="t-h">
             <h3>${e.role}</h3>
             <span class="org">${e.org}</span>
             <span class="period">${e.period}</span>
           </div>
-          <div class="t-body">${e.summary}</div>
-          <div class="t-tech">${(e.tech||[]).map(t=>`<span>${t}</span>`).join('')}</div>
+          <div class="t-body"><ul style="margin:0.25rem 0 0 1.1rem; padding:0; line-height:1.4;">${(
+            e.details || []
+          )
+            .map((d) => `<li style="margin:0.25rem 0;">${d}</li>`)
+            .join("")}</ul></div>
+          <div class="t-tech">${(e.tech || [])
+            .map((t) => `<span>${t}</span>`)
+            .join("")}</div>
         `;
-        node.addEventListener('click', ()=>{ window.location.href = '/experience/' + e.id + '.html'; });
+        node.addEventListener("click", () => {
+          window.location.href = "/experience/" + e.id + ".html";
+        });
         tl.appendChild(node);
       });
     </script>
   </body>
-  </html>
+</html>

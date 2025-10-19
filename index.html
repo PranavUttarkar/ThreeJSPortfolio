@@ -35,10 +35,8 @@
         <div class="brand">PRANAV<span>_UTTARKAR</span></div>
         <ul>
           <li><a class="active" href="/">Home</a></li>
-          <li><a href="/projects">Projects</a></li>
+          <li><a href="/projects/index.html">Projects</a></li>
           <li><a href="/experiences">Experiences</a></li>
-          <li><a href="/about.html">About</a></li>
-          <li><a href="/contact.html">Contact</a></li>
           <li>
             <a href="/Resume.pdf" target="_blank">Resume</a>
           </li>
@@ -46,8 +44,58 @@
       </div>
     </nav>
 
-    <main class="section" style="display:flex;align-items:center;justify-content:center;min-height:60vh;background:transparent;border:none;box-shadow:none;padding:4rem 1rem 3rem;">
-      <h1 class="hero-name" style="text-align:center;margin:0;">Hi, I'm Pranav👋!</h1>
+    <main
+      class="section"
+      style="
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 2.2rem 1rem 1.6rem;
+      "
+    >
+      <div
+        class="hero-search-card"
+        style="margin: 0 auto 1.4rem; max-height: fit-content"
+      >
+        <h1 style="text-align: center; margin: 0.2rem 0 0.6rem">
+          Hi, I'm Pranav👋!
+        </h1>
+        <p class="tagline" style="text-align: center; margin: 0 0 1rem">
+          Hi! I’m a CS, Maths, & Entrepreneurship student at Texas A&M
+          passionate about building AI-driven products that blend technology,
+          design, and human behavior. Outside of tech, I love rock climbing,
+          running, geography and playing piano.
+        </p>
+        <div
+          class="cta-row fixed-horizontal"
+          style="justify-content: center; margin: 0.6rem 0 1rem"
+        >
+          <a class="btn primary" href="/contact">Contact</a>
+          <a class="btn outline" href="/Resume.pdf" target="_blank">Resume →</a>
+        </div>
+        <div class="hero-search">
+          <div class="search-box">
+            <div class="search-accent-pulse" aria-hidden="true"></div>
+            <input
+              id="liveSearch"
+              type="text"
+              placeholder="Search skills, experiences, projects..."
+              autocomplete="off"
+            />
+          </div>
+          <div id="liveResults" class="live-results" aria-live="polite"></div>
+        </div>
+      </div>
+      <div class="about-inner" style="justify-items: center">
+        <div class="portrait-wrap" aria-hidden="true">
+          <div class="portrait-glow"></div>
+          <img
+            src="/me.jpg"
+            alt="Pranav portrait"
+            onerror="this.onerror=null;this.src='/favicon.png'"
+          />
+        </div>
+      </div>
     </main>
 
     <footer class="footer">
@@ -55,8 +103,112 @@
         Thanks for stopping by | <span id="year"></span> Pranav Uttarkar
       </div>
     </footer>
-    <script>
-      document.getElementById('year').textContent = new Date().getFullYear();
+    <script type="module">
+      import { projects } from "./src/data/projects.js";
+      import { skills } from "./src/data/skills.js";
+      import { experience } from "./src/data/experience.js";
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Build catalog (projects + experience + skills)
+      const catalog = [];
+      projects.forEach((p) =>
+        catalog.push({
+          kind: "Project",
+          id: p.id,
+          title: p.title,
+          body: (p.description || "") + " " + (p.tech || []).join(" "),
+          open: () => (window.location.href = "/project/" + p.id + ".html"),
+        })
+      );
+      skills.forEach((s) =>
+        catalog.push({
+          kind: "Skill",
+          id: s.category,
+          title: s.category,
+          body: s.items.join(" "),
+          open: () => {},
+        })
+      );
+      experience.forEach((e) =>
+        catalog.push({
+          kind: "Experience",
+          id: e.id,
+          title: e.role + " – " + e.org,
+          body:
+            e.summary +
+            " " +
+            (e.details || []).join(" ") +
+            " " +
+            (e.tech || []).join(" "),
+          open: () => (window.location.href = "/experience/" + e.id + ".html"),
+        })
+      );
+
+      // Live search
+      const liveInput = document.getElementById("liveSearch");
+      const liveResults = document.getElementById("liveResults");
+      let liveFiltered = [];
+      let liveIndex = -1;
+      function renderLive() {
+        liveResults.innerHTML = liveFiltered
+          .map(
+            (r, i) =>
+              `<div class='live-row ${
+                i === liveIndex ? "active" : ""
+              }' data-i='${i}'><span class='k'>${
+                r.kind
+              }</span><span class='t'>${r.title}</span></div>`
+          )
+          .join("");
+        liveResults.style.display = liveFiltered.length ? "block" : "none";
+      }
+      function runLive(q) {
+        q = q.trim().toLowerCase();
+        if (!q) {
+          liveFiltered = [];
+          renderLive();
+          return;
+        }
+        liveFiltered = catalog.filter(
+          (c) =>
+            c.title.toLowerCase().includes(q) ||
+            c.body.toLowerCase().includes(q)
+        );
+        liveIndex = liveFiltered.length ? 0 : -1;
+        renderLive();
+      }
+      liveInput.addEventListener("input", (e) => runLive(e.target.value));
+      liveInput.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowDown") {
+          if (liveFiltered.length) {
+            liveIndex = (liveIndex + 1) % liveFiltered.length;
+            renderLive();
+            e.preventDefault();
+          }
+        } else if (e.key === "ArrowUp") {
+          if (liveFiltered.length) {
+            liveIndex =
+              (liveIndex - 1 + liveFiltered.length) % liveFiltered.length;
+            renderLive();
+            e.preventDefault();
+          }
+        } else if (e.key === "Enter") {
+          if (liveFiltered[liveIndex]) {
+            liveFiltered[liveIndex].open();
+          }
+        } else if (e.key === "Escape") {
+          liveFiltered = [];
+          renderLive();
+          liveInput.blur();
+        }
+      });
+      liveResults.addEventListener("click", (e) => {
+        const row = e.target.closest(".live-row");
+        if (!row) return;
+        const idx = +row.dataset.i;
+        liveFiltered[idx].open();
+      });
     </script>
   </body>
 </html>
