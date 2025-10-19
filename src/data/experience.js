@@ -41,7 +41,7 @@ export const experience = [
     id: "exp-research-sound",
     role: "Machine Learning Researcher",
     org: "Texas A&M – Sketch Recognition Lab",
-    logo: "/TAMUlogo.png",
+    logo: "/TAMULogo.png",
     period: "Jan 2025 – Present",
     summary: "Adapting vision transformer for efficient music classification.",
     details: [
