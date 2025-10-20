@@ -87,14 +87,17 @@
         </div>
       </div>
       <div class="about-inner" style="justify-items: center">
-        <div class="portrait-wrap" aria-hidden="true">
+        <!-- <div class="portrait-wrap" aria-hidden="true">
           <div class="portrait-glow"></div>
           <img
             src="/me.jpg"
             alt="Pranav portrait"
             onerror="this.onerror=null;this.src='/favicon.png'"
           />
-        </div>
+        </div> -->
+
+        <div id="chatbot-inline" style="max-width: 900px; margin: 0 auto"></div>
+        <!-- </section> -->
       </div>
     </main>
 
@@ -209,6 +212,12 @@
         const idx = +row.dataset.i;
         liveFiltered[idx].open();
       });
+    </script>
+    <!-- Chatbot: inline embed (open by default) -->
+    <script type="module">
+      import { initChatbot } from "/src/ui/chatbot.js";
+      // Render inline and open by default; mount inside #chatbot-inline
+      initChatbot({ inline: true, open: true, mount: "#chatbot-inline" });
     </script>
     <script type="module" src="/cursor.js"></script>
   </body>
