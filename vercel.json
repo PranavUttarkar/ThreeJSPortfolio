@@ -1,4 +1,14 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "functions": {
+    "api/**/*": {
+      "runtime": "nodejs20.x"
+    }
+  },
+  "redirects": [
+    { "source": "/contact.html", "destination": "/contact", "permanent": true },
+    { "source": "/contacts", "destination": "/contact", "permanent": true },
+    { "source": "/contacts.html", "destination": "/contact", "permanent": true }
+  ]
 }

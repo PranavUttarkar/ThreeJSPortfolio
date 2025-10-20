@@ -3,6 +3,15 @@ import { resolve } from "path";
 
 // Ensure all standalone HTML pages (projects & experiences) are treated as build entry points
 export default defineConfig({
+  server: {
+    proxy: {
+      // If running `vercel dev` on port 3000, forward /api calls there; adjust as needed.
+      "/api": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      },
+    },
+  },
   build: {
     rollupOptions: {
       input: {
