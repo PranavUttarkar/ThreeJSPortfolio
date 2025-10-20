@@ -104,6 +104,30 @@
         position: static;
         background: transparent;
       }
+
+      /* Reveal-in animation utilities */
+      .reveal {
+        opacity: 0;
+        transform: translateY(14px) scale(0.98);
+      }
+      .reveal.is-in {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      .reveal {
+        transition: opacity 480ms ease,
+          transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: var(--stagger, 0ms);
+        will-change: opacity, transform;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal,
+        .reveal.is-in {
+          transition: none !important;
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      }
     </style>
   </head>
   <body class="home-root">
@@ -346,5 +370,39 @@
     <footer class="footer">
       <div>© 2025 Pranav Uttarkar</div>
     </footer>
+    <script>
+      // Animate project cards as they enter the viewport with a pleasant stagger
+      (function () {
+        const cards = Array.from(document.querySelectorAll(".list .proj"));
+        if (!cards.length) return;
+
+        // Apply initial reveal class and stagger delay
+        cards.forEach((el, i) => {
+          el.classList.add("reveal");
+          el.style.setProperty("--stagger", i * 70 + "ms");
+        });
+
+        const onReveal = (el) => el.classList.add("is-in");
+
+        if ("IntersectionObserver" in window) {
+          const io = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  onReveal(entry.target);
+                  io.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.12, rootMargin: "0px 0px -10% 0px" }
+          );
+          cards.forEach((el) => io.observe(el));
+        } else {
+          // Fallback: reveal all without animation
+          requestAnimationFrame(() => cards.forEach(onReveal));
+        }
+      })();
+    </script>
+    <script type="module" src="/cursor.js"></script>
   </body>
 </html>
