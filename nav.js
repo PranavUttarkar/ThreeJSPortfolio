@@ -1,11 +1,10 @@
 export function injectNav(active = "home") {
   const links = [
     { href: "/", key: "home", label: "Home" },
-    { href: "/about.html", key: "about", label: "About" },
-    { href: "/explore.html", key: "explore", label: "3D Museum" },
-    { href: "/contact.html", key: "contact", label: "Contact" },
+    { href: "/projects", key: "projects", label: "Projects" },
+    { href: "/experiences", key: "experiences", label: "Experiences" },
     {
-      href: "/Resume Pranav Uttarkar.pdf",
+      href: "/Resume.pdf",
       key: "resume",
       label: "Resume",
       ext: true,
@@ -20,8 +19,6 @@ export function injectNav(active = "home") {
           active === l.key ? "active" : ""
         }">${l.label}</a></li>`
     )
-    .join(
-      ""
-    )}</ul><button id="navSearchBtn" aria-label="Open search">⌕</button></div>`;
+    .join("")}</ul></div>`;
   document.body.prepend(nav);
 }
