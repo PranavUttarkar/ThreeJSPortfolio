@@ -19,9 +19,9 @@ html,body { -webkit-overflow-scrolling:touch; }
 /* Link / interactive state */
 .fx-cursor--link .fx-cursor__ring { width: 36px; height: 36px; opacity: .85; box-shadow: 0 0 0 2px #a8c7ffcc, 0 0 22px #4aa3ff66 inset; }
 .fx-cursor--link .fx-cursor__core { opacity: 1; filter: drop-shadow(0 0 12px #1e90ff70) drop-shadow(0 0 26px #7aa7ff50); }
-/* Mouse down pulse */
-.fx-cursor--down .fx-cursor__ring { animation: fx-pulse .28s ease-out 1; }
-@keyframes fx-pulse { 0% { transform: translate(-50%,-50%) scale(1); opacity:.9; } 60% { transform: translate(-50%,-50%) scale(0.86); opacity:.7; } 100% { transform: translate(-50%,-50%) scale(1); opacity:.8; } }
+/* Mouse down feedback: hide only ring, keep center visible */
+.fx-cursor--down .fx-cursor__ring { opacity: 0; transition: opacity .12s ease; }
+@keyframes fx-pulse { 0% { opacity:.9; } 60% { opacity:.7; } 100% { opacity:.8; } }
 /* About page softer animated background */
 /* Pages with animated background: make body transparent so animation shows */
 body.home-root, body.about-body, body.contact-page { background:transparent; }
@@ -102,7 +102,8 @@ body.home-root .timeline { width:100%; }
 body.home-root .exp-item { text-align:center; }
 body.home-root footer.footer { text-align:center; }
 /* Animated background */
-.animated-bg { position:fixed; inset:0; z-index:-2; background:radial-gradient(circle at 20% 25%, #153a55 0%, transparent 60%), radial-gradient(circle at 80% 70%, #1e3b72 0%, transparent 55%), linear-gradient(120deg,#04070d,#07101a,#04070d); animation:bgShift 18s linear infinite alternate; filter:brightness(1.05) saturate(1.15); }
+.animated-bg { position:fixed; inset:0; z-index:-2; background:radial-gradient(circle at 20% 25%, #153a55 0%, transparent 60%), radial-gradient(circle at 80% 70%, #1e3b72 0%, transparent 55%), linear-gradient(120deg,#04070d,#07101a,#04070d); animation:bgShift 18s linear infinite alternate; filter:brightness(1.05) saturate(1.15); overflow:hidden; }
+.animated-bg.starry canvas { pointer-events:none; }
 @keyframes bgShift { 0% { filter:hue-rotate(0deg) brightness(1.05);} 50% { filter:hue-rotate(20deg) brightness(1.08);} 100% { filter:hue-rotate(-15deg) brightness(1.04);} }
 body:after { content:""; position:fixed; inset:0; background:repeating-linear-gradient(135deg,rgba(255,255,255,0.02) 0 2px,transparent 2px 8px); mix-blend-mode:overlay; opacity:.35; pointer-events:none; z-index:-1; animation:scan 22s linear infinite; }
 @keyframes scan { 0% { background-position:0 0;} 100% { background-position:600px 400px;} }
@@ -123,7 +124,7 @@ body:after { content:""; position:fixed; inset:0; background:repeating-linear-gr
 .hero-name span { background:linear-gradient(95deg,#1e90ff,#7aa7ff); -webkit-background-clip:text; background-clip:text; color:transparent; }
 .hero h1 { font-size: clamp(2.2rem,5.8vw,3.8rem); line-height:1.04; margin:.25rem 0 .75rem; font-weight:600; }
 .gradient-text { background:none; color:#ffffff; filter:drop-shadow(0 4px 22px #1e90ff22); letter-spacing:.5px; }
-.tagline { font-size:clamp(.9rem,1.15vw,1.05rem); color:var(--muted); margin:0 0 1.1rem; font-weight:400; letter-spacing:.4px; }
+.tagline { font-size:clamp(.9rem,1.15vw,1.05rem); color:#ddecfc88; margin:0 0 1.1rem; font-weight:400; letter-spacing:.4px; }
 /* Larger hero greeting only on home page */
 body.home-root .tagline { font-size:clamp(1.15rem,2.15vw,1.6rem); line-height:1.35; }
 .cta-row { display:flex; flex-wrap:wrap; gap:.85rem; }

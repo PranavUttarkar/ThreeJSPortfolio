@@ -74,10 +74,8 @@ export function initChatbot(options = {}) {
   ]);
 
   const suggests = h("div", { class: "pu-chat-suggests" }, [
-    chip("What projects have you built?"),
-    chip("Summarize your Daikin internship"),
+    chip("Summarize your previous internship"),
     chip("What tech do you use most?"),
-    chip("Tell me about MindWeb"),
   ]);
 
   const msgs = h("div", { class: "pu-chat-msgs" });
@@ -93,14 +91,50 @@ export function initChatbot(options = {}) {
       role: "dialog",
       "aria-label": "Chat with Pranav",
     },
-    [header, suggests, msgs, input]
+    [header, msgs, input]
   );
+
+  // Map of default canned answers for suggested chips
+  const canned = {
+    "Summarize your previous internship":
+      "At Daikin North America, I designed and deployed an internal enterprise AI Agent Platform. I built multi‑tool MCP agent orchestration platform, integrated internal APIs for workflows like HVAC config generation, comparisons, dealer lookup, and RAG, and shipped 12+ production tools that reduced repetitive tasks for 10k+ employees. I collaborated with PMs and leadership, iterated via demos, and deployed via Azure DevOps into an existing React/Redux GenAI surface.",
+    "What tech do you use most?":
+      "Day‑to‑day I’m strongest with C++, Python and TypeScript/JavaScript React web systems and PostgreSQL.",
+    "Tell me about MindWeb":
+      "MindWeb is a gamified productivity web‑app built with React + TypeScript and Supabase (PostgreSQL, Edge Functions, OAuth, Storage). It features friend streaks, notifications, and large data tracking with RLS for multi‑tenant security. I led the early beta (~100 testers), iterated on UX and growth loops, and focused on reliability (e.g., edge functions for streak rollovers).",
+  };
 
   function chip(text) {
     const c = h("button", { class: "pu-chip", text });
     c.addEventListener("click", () => {
+      // Simulate user sending the chip text, then auto‑answer after ~4s.
       ta.value = text;
       ta.focus();
+      // Immediately "send" without calling the network yet
+      const content = (ta.value || "").trim();
+      if (!content || state.busy) return;
+      ta.value = "";
+      pushMessage("user", content);
+      state.history.push({ role: "user", content });
+
+      // If we have a canned answer, show it after ~4 seconds and do NOT call the API
+      const cannedReply = canned[text];
+      if (cannedReply) {
+        state.busy = true;
+        const prev = send.textContent;
+        send.disabled = true;
+        send.textContent = "Thinking...";
+        setTimeout(() => {
+          pushMessage("assistant", cannedReply);
+          state.history.push({ role: "assistant", content: cannedReply });
+          state.busy = false;
+          send.disabled = false;
+          send.textContent = prev || "Send";
+        }, 4000);
+        return;
+      }
+      // Fallback: if no canned text, go through normal send flow
+      onSend();
     });
     return c;
   }
@@ -136,7 +170,7 @@ export function initChatbot(options = {}) {
     state.history.push({ role: "user", content });
     const prevBtnText = send.textContent;
     send.disabled = true;
-    send.textContent = "Sending…";
+    send.textContent = "Thinking...";
     state.busy = true;
     try {
       const res = await fetch("/api/chat", {
@@ -180,7 +214,7 @@ export function initChatbot(options = {}) {
   // Greet
   pushMessage(
     "assistant",
-    "Hey! I’m Pranav. Ask me anything about my projects, experience, or skills."
+    "Ask my AI anything about me, my projects, experiences or skills!"
   );
 
   // mark inited

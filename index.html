@@ -58,13 +58,14 @@
         style="margin: 0 auto 1.4rem; max-height: fit-content"
       >
         <h1 style="text-align: center; margin: 0.2rem 0 0.6rem">
-          Hi, I'm Pranav👋!
+          Hi, I'm Pranav!👋
         </h1>
-        <p class="tagline" style="text-align: center; margin: 0 0 1rem">
-          Hi! I’m a CS, Maths, & Entrepreneurship student at Texas A&M
-          passionate about building AI-driven products that blend technology,
-          design, and human behavior. Outside of tech, I love rock climbing,
-          running, geography and playing piano.
+        <br class="tagline" style="text-align: center; margin: 0 0 1rem">
+          I’m a CS, Math and Entrepreneurship student at Texas A&M University.
+          who is passionate about building AI-driven products that blend
+          technology, design, and human behavior.<br /><br></br>
+          Outside of tech, I love rock climbing, running, geography and playing
+          piano.
         </p>
         <div
           class="cta-row fixed-horizontal"
@@ -79,7 +80,7 @@
             <input
               id="liveSearch"
               type="text"
-              placeholder="Search skills, experiences, projects..."
+              placeholder="Search website for projects, skills...."
               autocomplete="off"
             />
           </div>
@@ -215,6 +216,10 @@
     </script>
     <!-- Chatbot: inline embed (open by default) -->
     <script type="module">
+      import { initStarsBackground } from "/src/ui/starsBackground.js";
+      // Initialize starry space background behind content
+      initStarsBackground({ selector: ".animated-bg", density: 0.14 });
+
       import { initChatbot } from "/src/ui/chatbot.js";
       // Render inline and open by default; mount inside #chatbot-inline
       initChatbot({ inline: true, open: true, mount: "#chatbot-inline" });
