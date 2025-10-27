@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Picky — Group Decision & Event Discovery Platform – Project</title>
+    <link rel="icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/classic.css" />
+  </head>
+  <body>
+    <nav class="site-nav glass">
+      <div class="nav-inner">
+        <div class="brand">PRANAV<span>_UTTARKAR</span></div>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/Resume.pdf" target="_blank">Resume</a></li>
+        </ul>
+        <a
+          class="btn outline"
+          style="margin-left: auto; font-size: 0.65rem; padding: 0.55rem 0.9rem"
+          href="/"
+          >&larr; Back</a
+        >
+      </div>
+    </nav>
+    <main class="section" style="max-width: 880px; margin: 0 auto">
+      <h1 style="margin-top: 0">
+        Picky — Group Decision & Event Discovery Platform
+      </h1>
+      <p>🎯 First Campus Launch — Texas A&M University 2025</p>
+      <div
+        class="proj-hero"
+        style="
+          margin: 1rem 0 1.6rem;
+          border: 1px solid rgba(255, 255, 255, 0.07);
+          border-radius: 20px;
+          overflow: hidden;
+          position: relative;
+          background: #0d1418;
+        "
+      >
+        <img
+          src="/picky-app.png"
+          alt="Picky — Group Decision & Event Discovery Platform"
+          style="
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 16/9;
+            display: block;
+            filter: brightness(0.95);
+          "
+          loading="lazy"
+        />
+        <span
+          style="
+            position: absolute;
+            left: 14px;
+            bottom: 12px;
+            font-size: 0.55rem;
+            letter-spacing: 0.6px;
+            background: rgba(0, 0, 0, 0.55);
+            padding: 0.35rem 0.55rem;
+            border-radius: 7px;
+          "
+          >Picky — Group Decision & Event Discovery Platform</span
+        >
+      </div>
+      <div style="margin: 0.6rem 0">
+        <a
+          class="btn"
+          href="https://usepicky.app"
+          target="_blank"
+          rel="noopener"
+          style="font-size: 0.95rem; padding: 0.5rem 0.8rem"
+          >View Project ↗</a
+        >
+      </div>
+      <article class="rich">
+        <h2>Overview</h2>
+        <p>
+          <strong>Picky</strong> is an AI-powered decision and discovery app
+          designed to help students and groups make faster, smarter choices
+          together. Launched first at <strong>Texas A&M University</strong>, it
+          provides a unified platform to explore hundreds of daily events, food
+          options, and campus activities — all tailored to user interests and
+          social preferences.
+        </p>
+
+        <h2>How It Works</h2>
+        <ul>
+          <li>
+            <strong>Personalized Discovery:</strong> AI recommendation engine
+            curates on-campus food and event options based on user behavior and
+            interests.
+          </li>
+          <li>
+            <strong>Group Decision Engine:</strong> Enables students to create
+            polls and instantly decide where to go or what to do using Picky’s
+            fast voting logic.
+          </li>
+          <li>
+            <strong>Real-Time Data:</strong> Selenium-powered web scraping keeps
+            all campus event and dining data fresh and up to date.
+          </li>
+          <li>
+            <strong>Smart Matching:</strong> Chroma vector database powers
+            contextual similarity search and personalized suggestions.
+          </li>
+        </ul>
+
+        <h2>Highlights</h2>
+        <ul>
+          <li>🎯 Unified discovery of food, events, and activities at TAMU</li>
+          <li>AI learns individual and group preferences over time</li>
+          <li>Dynamic data updates via Selenium web scraping</li>
+          <li>Seamless React Native interface for iOS and Android</li>
+          <li>
+            Viral campus launch campaign driving first 500+ student sign-ups
+          </li>
+        </ul>
+
+        <h2>Technical</h2>
+        <p>
+          Built using <strong>React Native</strong> for cross-platform
+          experience, with <strong>Chroma Vector DB</strong> for semantic search
+          and <strong>Selenium</strong> for web data extraction. The backend
+          integrates <strong>Node.js</strong>, <strong>REST APIs</strong>, and
+          <strong>Python</strong> modules for data processing and
+          personalization.
+        </p>
+        <p>
+          <strong>Tech Stack:</strong> React Native · Chroma Vector DB ·
+          Selenium · Node.js · REST APIs · Python · AI Recommendations
+        </p>
+
+        <h2>Live Demo</h2>
+        <p>
+          Explore the app at
+          <a href="https://usepicky.app" target="_blank">usepicky.app</a>
+        </p>
+      </article>
+    </main>
+    <footer class="footer">
+      <div>
+        Thanks for stopping by | <span id="year"></span> Pranav Uttarkar
+      </div>
+    </footer>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+    <script type="module" src="/cursor.js"></script>
+  </body>
+</html>

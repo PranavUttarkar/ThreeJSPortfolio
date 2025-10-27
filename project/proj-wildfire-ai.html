@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>
+      Wildfire Information Enrichment & Notification Agent Orchestra – Project
+    </title>
+    <link rel="icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/classic.css" />
+  </head>
+  <body>
+    <nav class="site-nav glass">
+      <div class="nav-inner">
+        <div class="brand">PRANAV<span>_UTTARKAR</span></div>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/Resume.pdf" target="_blank">Resume</a></li>
+        </ul>
+        <a
+          class="btn outline"
+          style="margin-left: auto; font-size: 0.65rem; padding: 0.55rem 0.9rem"
+          href="/"
+          >&larr; Back</a
+        >
+      </div>
+    </nav>
+    <main class="section" style="max-width: 880px; margin: 0 auto">
+      <h1 style="margin-top: 0">
+        Wildfire Information Enrichment & Notification Agent Orchestra
+      </h1>
+      <p>🏆 Google Gemini Track Winner – Tidal AI Hackathon 2025</p>
+      <div
+        class="proj-hero"
+        style="
+          margin: 1rem 0 1.6rem;
+          border: 1px solid rgba(255, 255, 255, 0.07);
+          border-radius: 20px;
+          overflow: hidden;
+          position: relative;
+          background: #0d1418;
+        "
+      >
+        <img
+          src="/wildfire-ai.png"
+          alt="Wildfire Information Enrichment & Notification Agent Orchestra"
+          style="
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 16/9;
+            display: block;
+            filter: brightness(0.95);
+          "
+          loading="lazy"
+        />
+        <span
+          style="
+            position: absolute;
+            left: 14px;
+            bottom: 12px;
+            font-size: 0.55rem;
+            letter-spacing: 0.6px;
+            background: rgba(0, 0, 0, 0.55);
+            padding: 0.35rem 0.55rem;
+            border-radius: 7px;
+          "
+          >Wildfire Information Enrichment & Notification Agent Orchestra</span
+        >
+      </div>
+      <div style="margin: 0.6rem 0">
+        <a
+          class="btn"
+          href="https://devpost.com/software/wildfire-protection-agent-watchdog-network"
+          target="_blank"
+          rel="noopener"
+          style="font-size: 0.95rem; padding: 0.5rem 0.8rem"
+          >View Project ↗</a
+        >
+      </div>
+      <article class="rich">
+        <h2>Overview</h2>
+        <p>
+          Developed at <strong>TidalHack 2025</strong>, this project addresses
+          the critical time lost between wildfire detection and coordinated
+          response. It uses a network of AI agents that autonomously detect
+          anomalies, gather contextual data, learn from past wildfire events,
+          and generate an actionable response plan—all within roughly
+          <strong>120 seconds</strong>.
+        </p>
+        <h2>How It Works</h2>
+        <ul>
+          <li>
+            <strong>Detection Agent:</strong> Analyzes satellite imagery to spot
+            potential wildfire anomalies.
+          </li>
+          <li>
+            <strong>Enrichment Agent:</strong> Gathers contextual data including
+            weather, humidity, wind direction, local population, fire stations,
+            and evacuation zones.
+          </li>
+          <li>
+            <strong>Learning Agent:</strong> Compares new anomalies against
+            historical wildfire events and refines decision-making with each
+            iteration.
+          </li>
+          <li>
+            <strong>Action Agent:</strong> Generates a recommended course of
+            action and disseminates it via AWS SNS to fire stations and disaster
+            relief centers.
+          </li>
+        </ul>
+        <h2>Highlights</h2>
+        <ul>
+          <li>
+            🏆 <strong>Google Gemini Track Winner</strong> at TidalHack 2025
+          </li>
+          <li>
+            End-to-end AI orchestration: detection → enrichment → learning →
+            action.
+          </li>
+          <li>
+            Real-time automation from wildfire detection to response plan in
+            under 2 minutes.
+          </li>
+          <li>
+            Designed for scalability and adaptation to other disaster-response
+            domains.
+          </li>
+        </ul>
+        <h2>Technical</h2>
+        <p>
+          Built using <strong>AWS Bedrock</strong>, <strong>AgentCore</strong>,
+          <strong>AWS Titan</strong>, <strong>Google Gemini</strong>, and
+          integrated with <strong>DynamoDB</strong>, <strong>S3</strong>, and
+          <strong>SNS</strong> for orchestration, persistence, and
+          communication. The agents collaborate asynchronously to build a
+          context-aware, continuously learning decision engine.
+        </p>
+        <p>
+          <strong>Tech Stack:</strong> AWS Bedrock · AWS AgentCore · AWS Titan ·
+          Google Gemini · DynamoDB · S3 · SNS · Python
+        </p>
+      </article>
+    </main>
+    <footer class="footer">
+      <div>
+        Thanks for stopping by | <span id="year"></span> Pranav Uttarkar
+      </div>
+    </footer>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+    <script type="module" src="/cursor.js"></script>
+  </body>
+</html>
