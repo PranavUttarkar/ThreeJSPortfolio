@@ -32,6 +32,7 @@ export const experience = [
     id: "exp-daikin-ai",
     role: "AI Development Intern",
     org: "Daikin North America",
+    logo: "/DaikinLogo.png",
     period: "May 2025 – Aug 2025",
     summary: "Designed & Deployed internal enterprise AI Agent Platform.",
     details: [

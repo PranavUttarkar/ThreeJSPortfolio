@@ -437,6 +437,24 @@
         </article>
       </div>
     </main>
+    <div
+      id="load-more-wrap"
+      style="
+        max-width: 1150px;
+        margin: 1rem auto 0;
+        padding: 0 1rem;
+        text-align: center;
+      "
+    >
+      <button
+        id="load-more-btn"
+        class="btn outline"
+        aria-label="Load more projects"
+        style="padding: 0.5rem 0.9rem; font-size: 0.95rem"
+      >
+        Load more projects
+      </button>
+    </div>
     <footer class="footer">
       <div>© 2025 Pranav Uttarkar</div>
     </footer>
@@ -471,6 +489,67 @@
           // Fallback: reveal all without animation
           requestAnimationFrame(() => cards.forEach(onReveal));
         }
+      })();
+    </script>
+    <script>
+      // Progressive project reveal: show at least 5 projects initially, then load more in batches
+      (function () {
+        const list = document.querySelector(".list");
+        if (!list) return;
+        const items = Array.from(list.querySelectorAll(".proj"));
+        const initial = 6;
+        const batch = 6;
+        let visible = 0;
+
+        function hideAllAfterInitial() {
+          items.forEach((el, idx) => {
+            if (idx < initial) {
+              el.style.display = "";
+              visible++;
+            } else {
+              el.style.display = "none";
+            }
+          });
+        }
+
+        function showNext(n) {
+          const next = items.slice(visible, visible + n);
+          next.forEach((el) => (el.style.display = ""));
+          visible += next.length;
+          if (visible >= items.length) {
+            const wrap = document.getElementById("load-more-wrap");
+            if (wrap) wrap.style.display = "none";
+            if (observer) observer.disconnect();
+          }
+        }
+
+        hideAllAfterInitial();
+
+        const btn = document.getElementById("load-more-btn");
+        if (btn) btn.addEventListener("click", () => showNext(batch));
+
+        // Auto-load when user scrolls near the last visible card
+        let observer = null;
+        function setupObserver() {
+          if (visible >= items.length) return;
+          const idxToObserve = Math.max(0, visible - 1);
+          const target = items[idxToObserve];
+          if (!target) return;
+          observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  showNext(batch);
+                }
+              });
+            },
+            { rootMargin: "0px 0px 300px 0px" }
+          );
+          observer.observe(target);
+        }
+
+        // Delay observer setup so initial layout stabilizes
+        setTimeout(setupObserver, 300);
       })();
     </script>
     <script type="module" src="/cursor.js"></script>
